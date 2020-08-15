@@ -1,0 +1,7 @@
+# Ignore all of Stack's buildfiles
+.stack-work
+stack.yaml.lock
+
+# Ignore Hakyll's build directories
+_cache/
+_site/
