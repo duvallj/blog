@@ -1,18 +1,19 @@
-<article>
-    <section class="header">
-      <div class="info">
+<article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">$title$</h1>
+      <div class="entry-info">
         Posted on $date$
         $if(author)$
             by $author$
         $endif$
       </div>
       $if(tags)$
-      <div class="info">
+      <div class="entry-info">
         Tags: $tags$
       </div>
       $endif$
     </section>
-    <section>
+    <section class="entry-content">
         $body$
     </section>
 </article>

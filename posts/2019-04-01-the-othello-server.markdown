@@ -40,7 +40,7 @@ The frontend uses websocket callbacks to trigger updates to a `<canvas>` element
 
 In the end, it looks pretty OK if I do say so myself.
 
-<figure class="block-image"><img src="images/othello_server_demo.png" alt="Image of a running Othello game"/><figcaption><em>All the board and stone images were provided by</em> [<em>William O'Connell</em>](https://williamoconnell.me/)</figcaption></figure>
+<figure class="block-image"><img style="width: 100%" src="/uploads/othello_server_demo.png" alt="Image of a running Othello game"/><figcaption><em>All the board and stone images were provided by</em> [<em>William O'Connell</em>](https://williamoconnell.me/)</figcaption></figure>
 
 #### Django
 Django is a very nice web framework. I feel, though, it was meant for projects a bit bigger than mine. Pretty much the only reason I use it is for easy OAuth support and the best Websocket support. Doing either of those things in Flask was a lot harder and more bug-prone.
@@ -79,7 +79,11 @@ if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     gs = GameScheduler(loop)
     def game_scheduler_factory(): return gs
-    coro = loop.create_server(game_scheduler_factory, host=SCHEDULER_HOST, port=SCHEDULER_PORT)
+    coro = loop.create_server(
+        game_scheduler_factory,
+        host=SCHEDULER_HOST,
+        port=SCHEDULER_PORT
+    )
     server = loop.run_until_complete(coro)
 
     # Server requests until Ctrl+C is pressed

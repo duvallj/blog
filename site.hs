@@ -15,8 +15,12 @@ main :: IO ()
 main = 
   E.setLocaleEncoding E.utf8 >>
   (hakyll $ do
-    match "uploads/*" $ do
+    match "uploads/**" $ do
       route   idRoute
+      compile copyFileCompiler
+
+    match "uploads/favicon.ico" $ do
+      route $ constRoute "favicon.ico"
       compile copyFileCompiler
 
     match "css/*" $ do
@@ -26,6 +30,7 @@ main =
     match (fromList ["about.md", "contact.md", "privacy-policy.md"]) $ do
       route   $ setExtension "html"
       compile $ pandocCompiler
+        >>= loadAndApplyTemplate "templates/page.html"    defaultContext
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
@@ -36,7 +41,7 @@ main =
       route $ metadataRoute titleRoute
       compile $ pandocCompiler
         >>= loadAndApplyTemplate "templates/post.html"    postCtxWithTags
-        >>= loadAndApplyTemplate "templates/default.html" postCtx
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
     tagsRules tags $ \tag pattern -> do
@@ -50,8 +55,9 @@ main =
               defaultContext
 
         makeItem ""
-          >>= loadAndApplyTemplate "templates/tag.html" tagCtx
-          >>= loadAndApplyTemplate "templates/default.html" tagCtx
+          >>= loadAndApplyTemplate "templates/tag.html"     tagCtx
+          >>= loadAndApplyTemplate "templates/page.html"    defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
     create ["archive.html"] $ do
@@ -65,7 +71,8 @@ main =
 
         makeItem ""
           >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-          >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+          >>= loadAndApplyTemplate "templates/page.html"    defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
     create ["tags.html"] $ do
@@ -78,7 +85,8 @@ main =
 
         makeItem ""
           >>= loadAndApplyTemplate "templates/tag-list.html" allTagsCtx
-          >>= loadAndApplyTemplate "templates/default.html"  allTagsCtx
+          >>= loadAndApplyTemplate "templates/page.html"     defaultContext
+          >>= loadAndApplyTemplate "templates/default.html"  defaultContext
           >>= relativizeUrls
 
     match "index.html" $ do
@@ -91,6 +99,7 @@ main =
 
         getResourceBody
           >>= applyAsTemplate indexCtx
+          >>= loadAndApplyTemplate "templates/page.html"    defaultContext
           >>= loadAndApplyTemplate "templates/default.html" indexCtx
           >>= relativizeUrls
 

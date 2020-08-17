@@ -1,0 +1,10 @@
+@font-face {
+  font-family "Work Sans";
+  src: url("/uploads/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family "Work Sans";
+  font-style: italic;
+  src: url("/uploads/fonts/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf");
+}
