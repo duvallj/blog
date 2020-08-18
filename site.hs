@@ -23,7 +23,7 @@ main =
       route $ constRoute "favicon.ico"
       compile copyFileCompiler
 
-    match "css/*" $ do
+    match "css/*.css" $ do
       route   idRoute
       compile compressCssCompiler
 
