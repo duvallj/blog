@@ -4,6 +4,9 @@ import           Data.Maybe  (fromMaybe)
 import           Data.Monoid (mappend)
 import           Data.List   (concat)
 import           Hakyll
+import           Hakyll.Contrib.LaTeX
+import           Image.LaTeX.Render
+import           Image.LaTeX.Render.Pandoc
 import qualified GHC.IO.Encoding as E
 
 import           Hakyll.Contrib.BetterPages
@@ -14,9 +17,11 @@ import           Hakyll.Contrib.Web.TextUtils (firstn)
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = 
-  E.setLocaleEncoding E.utf8 >>
-  (hakyll $ do
+main = do
+  E.setLocaleEncoding E.utf8
+  renderLaTeX <- initFormulaCompilerSVG 1000 defaultEnv
+  
+  hakyll $ do
     match "uploads/**" $ do
       route   idRoute
       compile copyFileCompiler
@@ -46,7 +51,10 @@ main =
       compile $ do
         let fullPostCtx = pageContext pages index `mappend` postCtxWithTags
 
-        pandocCompiler
+        pandocCompilerWithTransformM 
+          defaultHakyllReaderOptions
+          defaultHakyllWriterOptions
+          (renderLaTeX defaultPandocFormulaOptions)
           >>= loadAndApplyTemplate "templates/post.html"    fullPostCtx
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
@@ -119,7 +127,7 @@ main =
           >>= relativizeUrls
 
     match "templates/*" $ compile templateBodyCompiler
-  )
+
 
 --------------------------------------------------------------------------------
 -- | Add a date field to the default context
