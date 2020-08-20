@@ -66,6 +66,16 @@ a {
   color: rgb(3, 102, 214);
 }
 
+.post-navigation a .post-title {
+  color: #22313f;
+}
+
+
+.post-navigation a:hover,
+.post-navigation a:focus {
+  text-decoration: none;
+}
+
 /* Link Underline Color */
 .entry-content a,
 .entry-summary a,

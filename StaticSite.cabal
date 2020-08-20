@@ -7,7 +7,9 @@ executable site
   main-is:          site.hs
   other-modules:    Utils
                   , TagFormat
+                  , BetterPages
   build-depends:    base == 4.*
+                  , containers == 0.6.*
                   , text == 1.2.*
                   , hakyll == 4.13.*
   ghc-options:      -threaded

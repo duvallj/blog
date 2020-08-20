@@ -2,12 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Maybe  (fromMaybe)
 import           Data.Monoid (mappend)
+import           Data.List   (concat)
 import           Hakyll
+import qualified Data.Map        as M
 import qualified GHC.IO.Encoding as E
-import qualified Data.Text as T
+import qualified Data.Text       as T
 
 import           Utils
 import           TagFormat
+import           BetterPages
 
 
 --------------------------------------------------------------------------------
@@ -37,16 +40,21 @@ main =
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
     let postCtxWithTags = tagsField "tags" tags `mappend` postCtx
 
-    match "posts/*" $ do
-      route $ metadataRoute titleRoute
-      compile $ pandocCompiler
-        >>= loadAndApplyTemplate "templates/post.html"    postCtxWithTags
-        >>= loadAndApplyTemplate "templates/default.html" defaultContext
-        >>= relativizeUrls
+    pages <- buildPagesWith "posts/*" sortChronological  
+
+    pageRules pages $ \index _ -> do
+      route $ pageIndexRoute index
+      compile $ do
+        let fullPostCtx = pageContext pages index `mappend` postCtxWithTags
+
+        pandocCompiler
+          >>= loadAndApplyTemplate "templates/post.html"    fullPostCtx
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= relativizeUrls
 
     tagsRules tags $ \tag pattern -> do
       route $ tagRoute tag
-      let title = "Posts tagged with \"" ++ tag ++ "\""
+      let title = "tag \"" ++ tag ++ "\""
       compile $ do
         posts <- recentFirst =<< loadAll pattern
         let tagCtx =
@@ -60,18 +68,19 @@ main =
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
-    create ["archive.html"] $ do
+    archivePages <- buildPaginateWith archivePageStrategy "posts/*" archivePageMaker
+
+    paginateRules archivePages $ \pagenumber pattern -> do
       route idRoute
       compile $ do
-        posts <- recentFirst =<< loadAll "posts/*"
-        let archiveCtx =
-              listField "posts" postCtx (return posts) `mappend`
-              constField "title" "Archives"            `mappend`
+        posts <- recentFirst =<< loadAll pattern
+        let archiveCtx = archiveContext archivePages pagenumber `mappend` 
+              listField "posts" postCtx (return posts)          `mappend`
               defaultContext
 
         makeItem ""
           >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-          >>= loadAndApplyTemplate "templates/page.html"    defaultContext
+          >>= loadAndApplyTemplate "templates/page.html"    archiveCtx
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
@@ -107,18 +116,60 @@ main =
   )
 
 --------------------------------------------------------------------------------
+-- | Add a date field to the default context
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
 
+-- | From a tag, create a 
 tagRoute :: String -> Routes
 tagRoute =
-  constRoute . T.unpack . (`T.append` ".html") . toSlug . T.pack
+  constRoute . T.unpack . (T.append "tags/") . (`T.append` ".html") . toSlug . T.pack
 
 betterRenderTags :: Tags -> Compiler String
 betterRenderTags =
   renderTags formatTagItem formatJoinTags
+
+pageIndexRoute :: PostNumber -> Routes
+pageIndexRoute index = 
+  (constRoute . concat) ["posts/", show index, ".html"]
+
+archivePageMaker :: PageNumber -> Identifier
+archivePageMaker index
+  | index <= 1 = fromFilePath "archive/index.html"
+  | otherwise  = (fromFilePath . concat) ["archive/", show index, ".html"]
+
+archiveTitleMaker :: Paginate -> PageNumber -> Maybe String
+archiveTitleMaker pag index
+  | index < 1                      = Nothing
+  | index > (paginateNumPages pag) = Nothing
+  | index == 1                     = Just "archives"
+  | otherwise                      = (Just . concat) ["archives page", show index]
+
+-- | TODO: make this sort by year and/or month instead of naively
+archivePageStrategy :: [Identifier] -> Rules [[Identifier]]
+archivePageStrategy = return . (paginateEvery 50)
+
+archiveContext :: Paginate -> PageNumber -> Context a
+archiveContext pag currentPage = 
+  mconcat
+    [ constField "title"        currentTitle
+    , field "firstPageTitle"    $ \_ -> title 1
+    , field "previousPageTitle" $ \_ -> title (currentPage - 1)
+    , field "nextPageTitle"     $ \_ -> title (currentPage + 1)
+    , field "lastPageTitle"     $ \_ -> title (paginateNumPages pag)
+    ]
+    `mappend` 
+  paginateContext pag currentPage
+  where
+    currentTitle = fromMaybe "archives page ??" $ archiveTitleMaker pag currentPage
+
+    title :: PageNumber -> Compiler String
+    title i =
+      case archiveTitleMaker pag i of
+        Nothing -> fail ("archives page " ++ show i ++ " out of range")
+        Just t  -> return t
 
 titleRoute :: Metadata -> Routes
 titleRoute = fieldRoute "Untitled" "title"
@@ -135,3 +186,9 @@ fileNameFromMeta placeholder fieldName =
 getFieldFromMeta :: String -> String -> Metadata -> String
 getFieldFromMeta placeholder fieldName =
   fromMaybe placeholder . lookupString fieldName
+
+--------------------------------------------------------------------------------
+-- | Get the total number of pages in a Paginate
+-- Re-writing as public because it's useful
+paginateNumPages :: Paginate -> Int
+paginateNumPages = M.size . paginateMap

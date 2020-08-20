@@ -6,3 +6,28 @@
         $body$
     </section>
 </article>
+$if(currentPageNum)$
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    $if(previousPageNum)$
+      <div class="nav-previous">
+        <a href="$previousPageUrl$" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous page:</span>
+          <span class="post-title">$previousPageTitle$</span>
+        </a>
+      </div>
+    $endif$
+    $if(nextPageNum)$
+      <div class="nav-next">
+        <a href="$nextPageUrl$" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next page:</span>
+          <span class="post-title">$nextPageTitle$</span>
+        </a>
+      </div>
+    $endif$
+  </div>
+</nav>
+$endif$

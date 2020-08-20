@@ -616,6 +616,34 @@ nav a {
   text-decoration: underline;
 }
 
+.post-navigation a {
+  display: block;
+  padding: 3.8461% 7.6923%;
+}
+
+.post-navigation span {
+  display: block;
+}
+
+.post-navigation .meta-nav {
+  opacity: 0.8;
+  font-size: 12px;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.post-navigation .post-title {
+  font-size: 18px;
+  font-size: 18rem;
+  line-height: 1.3333;
+  position: relative;
+  z-index: 2;
+}
+
 /**
  * 7.0 Accessibility
  */
@@ -853,6 +881,7 @@ a.post-thumbnail:hover,
 a.post-thumbnail:focus {
 	opacity: 0.85;
 }
+
 
 .entry-header {
 	padding: 0 4.5%;
