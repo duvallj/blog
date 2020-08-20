@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Haskell Takes Way Too Long To Compile
-tags: daily thoughts
+tags: daily thoughts, Hakyll
 ---
 
 Wow that was rough.

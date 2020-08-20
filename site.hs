@@ -57,14 +57,21 @@ main =
       let title = "tag \"" ++ tag ++ "\""
       compile $ do
         posts <- recentFirst =<< loadAll pattern
-        let tagCtx =
-              constField "title" title                         `mappend`
-              listField "posts" postCtxWithTags (return posts) `mappend`
+        mainTagsUrl <- urlFromIdentifier "tags.html"
+        -- This is a big hack, co-opting the logic to generate a "previous page"
+        -- link from pages with actual preivous/next pages. I might want to
+        -- split this out into a separate template, but this works too >:)
+        let tagCtx = constField "title"  title                              `mappend`
+              constField "previousPageTitle" "Tags"                         `mappend`
+              constField "previousPageUrl"   mainTagsUrl                    `mappend`
+              constField "previousPageNum"   (show 0)                       `mappend` 
+              constField "currentPageNum"   (show 1)                       `mappend` 
+              listField  "posts"             postCtxWithTags (return posts) `mappend`
               defaultContext
 
         makeItem ""
           >>= loadAndApplyTemplate "templates/tag.html"     tagCtx
-          >>= loadAndApplyTemplate "templates/page.html"    defaultContext
+          >>= loadAndApplyTemplate "templates/page.html"    tagCtx
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
@@ -89,7 +96,7 @@ main =
       compile $ do
         let allTagsCtx = 
               field "tags" (return (betterRenderTags tags)) `mappend`
-              constField "title" "Tags"      `mappend`
+              constField "title" "Tags"                     `mappend`
               defaultContext
 
         makeItem ""
@@ -126,6 +133,13 @@ postCtx =
 tagRoute :: String -> Routes
 tagRoute =
   constRoute . T.unpack . (T.append "tags/") . (`T.append` ".html") . toSlug . T.pack
+
+urlFromIdentifier :: Identifier -> Compiler String
+urlFromIdentifier i = getRoute i
+  >>= \maybeRoute ->
+    case maybeRoute of
+      Just r  -> return $ toUrl r
+      Nothing -> fail ("No URL for page \"" ++ show i ++ "\"")
 
 betterRenderTags :: Tags -> Compiler String
 betterRenderTags =

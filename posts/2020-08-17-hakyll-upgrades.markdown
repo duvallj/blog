@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Blog Theme Upgrades!
-tags: daily thoughts
+tags: daily thoughts, Hakyll
 ---
 
 Wow the blog sure looks snazzy now! I ripped the twenty-fifteen theme from

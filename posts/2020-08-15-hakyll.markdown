@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Blog is now on Hakyll
-tags: daily thoughts
+tags: daily thoughts, Hakyll
 ---
 
 Hi! This site looks a little different how. Just for fun, I'd thought I'd move
