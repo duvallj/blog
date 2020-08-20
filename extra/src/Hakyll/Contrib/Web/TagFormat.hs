@@ -1,7 +1,10 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 
-module TagFormat (formatTagItem, formatJoinTags) where
+module Hakyll.Contrib.Web.TagFormat
+  ( formatTagItem
+  , formatJoinTags
+  ) where
 
 import           Data.List (concat, intercalate)
 

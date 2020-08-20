@@ -1,8 +1,8 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-module BetterPages
+module Hakyll.Contrib.BetterPages
   ( PostNumber
-  , PageData (..)
+  , PostData (..)
   , buildPagesWith
   , pageRules
   , pageContext
@@ -35,7 +35,7 @@ type PostNumber = Int
 -- | Data about pages.
 -- pageMap assigns numeric ids to each page
 -- pageDependency is needed to work well with Hakyll's Compiler
-data PageData = PageData
+data PostData = PostData
   { pageMap :: M.Map PostNumber Identifier
   , pageDependency :: Dependency
   }
@@ -43,32 +43,32 @@ data PageData = PageData
 
 --------------------------------------------------------------------------------
 -- | Returns the total number of pages present in a set of pages
-numPages :: PageData -> Int
+numPages :: PostData -> Int
 numPages = M.size . pageMap
 
 
 --------------------------------------------------------------------------------
 -- | From a Pattern and a way to sort the resulting Identifiers, create a
--- PageData object
+-- PostData object
 buildPagesWith
   :: (MonadMetadata m)
   => Pattern
   -> ([Identifier] -> m [Identifier])
-  -> m PageData
+  -> m PostData
 buildPagesWith pattern sorter = do
   ids       <- getMatches pattern
   sortedIds <- sorter ids
   let idsSet = S.fromList ids
-  return PageData
+  return PostData
     { pageMap = M.fromList (zip [1 ..] sortedIds)
     , pageDependency = PatternDependency pattern idsSet
     }
 
 
 --------------------------------------------------------------------------------
--- | Create a Rules () from a PageData and a continuation that takes in the
+-- | Create a Rules () from a PostData and a continuation that takes in the
 -- PostNumber and Identifier to create the rules
-pageRules :: PageData -> (PostNumber -> Identifier -> Rules ()) -> Rules()
+pageRules :: PostData -> (PostNumber -> Identifier -> Rules ()) -> Rules()
 pageRules pagedata rules =
   forM_ (M.toList $ pageMap pagedata) $ \(index, identifier) ->
     rulesExtraDependencies [pageDependency pagedata] $
@@ -76,8 +76,8 @@ pageRules pagedata rules =
 
 
 --------------------------------------------------------------------------------
--- | Perform a page lookup in the PageData map
-getPageByNumber :: PageData -> PostNumber -> Maybe Identifier
+-- | Perform a page lookup in the PostData map
+getPageByNumber :: PostData -> PostNumber -> Maybe Identifier
 getPageByNumber pagedata index
   | index < 1                   = Nothing
   | index > (numPages pagedata) = Nothing
@@ -106,7 +106,7 @@ getPageByNumber pagedata index
 -- * @previousPageTitle@
 -- * @nextPageTitle@
 -- * @lastPageTitle@
-pageContext :: PageData -> PostNumber -> Context a
+pageContext :: PostData -> PostNumber -> Context a
 pageContext pag currentPage = mconcat
     [ field "firstPageNum"      $ \_ -> otherPage 1                 >>= num
     , field "firstPageUrl"      $ \_ -> otherPage 1                 >>= url
@@ -157,7 +157,7 @@ pageContext pag currentPage = mconcat
         Nothing -> fail $ "No URL for page: " ++ show n
 
     title :: (Int, Identifier) -> Compiler String
-    title (n, i) = do
+    title (_, i) = do
       metadata <- getMetadata i
       let maybeTitle = lookupString "title" metadata
       case maybeTitle of

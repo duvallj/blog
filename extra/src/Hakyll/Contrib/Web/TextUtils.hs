@@ -1,7 +1,10 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 
-module Utils (firstn, toSlug) where
+module Hakyll.Contrib.Web.TextUtils
+  ( firstn
+  , toSlug
+  ) where
 
 import           Data.Char (isAlphaNum)
 import qualified Data.Text as T
@@ -10,9 +13,10 @@ import qualified Data.Text as T
 --------------------------------------------------------------------------------
 
 firstn          :: Integer -> [a] -> [a]
-firstn 0 xs     =  []
-firstn n []     =  []
-firstn n (x:xs) =  x:(firstn (n-1) xs)
+firstn _ []     = []
+firstn n (x:xs)
+  | n <= 0      = []
+  | otherwise   = x:(firstn (n-1) xs)
 
 --------------------------------------------------------------------------------
 

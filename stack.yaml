@@ -1,8 +1,10 @@
 resolver: lts-14.27
 packages:
   - .
+  - extra
 
 extra-deps:
   - hakyll-4.13.4.0
+  - latex-svg-hakyll-0.2
   - containers-0.6.0.1
   - text-1.2.3.1

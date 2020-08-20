@@ -4,14 +4,13 @@ import           Data.Maybe  (fromMaybe)
 import           Data.Monoid (mappend)
 import           Data.List   (concat)
 import           Hakyll
-import qualified Data.Map        as M
 import qualified GHC.IO.Encoding as E
-import qualified Data.Text       as T
 
-import           Utils
-import           TagFormat
-import           BetterPages
-
+import           Hakyll.Contrib.BetterPages
+import           Hakyll.Contrib.BetterArchive
+import           Hakyll.Contrib.Web.CustomRoutes
+import           Hakyll.Contrib.Web.TagFormat
+import           Hakyll.Contrib.Web.TextUtils (firstn)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -77,12 +76,12 @@ main =
 
     archivePages <- buildPaginateWith archivePageStrategy "posts/*" archivePageMaker
 
-    paginateRules archivePages $ \pagenumber pattern -> do
+    paginateRules archivePages $ \i pattern -> do
       route idRoute
       compile $ do
         posts <- recentFirst =<< loadAll pattern
-        let archiveCtx = archiveContext archivePages pagenumber `mappend` 
-              listField "posts" postCtx (return posts)          `mappend`
+        let archiveCtx = archiveContext archivePages archiveTitle i `mappend` 
+              listField "posts" postCtx (return posts)              `mappend`
               defaultContext
 
         makeItem ""
@@ -129,11 +128,7 @@ postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
 
--- | From a tag, create a 
-tagRoute :: String -> Routes
-tagRoute =
-  constRoute . T.unpack . (T.append "tags/") . (`T.append` ".html") . toSlug . T.pack
-
+-- | In a compiler context, get a URL
 urlFromIdentifier :: Identifier -> Compiler String
 urlFromIdentifier i = getRoute i
   >>= \maybeRoute ->
@@ -141,68 +136,10 @@ urlFromIdentifier i = getRoute i
       Just r  -> return $ toUrl r
       Nothing -> fail ("No URL for page \"" ++ show i ++ "\"")
 
+archiveTitle :: PageNumber -> String
+archiveTitle index = concat ["archives page", show index]
+
+-- | Shorthad for applying the tag rendering found in TagFormat
 betterRenderTags :: Tags -> Compiler String
 betterRenderTags =
   renderTags formatTagItem formatJoinTags
-
-pageIndexRoute :: PostNumber -> Routes
-pageIndexRoute index = 
-  (constRoute . concat) ["posts/", show index, ".html"]
-
-archivePageMaker :: PageNumber -> Identifier
-archivePageMaker index
-  | index <= 1 = fromFilePath "archive/index.html"
-  | otherwise  = (fromFilePath . concat) ["archive/", show index, ".html"]
-
-archiveTitleMaker :: Paginate -> PageNumber -> Maybe String
-archiveTitleMaker pag index
-  | index < 1                      = Nothing
-  | index > (paginateNumPages pag) = Nothing
-  | index == 1                     = Just "archives"
-  | otherwise                      = (Just . concat) ["archives page", show index]
-
--- | TODO: make this sort by year and/or month instead of naively
-archivePageStrategy :: [Identifier] -> Rules [[Identifier]]
-archivePageStrategy = return . (paginateEvery 50)
-
-archiveContext :: Paginate -> PageNumber -> Context a
-archiveContext pag currentPage = 
-  mconcat
-    [ constField "title"        currentTitle
-    , field "firstPageTitle"    $ \_ -> title 1
-    , field "previousPageTitle" $ \_ -> title (currentPage - 1)
-    , field "nextPageTitle"     $ \_ -> title (currentPage + 1)
-    , field "lastPageTitle"     $ \_ -> title (paginateNumPages pag)
-    ]
-    `mappend` 
-  paginateContext pag currentPage
-  where
-    currentTitle = fromMaybe "archives page ??" $ archiveTitleMaker pag currentPage
-
-    title :: PageNumber -> Compiler String
-    title i =
-      case archiveTitleMaker pag i of
-        Nothing -> fail ("archives page " ++ show i ++ " out of range")
-        Just t  -> return t
-
-titleRoute :: Metadata -> Routes
-titleRoute = fieldRoute "Untitled" "title"
-
-fieldRoute :: String -> String -> Metadata -> Routes
-fieldRoute placeholder fieldName =
-  constRoute . (fileNameFromMeta placeholder fieldName)
-
-fileNameFromMeta :: String -> String -> Metadata -> FilePath
-fileNameFromMeta placeholder fieldName =
-  T.unpack . (`T.append` ".html") . toSlug . T.pack 
-           . (getFieldFromMeta placeholder fieldName)
-
-getFieldFromMeta :: String -> String -> Metadata -> String
-getFieldFromMeta placeholder fieldName =
-  fromMaybe placeholder . lookupString fieldName
-
---------------------------------------------------------------------------------
--- | Get the total number of pages in a Paginate
--- Re-writing as public because it's useful
-paginateNumPages :: Paginate -> Int
-paginateNumPages = M.size . paginateMap

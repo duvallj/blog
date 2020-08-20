@@ -1,16 +1,12 @@
-name:               StaticSite
-version:            0.1.0.0
+name:               blog
+version:            0.2.0.0
 build-type:         Simple
 cabal-version:      >= 1.10
 
 executable site
   main-is:          site.hs
-  other-modules:    Utils
-                  , TagFormat
-                  , BetterPages
   build-depends:    base == 4.*
-                  , containers == 0.6.*
-                  , text == 1.2.*
                   , hakyll == 4.13.*
+                  , hakyll-custom-goodies == 0.*
   ghc-options:      -threaded
   default-language: Haskell2010
