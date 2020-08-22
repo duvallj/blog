@@ -12,7 +12,7 @@ too big. Forgot the `.` in `1.8rem` \*facepalm\*.
 
 Oh yeah I also installed a LaTeX package so now I can do cool stuff like
 
-$$f(x) = \sqrt(1-x^2)$$
+$$f(x) = \sqrt{1-x^2}$$
 
 while writing these posts. Which will hopefully be useful in the future as I
 talk about math at school more although I don't know how much I'll be able to
