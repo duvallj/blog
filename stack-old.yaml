@@ -1,0 +1,13 @@
+resolver: lts-14.27
+packages:
+  - .
+  - extra
+
+extra-deps:
+  - hakyll
+  - latex-svg-hakyll-0.2
+  - latex-svg-image-0.2
+  - latex-svg-pandoc-0.2.1
+  - containers-0.6.4.1
+  - text-1.2.3.1
+  - binary-0.8.8.0

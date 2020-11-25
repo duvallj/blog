@@ -72,7 +72,7 @@ main = do
               constField "previousPageTitle" "Tags"                         `mappend`
               constField "previousPageUrl"   mainTagsUrl                    `mappend`
               constField "previousPageNum"   (show 0)                       `mappend` 
-              constField "currentPageNum"   (show 1)                       `mappend` 
+              constField "currentPageNum"    (show 1)                       `mappend` 
               listField  "posts"             postCtxWithTags (return posts) `mappend`
               defaultContext
 
@@ -82,13 +82,16 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
-    archivePages <- buildPaginateWith archivePageStrategy "posts/*" archivePageMaker
+    (archivePages, archiveDates) <- buildArchivePaginateWith archivePageStrategy "posts/*" archivePageMaker
 
     paginateRules archivePages $ \i pattern -> do
-      route idRoute
+      if i == 1
+        then route $ composeRoutes (constRoute "archive/index.html") idRoute
+        else route idRoute
+
       compile $ do
         posts <- recentFirst =<< loadAll pattern
-        let archiveCtx = archiveContext archivePages archiveTitle i `mappend` 
+        let archiveCtx = archiveContext archivePages archiveDates archiveTitle i `mappend` 
               listField "posts" postCtx (return posts)              `mappend`
               defaultContext
 
@@ -144,8 +147,8 @@ urlFromIdentifier i = getRoute i
       Just r  -> return $ toUrl r
       Nothing -> fail ("No URL for page \"" ++ show i ++ "\"")
 
-archiveTitle :: PageNumber -> String
-archiveTitle index = concat ["archives page", show index]
+archiveTitle :: ArchiveDate -> String
+archiveTitle date = concat [archiveExtractYear date, " archives"]
 
 -- | Shorthad for applying the tag rendering found in TagFormat
 betterRenderTags :: Tags -> Compiler String

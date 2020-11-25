@@ -37,7 +37,7 @@ type PostNumber = Int
 -- pageDependency is needed to work well with Hakyll's Compiler
 data PostData = PostData
   { pageMap :: M.Map PostNumber Identifier
-  , pageDependency :: Dependency
+  , pageDependency :: M.Map PostNumber Dependency
   }
 
 
@@ -56,22 +56,22 @@ buildPagesWith
   -> ([Identifier] -> m [Identifier])
   -> m PostData
 buildPagesWith pattern sorter = do
-  ids       <- getMatches pattern
-  sortedIds <- sorter ids
-  let idsSet = S.fromList ids
+  ids                    <- getMatches pattern
+  sortedIds              <- sorter ids
+  let sortedDependencies = map IdentifierDependency sortedIds
   return PostData
     { pageMap = M.fromList (zip [1 ..] sortedIds)
-    , pageDependency = PatternDependency pattern idsSet
+    , pageDependency = M.fromList (zip [1 ..] sortedDependencies)
     }
 
 
 --------------------------------------------------------------------------------
 -- | Create a Rules () from a PostData and a continuation that takes in the
 -- PostNumber and Identifier to create the rules
-pageRules :: PostData -> (PostNumber -> Identifier -> Rules ()) -> Rules()
+pageRules :: PostData -> (PostNumber -> Identifier -> Rules ()) -> Rules ()
 pageRules pagedata rules =
   forM_ (M.toList $ pageMap pagedata) $ \(index, identifier) ->
-    rulesExtraDependencies [pageDependency pagedata] $
+    rulesExtraDependencies [pageDependency pagedata M.! index] $
       create [identifier] (rules index identifier)
 
 

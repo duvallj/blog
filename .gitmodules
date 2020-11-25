@@ -1,0 +1,3 @@
+[submodule "hakyll"]
+	path = hakyll
+	url = git@github.com:duvallj/hakyll.git

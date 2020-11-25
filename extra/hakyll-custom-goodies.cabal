@@ -1,6 +1,6 @@
 cabal-version:  >= 1.10
 name:           hakyll-custom-goodies
-version:        0.1.0.0
+version:        0.1.1.0
 synopsis:       Some nice utilities I developed for my Hakyll site
 description:
   This library provides assorted utility functions for customizing a Hakyll 
@@ -33,3 +33,4 @@ library
                   , containers == 0.6.*
                   , text == 1.2.*
                   , hakyll == 4.13.*
+                  , time >= 1.9.3
