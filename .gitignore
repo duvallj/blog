@@ -2,6 +2,5 @@
 .stack-work
 stack.yaml.lock
 
-# Ignore Hakyll's build directories
+# Ignore Hakyll's cache directory
 _cache/
-_site/

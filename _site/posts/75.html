@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Hacking on Hakyll for better Pages</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Hacking on Hakyll for better Pages</h1>
+      <div class="entry-info">
+        Posted on August 19, 2020
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'daily thoughts'." href="../tags/daily-thoughts.html">daily thoughts</a>, <a title="All pages tagged 'Hakyll'." href="../tags/hakyll.html">Hakyll</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>In case you are one of the few people who know about this blog, you might have noticed that I changed from titles of posts as the HTML filenames to just the “post ID” as the filename. This may not seem like a big change, but oh boy did Hakyll require some funky upgrades to get it to work.</p>
+<p>Basically, I re-implemented <a href="https://jaspervdj.be/hakyll/reference/Hakyll-Web-Paginate.html">Hakyll.Web.Paginate</a>, but with logic customized for single pages instead of pages that are actually groups of other pages. I also added title metadata extraction instead of just page number + url extraction to the context creator for extra fanciness.</p>
+<p>The backend is messy, but in the end it turns out very nice and “declarative” whatever that means:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>    pages <span class="ot">&lt;-</span> buildPagesWith <span class="st">&quot;posts/*&quot;</span> sortChronological  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    pageRules pages <span class="op">$</span> \<span class="fu">index</span> _ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>      route <span class="op">$</span> pageIndexRoute <span class="fu">index</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>      compile <span class="op">$</span> <span class="kw">do</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        <span class="kw">let</span> fullPostCtx <span class="ot">=</span> pageContext pages <span class="fu">index</span> <span class="ot">`mappend`</span> postCtxWithTags</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        pandocCompiler</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>          <span class="op">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    fullPostCtx</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>          <span class="op">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> defaultContext</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>          <span class="op">&gt;&gt;=</span> relativizeUrls</span></code></pre></div>
+<p>Not to be content with that small victory, I also added pages to <a href="../archive/index.html">the archive</a> with Hakyll’s original <code>Paginate</code> thingy, also adding title support on top of that. Again it was really messy but also really worth it.</p>
+<p>Anyways I am really getting my value out of Hakyll for both reasons: I’m having a very snappy blog (static sites &gt;&gt;&gt; Wordpress any day) and I’m also learning Haskell fairly quickly which is neat. Tomorrow I will probably reorganize my code into better-named modules, but for now I’m happy.</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/74.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Haskell Takes Way Too Long To Compile</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/76.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">Haskell Packages are Pretty Ok and Other Ramblings</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Free time => More Hakyll Upgrades</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Free time => More Hakyll Upgrades</h1>
+      <div class="entry-info">
+        Posted on November 25, 2020
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'Hakyll'." href="../tags/hakyll.html">Hakyll</a>, <a title="All pages tagged 'daily thoughts'." href="../tags/daily-thoughts.html">daily thoughts</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>Thanksgiving break, woo! I finally had enough time on my hands to get around to something that had been bothering me with this blog for a while: Hakyll doesn’t do dependency tracking right.</p>
+<h3 id="wait-what">Wait, What?</h3>
+<p>Yes you heard me right. Haskell is a very complicated language, and Hakyll takes full advantage of all those complications to make a surprisingly robust system. But the robustness makes it a bit inflexible, which is why I ended up having to write a lot of extra code to get these numeric page ids.</p>
+<p>But that’s now what was broken.</p>
+<h2 id="the-thing-wrong-with-hakyll">The thing wrong with Hakyll</h2>
+<p>Hakyll’s main branch treats the metadata of a page changing and the actual page content changing as the same event. This is troublesome because my pages all depend on the ones directly before and after it for metadata like title and date. This is separate from the actual content of the page before or after, so if the metadata stays the same, I do not expect the pages to rebuild.</p>
+<p>“Not so fast,” says Hakyll. “This page you just edited is out of date, so I must propogate that out-of-dateness to its neighbors because I cannot tell if just the body changed or the metadata did as well.” Ok, that’s all fair and good, but this new out-of-dateness ends up propogating to those page’s neighbors, then their neighbors, so if any page gets updated, all pages get rebuilt.</p>
+<h3 id="i-would-rather-this-didnt-happen">I would rather this didn’t happen</h3>
+<p>So after understanding all that, I forked the Hakyll engine and added that distinction with an extra <code>MetadataDependency</code> type in addition to the existing <code>IdentifierDependency</code> and <code>PatternDependency</code> ones that already existed. I then tweaked the dependency resolver to skip over metadata dependencies when doing the dependency update chain things, and only look 1 neighbor level deep when doing the out-of-date marking for metadata dependencies.</p>
+<h2 id="did-that-work">Did that work?</h2>
+<p>After many long hours, yes! It did! But there’s a new slight problem: adding a page (like this blog post) to the end of the list does not update the old most recent page to have a “next page” link that points to it. This is because the old page did not have a metadata dependency on the non-existent page.</p>
+<p>It’s possible to fix this by checking if there are any new metadata dependencies in the check for out-of-date items, but I am exhausted from writing so much Haskell already so I think I’ll leave that for another day.</p>
+<hr />
+<p>Anyways, Happy Turkey Day tomorrow!</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/87.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Online Identity</span>
+        </a>
+      </div>
+    
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

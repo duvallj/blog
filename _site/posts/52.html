@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Operating System Shopping (2/2)</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Operating System Shopping (2/2)</h1>
+      <div class="entry-info">
+        Posted on July 16, 2019
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'daily thoughts'." href="../tags/daily-thoughts.html">daily thoughts</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p><em>Previous post: <a href="../operating-system-shopping-1-2/">Operating System Shopping (1/2)</a></em></p>
+<p>So, where I left of was, there are a lot of <strong>bad</strong> things about all of today’s popular operating system kernels. Let’s just roll through the list:</p>
+<ul>
+<li>Windows: pile of legacy garbage.</li>
+<li>XNU: unusable except in MacOS, which is a walled garden nearly impossible to install on non-Apple hardware.</li>
+<li>Linux: wacky monolithic kernel, very little inter-distro compatibility, little focus on usability for users.</li>
+<li>BSD: like Linux but with even less hardware support.</li>
+</ul>
+<p>Really, what I would like to see is a viable <a href="https://en.wikipedia.org/wiki/Microkernel">Microkernel</a> that can be used to run a functional desktop, but that’s currently beyond today’s development. Turns out all the inter-process communication they require is a big hit to performance, even if it’s also a win for security, so people just haven’t developed them as much. A look at the current contenders:</p>
+<ul>
+<li>GNU Hurd: promising, development stalled but might get back up soon, but it’s GNU.</li>
+<li>MINIX: probably has no hardware support for anything made this decade.</li>
+<li>Plan 9: I’m not trying to run a distributed OS</li>
+<li>Haiku: might actually be the most functional of this bunch, but still missing a lot of tools[citation needed]</li>
+<li>Redox: super promising (I adore it’s “everything is a URL” scheme), but isn’t even self-hosting yet.</li>
+</ul>
+<p>Ok so it’s easy to point out the bad. Now what about the good?</p>
+<ul>
+<li>Windows: <strong>can</strong> actually run legacy applications with ABI compatibility, unlike most -NIXes.</li>
+<li>MacOS: UNIX + commercial success and support = greatness</li>
+<li>Linux: very performant, perfect for servers, you are very hard pressed to <em>not</em> use it as your development OS if you’re doing research.</li>
+<li>BSD: very stable, OpenBSD is probably the most secure OS around.</li>
+</ul>
+<p>In the end, I’m probably going to stick with my Windows setup and get all my Linux development fix through MSYS2 until I realllly need a Linux dual-boot. I’ve allocated 150GB on my 1TB HD for another OS install and am leaving it blank for now. I’m also seeing if I can get Redox to build on my older Linux machine in the meantime. I’d like to try kernel development, but at the same time the deeper I look into it the more I realize just how our of my depth I am. Nothing to do but keep pressing forward and learning more, though.</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/51.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Operating System Shopping (1/2)</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/53.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">QOTD: 12</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

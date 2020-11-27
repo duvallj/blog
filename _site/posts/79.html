@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - A Paper I Disagree With</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">A Paper I Disagree With</h1>
+      <div class="entry-info">
+        Posted on August 25, 2020
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'daily thoughts'." href="../tags/daily-thoughts.html">daily thoughts</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>A summary: the paper in question talks about the theory of programming, what causes programs to become “complex” and hard to maintain, and proposes solutions towards that end. I disagree with the paper’s premises about what constitues programs that are hard to reason about.</p>
+<hr />
+<p>The paper: <a href="http://curtclifton.net/papers/MoseleyMarks06a.pdf">Out of the Tar Pit</a> by Ben Moseley and Peter Marks. For the optimal blog-reading experience, I recommend reading through section 7 before continuing below. It’s a bit of a stretch to call it a paper even though it has the same structure, it reads more like a blog post.</p>
+<p>What I took away from it was the following argument: current languages and programming methodologies create more “complexity” than is necessary to actually solve problems, and a certain method of “Functional Relational Programming” can alleviate much of that complexity.</p>
+<p>The authors are clearly biased in their argument. Just read this section on page 12 (emphasis preserved):</p>
+<blockquote>
+<p><strong>Power corrupts</strong> What we mean by this is that, in the absence of language enforced guarantees (i.e. restrictions on the <em>power</em> of the language) mistakes (and abuses) <em>will</em> happen. This is the reason that garbage collection is good — the <em>power</em> of manual memory management is removed. Exactly the same principle applies to <em>state</em> — another kind of <em>power</em>. In this case it means that we need to be very wary of any language that even <em>permits</em> state, regardless of how much it discourages its use (obvious examples are ML and Scheme). The bottom line is that the more <em>powerful</em> a language (i.e. the more that is <em>possible</em> within the language), the harder it is to <em>understand</em> systems constructed in it.</p>
+</blockquote>
+<p>This is a blatant attack on the most common systems language known to be responsible for large classes of bugs: (you already know what language I’m talking about) C and C++.</p>
+<p>Now, I do agree that the manual memory management done by C and C++ is horrible in terms of safety guarantees. However, I <em>very much disagree</em> with the assertion that “state should be avoided at all costs.”</p>
+<p>The authors make a later claim about how allowing stateful code leads to complicated informal reasoning. On the contrary, I postulate that for many algorithms, a state-based approach makes the most sense. An example given in the CMU 2023 discord was the BFS algorithm. A traditional approach is as follows: use a stateful queue of (node, depth) items and a set of explored nodes. The queue and set woudl be initialized with the starting node. While there are nodes in the queue, pop a node, add it to the explored set, and push all unexplored neighbors back on the queue. This <em>makes sense to me</em> and many other programmers used to thinking imperatively. Heck, I’d argue that, with explanation of the motivation behind the algorithm, it would make sense to non-programmers as well.</p>
+<p>Now consider the functional approach. You either have an unreadable mess like</p>
+<figure class="block-image">
+<img style="width: 100%" src="../uploads/unreadable-fp-mess.png" alt="A very strange implementation of BFS" />
+</figure>
+<p>… or you end up re-implementing a mutable state with immutable arguments and a tail-recursive function.</p>
+<p>Now, this is just one example. I concede that there are many other algorithms better implemented in a functional style. That doesn’t necessarily mean we should restrict the language we program in to be nigh-unusable as to guarantee safety. Performance is important too, although nowadays less micro-optimizations (those are better taken care of by a smart compiler or library authors) and more algorithm design. If you can’t write a smart algorithm due to restrictions by the language, then the benefits of safety are less clear (to me).</p>
+<p>In any case, I don’t think the authors are necessarily concerned with performance at all, and consider it a secondary goal at best, as evidenced by the following quotes (page 27):</p>
+<blockquote>
+<p>It is worth noting that because typically the informal requirements will not mention concurrency, that too is normally of an accidental nature. In an ideal world we can assume that finite (stateless) computations take zero time and as such it is immaterial to a user whether they happen in sequence or in parallel.</p>
+</blockquote>
+<p>(page 36):</p>
+<blockquote>
+<p>It is worth noting in particular the risks of “designing for performance”. The dangers of “premature optimisation” are as real as ever — there can be no comparison between the diculty of improving the performance of a slow system designed for simplicity and that of removing complexity from a complex system which was designed to be fast (and quite possibly isn’t even that because of myriad ineciencies hiding within its complexity).</p>
+</blockquote>
+<p>I agree with the second more than the first, but my point still is that the types of languages the authors advocate for (Functional Programming, Logic Programming) and the types of language constructs they wish to minimize (if statements, loops, stateful behavior) by themselves will not lead to better code. It might make code that’s easier for mathematicians to reason about and prove “correctness” of, whatever that means, but it will not make the code simpler by any margin.</p>
+<hr />
+<p>Another key point I’d like to make before I wrap this up: Functional and Logic programming do not capture they way that computers operate in the same way that Imperative programming does. This might be a niche view, but I believe it <em>is necessary</em> to understand how computers work if one wishes to program them. That view seems to have persisted in computer science education thus far, where imperative languages are taught to beginners, probably as a remnant of when programming was more of an engineering discipline.</p>
+<p>Having been exposed to Functional Programming, I think that knowledge of its techniques are sorely needed in computer science education. Writing safe, provable, understandable code is a worthy goal. I remain unconvinced that the “Functional Relational Approach” is the best way to go about this.</p>
+<hr />
+<p>In case you haven’t had enough of Functional Programming shills spouting techical jargon at you, just read <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">the Wikipedia article on Monads</a>. I mean seriously, who thought this was a a good explanation for people who don’t understand it already?</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/78.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Cool Videogame: Skullgirls</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/80.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">As to not be Silent on Current Events</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

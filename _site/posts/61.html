@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Beating Respondus LockDown Browser</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Beating Respondus LockDown Browser</h1>
+      <div class="entry-info">
+        Posted on July 27, 2019
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'projects'." href="../tags/projects.html">projects</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>It was actually easier than I thought. Now, it wasn’t the easiest, but I will explain what I tried and what worked.</p>
+<p>So Respondus LockDown is the browser my school forces us to use to take “secure” online exams. I hate it. I despise it strongly. Everything it stands for, the institutionalized test-taking mentality, the enforcement of unrealistic conditions, the distrust of students most of all, it ticks me off to my core. So I did something about it. I “hacked” their stupid browser that fullscreens itself, disables all other applications, limits the input options, and watches your every move with your webcam.</p>
+<p>There were two ways of going about it: the first and most flexible option is to run LockDown in a VM. The other option would be to MITM myself to have an &lt;iframe&gt; of google constantly beside the test. The second has the disadvantage of more easily being caught (screenshots and keylogging, duh), and being more work for me. Also I didn’t want to ever install that piece of malware on my actual computer. So I went with the first option.</p>
+<p>I spent many hours researching VM detection techniques and their associated bypasses, accumulating in finding and understanding a github repo that generated scripts to hide the fact that a VM is a VM. The one I used is located here: <a href="https://github.com/nsmfoo/antivmdetection">antivmdetection</a>. I first tested LockDown in a untouched Windows VM, and sure enough it knew. So I ran the scripts, and voila it worked. What the scripts did was change all the VirtualBox device driver names, like the BIOS model, the video card name, the hard drive serial number, etc. to the exact same ones as my host computer. It changes those through VirtualBox settings and through registry editing. There’s also a neat trick with the <code>cpuid</code> instruction that’s <a href="https://rayanfam.com/topics/defeating-malware-anti-vm-techniques-cpuid-based-instructions/">explained much better here</a>.</p>
+<p>Other approaches that I tried in the VM but couldn’t get to work were using a sandbox (LockDown didn’t like the sandbox management program running) and disassembling and editing the LockDown binary (I was just bad at that tho lol).</p>
+<p><strong>IMPORTANT!</strong> please note that I did this only as an experiment to see if I could because I was mad, I do not intend to use this to cheat and I will take all my exams in the correct fashion, with LockDown installed on my main computer.</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/60.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Being rushed</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/62.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">screw you too, respondus</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

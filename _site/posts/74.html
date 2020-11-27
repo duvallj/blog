@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Haskell Takes Way Too Long To Compile</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Haskell Takes Way Too Long To Compile</h1>
+      <div class="entry-info">
+        Posted on August 18, 2020
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'daily thoughts'." href="../tags/daily-thoughts.html">daily thoughts</a>, <a title="All pages tagged 'Hakyll'." href="../tags/hakyll.html">Hakyll</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>Wow that was rough.</p>
+<p>I left a <code>stack build</code> command running overnight on the machine I was planning to host this static site from, and apparently the Haskell compiler just needs exorbitant amounts of memory to operate properly. I mean to be fair running two compilers at once with only 2GB memory available is bound to cause <em>some</em> problems sure but not “your system is literally dying and can no longer handle network interrupts” levels.</p>
+<p>I was able to fix the problem by compiling the <code>Cabal</code> and <code>pandoc</code> packages individually, because both on their own were using the full 2GB and really did not like being run at the same time. It was running overnight (15 hours) and still didn’t finish.</p>
+<p>In the end I still spent 4 hours compiling stuff. Was that worth it? remains to be seen. but now there’s a blog so i guess so</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/73.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Blog Theme Upgrades!</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/75.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">Hacking on Hakyll for better Pages</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>
