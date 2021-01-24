@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - Live2D Demo Application Expanded</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">Live2D Demo Application Expanded</h1>
+      <div class="entry-info">
+        Posted on January 23, 2021
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'Computer Vision'." href="../tags/computer-vision.html">Computer Vision</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>The slow burn project I mentioned <a href="../posts/90.html">earlier</a> has concluded for now at least. Not for lack of progress, but actually because I completed a major milestone in actually getting it to work!</p>
+<h3 id="what-does-it-do">What does it do?</h3>
+<p>Currently, <a href="https://github.com/duvallj/facestuff">the application</a>:</p>
+<ul>
+<li>Renders a sample Live2D model at 60fps</li>
+<li>Takes an image from the webcam and detects a face in it at 4fps</li>
+<li>Composites the two images together</li>
+</ul>
+<p>This required the intersection of many different graphics technologies which I’m not sure were all made to go together:</p>
+<ul>
+<li><a href="https://www.libsdl.org/">SDL</a> creates the window and initializes an <a href="https://www.opengl.org/">OpenGL</a> context (together with <a href="https://www.opengl.org/sdk/libs/GLEW/">GLEW</a> to help with the dynamic loading that OpenGL requires)</li>
+<li><a href="https://github.com/Live2D/CubismNativeFramework">Live2D Cubism Native Framework</a> loads the proprietary model format and renders it (when in the OpenGL context).</li>
+<li><a href="https://opencv.org/">OpenCV</a> handles opening the webcam and detecting a face in it</li>
+<li><a href="https://github.com/duvallj/ACGL">A Custom GUI Library</a> built on top of SDL spawns the two threads to do Live2D rendering and OpenCV maths at the same time, as well as controlling the layout of the scene.</li>
+<li>And finally, raw OpenGL shaders that I had to <a href="http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/">find a good tutorial for</a> to render the OpenCV data</li>
+</ul>
+In the end, I got a pretty good result:
+<figure class="block-image">
+<img style="width: 80%" src="../uploads/live2D_OpenCV_SDL.png" alt="A console showing debug info on the left, and an SDL frame showing a Live2D model on the right. The background of the frame is the screen this is displayed on, causing it to recurse for a few iterations." title="Pretty trippy, huh?" />
+<figcaption>
+<em>I pointed the webcam at the screen to make this</em>
+</figcaption>
+</figure>
+<p>I’ve put the project on hold for now, partly because I’ve accomplished a lot of what I wanted to do (get all these libraries working with one another at all), but mostly because School is coming up soon! I leave the 29th and start February 1st which is very close. Also I went skiing in the meantime which was very fun and put a damper in doing many things code-related during it. Anyways, see you next time!</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/91.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Old Thoughts About Learning</span>
+        </a>
+      </div>
+    
+    
+      <div class="nav-next">
+        <a href="../posts/93.html" rel="next">
+          <span class="meta-nav" aria-hidden="true">Next</span>
+          <span class="screen-reader-text">Next post:</span>
+          <span class="post-title">My First "Real" Open Source Contribution</span>
+        </a>
+      </div>
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>

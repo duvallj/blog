@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuvallJ - My First "Real" Open Source Contribution</title>
+    <link rel="stylesheet" href="../css/wordpress.css" />
+    <link rel="stylesheet" href="../css/colorscheme.css" />
+    <link rel="stylesheet" href="../css/work-sans.css" />
+    <link rel="stylesheet" href="../css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="../">
+            <img class="branding-logo" src="../uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="../" rel="home">DuvallJ's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a site yes"</h4>
+        </div>
+        <nav>
+          <a href="../" rel="home">home</a>
+          <a href="../about.html" rel="about">about</a>
+          <a href="../contact.html" rel="contact">contact</a>
+          <a href="../archive/index.html" rel="archive">archive</a>
+          <a href="../tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">My First "Real" Open Source Contribution</h1>
+      <div class="entry-info">
+        Posted on January 24, 2021
+        
+      </div>
+      
+      <div class="entry-info">
+        Tags: <a title="All pages tagged 'AI'." href="../tags/ai.html">AI</a>, <a title="All pages tagged 'Computer Vision'." href="../tags/computer-vision.html">Computer Vision</a>
+      </div>
+      
+    </section>
+    <section class="entry-content">
+        <p>Near <a href="../posts/89.html">the beginning of winter break</a>, I had an idea to contribute an implementation to ONNX, Microsoft’s Open Source neural network accelerator. I had just been dropped from the Aerospace internship (due to accepting a position for Facebook’s summer software engineering internship (more on that later I swear)), and AI ideas were still fresh in my mind, so it was a good opportunity to keep my programming skills sharp.</p>
+<p>I’m proud to announce that I’ve done it! You can check out my work <a href="https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/fcn/README.md">here</a>. The full README.md is a bit too wordy to include (and honestly is redundant to list again here), but I’ll include the description section so you have an idea of what I was working on.</p>
+<hr />
+<h3 id="description">Description</h3>
+<p>Fully Convolutional Networks (FCNs) are a neural network model for real-time class-wise image segmentation. As the name implies, every weight layer in the network is convolutional. The final layer has the same height/width as the input image, making FCNs a useful tool for doing dense pixel-wise predictions without a significant amount of postprocessing. Being fully convolutional also provides great flexibility in the resolutions this model can handle.</p>
+<p>The specific model I contributed can detect 20 different classes, corresponding to the <a href="https://cocodataset.org/#home">COCO 2012</a> class analouges of the <a href="http://host.robots.ox.ac.uk/pascal/VOC/">PASCAL VOC</a> classes. The models were sourced from PyTorch models pre-trained on the COCO train2017 dataset using this class subset.</p>
+<hr />
+<p>Oh, also, something I should mention: today is a double post! Go check out <a href="../posts/92.html">the previous post</a> for more code stuff I did recently.</p>
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    
+      <div class="nav-previous">
+        <a href="../posts/92.html" rel="prev">
+          <span class="meta-nav" aria-hidden="true">Previous</span>
+          <span class="screen-reader-text">Previous post:</span>
+          <span class="post-title">Live2D Demo Application Expanded</span>
+        </a>
+      </div>
+    
+    
+  </div>
+</nav>
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+    </footer>
+  </body>
+</html>
