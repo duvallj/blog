@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello, World!
+tags: hello world
 ---
 
 Might as well start a blog, I guess

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My First "Real" Open Source Contribution
-tags: AI, Computer Vision
+tags: AI, Computer Vision, projects
 ---
 
 Near [the beginning of winter break](/posts/89.html), I had an idea to

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Live2D Demo Application Expanded
-tags: Computer Vision
+tags: Computer Vision, projects
 ---
 
 The slow burn project I mentioned [earlier](/posts/90.html) has concluded for

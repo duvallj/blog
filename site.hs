@@ -104,9 +104,10 @@ main = do
     create ["tags.html"] $ do
       route idRoute
       compile $ do
+        tagsBody <- betterRenderTags tags
         let allTagsCtx = 
-              field "tags" (return (betterRenderTags tags)) `mappend`
-              constField "title" "Tags"                     `mappend`
+              constField "tags" tagsBody `mappend`
+              constField "title" "Tags"  `mappend`
               defaultContext
 
         makeItem ""
