@@ -22,26 +22,31 @@ nix:
     - zlib
 
 build:
-  haddock: true
-  haddock-hyperlink-source: true
+  haddock: false
   haddock-deps: false
 
 extra-deps:
 # Hakyll Dependencies:
-- 'commonmark-0.1.0.2'
-- 'commonmark-extensions-0.2.0.1'
+- 'citeproc-0.3.0.5'
+- 'commonmark-0.1.1.3'
+- 'commonmark-extensions-0.2.0.4'
 - 'commonmark-pandoc-0.2.0.1'
-- 'hslua-1.1.2'
+- 'doctemplates-0.9'
+- 'hslua-1.3.0'
 - 'jira-wiki-markup-1.3.2'
-- 'pandoc-2.10.1'
-- 'pandoc-types-1.21'
+- 'rfc5051-0.2'
+- 'pandoc-2.11.4'
+- 'pandoc-types-1.22'
+- 'skylighting-0.10.2'
+- 'skylighting-core-0.10.2'
+- 'texmath-0.12.1'
 # Blog Dependencies
 - 'latex-svg-hakyll-0.2'
 - 'latex-svg-image-0.2'
 - 'latex-svg-pandoc-0.2.1'
 - 'containers-0.6.4.1'
 - 'text-1.2.4.0'
-# I don't know why Dependencies
+# Deps because "GHC boot package has been pruned (issue #4510)"
 - 'binary-0.8.8.0'
 - 'Cabal-3.2.1.0'
 - 'parsec-3.1.14.0'

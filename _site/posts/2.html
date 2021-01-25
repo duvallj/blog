@@ -114,29 +114,29 @@
 <h4 id="asyncio">Asyncio</h4>
 <p>Asyncio is the culmination of the Python development team’s twisted aims to bring about insanity in all programmers who attempt to use it. Something akin to viewing an eldritch abomination is required to fully understand the internal machinations of <code>Future</code>s, <code>Task</code>s, <code>coroutine</code>s, and <code>awaitable</code>s. Once the knowledge invades, your mind will never be the same.</p>
 <p>Jokes aside, programming something asyncio is seriously tough. Somehow, though, I pulled through in a weekend-long coding trance to get a fully asynchronous, multithreaded, custom protocol server working. The server using a monolithic protocol to keep track of all client states, something channels could never do (it spawns a new <code>Consumer</code> every time a client connects). Quick example below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    gs <span class="op">=</span> GameScheduler(loop)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">def</span> game_scheduler_factory(): <span class="cf">return</span> gs</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    coro <span class="op">=</span> loop.create_server(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>        game_scheduler_factory,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>        host<span class="op">=</span>SCHEDULER_HOST,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        port<span class="op">=</span>SCHEDULER_PORT</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    )</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    server <span class="op">=</span> loop.run_until_complete(coro)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="co"># Server requests until Ctrl+C is pressed</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    log.info(<span class="st">&quot;Running server&quot;</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="cf">try</span>:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>        loop.run_forever()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>        <span class="cf">pass</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    <span class="co"># Close the server</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    log.info(<span class="st">&quot;Stopping server&quot;</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    server.close()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    loop.run_until_complete(server.wait_closed())</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    loop.close()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    loop <span class="op">=</span> asyncio.get_event_loop()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    gs <span class="op">=</span> GameScheduler(loop)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> game_scheduler_factory(): <span class="cf">return</span> gs</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    coro <span class="op">=</span> loop.create_server(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        game_scheduler_factory,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        host<span class="op">=</span>SCHEDULER_HOST,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        port<span class="op">=</span>SCHEDULER_PORT</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    server <span class="op">=</span> loop.run_until_complete(coro)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Server requests until Ctrl+C is pressed</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    log.info(<span class="st">&quot;Running server&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        loop.run_forever()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Close the server</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    log.info(<span class="st">&quot;Stopping server&quot;</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    server.close()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    loop.run_until_complete(server.wait_closed())</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    loop.close()</span></code></pre></div>
 <p>Ingoring all the stuff about setting up the event loop, let’s focus on how I instantiate the protocol on line 5. Asyncio expects the factory function to either be the class itself (which can be called like a function to create new members of the class) or a function that returns new members of the class with custom parameters. I am lazy and make a function that returns the same object over and over again, so only it is listening for all incoming connections.</p>
 <p>This is so I can handle all the room processing from within one object, not having to rely on Django’s lock-prone ORM. I did encounter <del>a few</del> <del>a lot</del> way too many errors trying to get asyncio to work properly with handling many rooms at a time and their communication pipelines and all, but in the end it chugs along smoothly.</p>
 <h4 id="firejail">Firejail</h4>
