@@ -37,7 +37,7 @@ type ArchiveDateData = M.Map Identifier ArchiveDate
 -- Paginate object while also keeping track of archive-specific data
 buildArchivePaginateWith
   :: (MonadMetadata m, MonadFail m)
-  => (ArchiveDateData -> m [[Identifier]])    -- ^ Group items into pages
+  => (ArchiveDateData -> m [[Identifier]])  -- ^ Group items into pages
   -> Pattern                                -- ^ Select items to paginate
   -> (ArchiveDate -> Identifier)            -- ^ Identifiers for the pages
   -> m (Paginate, ArchiveDateData)

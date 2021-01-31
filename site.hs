@@ -15,6 +15,8 @@ import           Hakyll.Contrib.Web.CustomRoutes
 import           Hakyll.Contrib.Web.TagFormat
 import           Hakyll.Contrib.Web.TextUtils (firstn)
 
+import           Utils
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = do
@@ -34,22 +36,22 @@ main = do
       route   idRoute
       compile compressCssCompiler
 
-    match (fromList ["about.md", "contact.md", "privacy-policy.md"]) $ do
+    match (fromList staticPages) $ do
       route   $ setExtension "html"
       compile $ pandocCompiler
         >>= loadAndApplyTemplate "templates/page.html"    defaultContext
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
-    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+    tags <- buildTags postsGlob (fromCapture "tags/*.html")
     let postCtxWithTags = tagsField "tags" tags `mappend` postCtx
 
-    pages <- buildPagesWith "posts/*" sortChronological  
+    postData <- buildPagesWith postsGlob sortChronological  
 
-    pageRules pages $ \index _ -> do
+    pageRules postData $ \index _ -> do
       route $ pageIndexRoute index
       compile $ do
-        let fullPostCtx = pageContext pages index `mappend` postCtxWithTags
+        let fullPostCtx = pageContext postData index `mappend` postCtxWithTags
 
         pandocCompilerWithTransformM 
           defaultHakyllReaderOptions
@@ -82,7 +84,7 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
-    (archivePages, archiveDates) <- buildArchivePaginateWith archivePageStrategy "posts/*" archivePageMaker
+    (archivePages, archiveDates) <- buildArchivePaginateWith archivePageStrategy postsGlob archivePageMaker
 
     paginateRules archivePages $ \i pattern -> do
       if i == 1
@@ -91,8 +93,9 @@ main = do
 
       compile $ do
         posts <- recentFirst =<< loadAll pattern
-        let archiveCtx = archiveContext archivePages archiveDates archiveTitle i `mappend` 
-              listField "posts" postCtx (return posts)              `mappend`
+        let archiveCtx =
+              archiveContext archivePages archiveDates archiveTitle i `mappend` 
+              listField "posts" postCtx (return posts)                `mappend`
               defaultContext
 
         makeItem ""
@@ -119,7 +122,7 @@ main = do
     match "index.html" $ do
       route idRoute
       compile $ do
-        posts <- recentFirst =<< loadAll "posts/*"
+        posts <- recentFirst =<< loadAll postsGlob
         let indexCtx =
               listField "posts" postCtx (return (firstn 5 posts)) `mappend`
               defaultContext
@@ -130,15 +133,52 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" indexCtx
           >>= relativizeUrls
 
+    create ["sitemap.xml"] $ do
+      route idRoute
+      compile $ do
+        postList <- recentFirst =<< loadPostData postData
+        tagsList <- loadTags tags
+        archiveList <- loadPaginate archivePages
+        staticList <- loadAll (fromList staticPages)
+
+        let pagesList = archiveList <> staticList
+            sitemapCtx = 
+              constField "root" root                              `mappend`
+              listField "pages" sitemapPostCtx (return pagesList) `mappend`
+              listField "tags"  sitemapPostCtx (return tagsList)  `mappend`
+              listField "posts" sitemapPostCtx (return postList)
+
+        makeItem ""
+          >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
+
     match "templates/*" $ compile templateBodyCompiler
 
 
 --------------------------------------------------------------------------------
+-- | The root URL of the site
+root :: String
+root = "https://blog.duvallj.pw"
+
+-- | Static pages
+staticPages :: [Identifier]
+staticPages = ["about.md", "contact.md", "privacy-policy.md"]
+
+-- | Glob to capture all posts
+postsGlob :: Pattern
+postsGlob = "posts/*"
+
 -- | Add a date field to the default context
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+-- | Add a sitemap-formatted date and root url
+sitemapPostCtx :: Context String
+sitemapPostCtx = 
+  constField "root" root      `mappend`
+  dateField "date" "%Y-%m-%d" `mappend`
+  defaultContext
 
 -- | In a compiler context, get a URL
 urlFromIdentifier :: Identifier -> Compiler String

@@ -46,7 +46,7 @@ extra-deps:
 - 'latex-svg-pandoc-0.2.1'
 - 'containers-0.6.4.1'
 - 'text-1.2.4.0'
-# Deps because "GHC boot package has been pruned (issue #4510)"
 - 'binary-0.8.8.0'
+# Deps because "GHC boot package has been pruned (issue #4510)"
 - 'Cabal-3.2.1.0'
 - 'parsec-3.1.14.0'
