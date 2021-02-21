@@ -28,8 +28,8 @@ What follows is a summary of everything I personally have heard about the case:
    are false, but believing in them can be dangerous especially when you think
    the very fate of your country is on the line.
    * Trump must've been aware of this, and besides, ignorance of a massive
-       angry mob does not excuse you for continuously inciting a massive angry
-       mob.
+     angry mob does not excuse you for continuously inciting a massive angry
+     mob.
  * All of this could be interpreted as Trump wanting a coup attempt to overturn
    the election that he knew he lost. It should be unforgivable for anyone, let
    alone a sitting president, to do this.
@@ -38,23 +38,23 @@ What follows is a summary of everything I personally have heard about the case:
 
 ## Main Arguments Against Convicting
 
-I'll order these from most to least convicing, at least for me:
+I'll order these from most to least convincing, at least for me:
 
  * Conviction/impeachment is primarily a tool to remove a president from office,
    an argument that [Mitch McConnell used despite also denouncing Trump's actions for many of the reasons above](https://www.msn.com/en-us/news/politics/mcconnell-tells-gop-hell-vote-to-acquit-impeachment-update/ar-BB1dEtbO).
    * Counterargument: conviction/impeachment can also be a tool to keep a former
-     president from holding office again, which is pertient in this case. If it
+     president from holding office again, which is pertinent in this case. If it
      was only for removal, then a lame-duck president could do absolutely
      anything they wanted their last few days in office because it'd be unlikely
      the House and Senate could move fast enough to impeach and convict.
- * Trump was simply exercising his first ammendment rights! Democrats say
+ * Trump was simply exercising his first amendment rights! Democrats say
    "fight" all the time in their speeches too!
-   * Counterargument: First ammendment rights are not absolute; see any number
+   * Counterargument: First amendment rights are not absolute; see any number
      of hate-speech crimes (where similarly, plausible threats of violence
      occur) or perhaps leaking confidential information. Both are """just people
      saying things :)""" but clearly illegal. There is not much different about
      this from the former, and in fact the statements are higher (implicit
-     threats against the highest legistlative body in the nation, not just a
+     threats against the highest legislative body in the nation, not just a
      single person).
  * The riot wasn't actually that bad.
    * Counterargument: they literally broke into the Capitol. That alone makes
@@ -71,7 +71,7 @@ I'll order these from most to least convicing, at least for me:
 
 I think from reading this you know what side of the fence I sit on. I believe
 that convicting Donald Trump would've been the correct thing to do and I highly
-repsect the 7 Republican senators as well as the entire body of Democratic ones
+respect the 7 Republican senators as well as the entire body of Democratic ones
 who voted to convict. Trump's stain on America's reputation will not be
 forgotten any time soon, especially by the world at large. I worry for what this
 means for America's future.
