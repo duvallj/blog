@@ -6,12 +6,12 @@ description: In which I detail the location of my internship this summer, recoun
 
 ## How Did I Get Here
 
-As I've mentioned [previously](/posts/106.html), I'm interning for Meta
-(formerly Facebook) this summer. There was a location selection process, and I
-ended up choosing + getting assigned to New York City (east coast baby!).
-Unlike last summer, which was entirely remote, this internship is in-person so
-I'm getting flown out to, having housing provided for, and paid to live in The
-Big Apple. (getting very spoiled i know)
+As I've mentioned [previously](./2021-06-21-working-at-facebook.html), I'm 
+interning for Meta (formerly Facebook) this summer. There was a location 
+selection process, and I ended up choosing + getting assigned to New York City
+(east coast baby!). Unlike last summer, which was entirely remote, this
+internship is in-person so I'm getting flown out to, having housing provided
+for, and paid to live in The Big Apple. (getting very spoiled i know)
 
 ## How Was The Flight
 

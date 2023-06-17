@@ -1,29 +1,30 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ImportQualifiedPost #-}
 
 module Hakyll.Contrib.Web.TextUtils
-  ( firstn
-  , toSlug
-  ) where
+  ( firstn,
+    toSlug,
+  )
+where
 
-import           Data.Char (isAlphaNum)
-import qualified Data.Text as T
-
+import Data.Char (isAlphaNum)
+import Data.Text qualified as T
 
 --------------------------------------------------------------------------------
 
-firstn          :: Integer -> [a] -> [a]
-firstn _ []     = []
-firstn n (x:xs)
-  | n <= 0      = []
-  | otherwise   = x:(firstn (n-1) xs)
+firstn :: Integer -> [a] -> [a]
+firstn _ [] = []
+firstn n (x : xs)
+  | n <= 0 = []
+  | otherwise = x : firstn (n - 1) xs
 
 --------------------------------------------------------------------------------
 
 keepAlphaNum :: Char -> Char
 keepAlphaNum x
   | isAlphaNum x = x
-  | otherwise    = ' '
+  | otherwise = ' '
 
 clean :: T.Text -> T.Text
 clean = T.map keepAlphaNum . T.replace "'" "" . T.replace "&" "and"

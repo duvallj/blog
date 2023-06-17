@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TupleSections #-}
 
 module Utils
   ( loadPaginate,
@@ -17,13 +15,8 @@ import Control.Monad (forM)
 import Data.Binary (Binary)
 import Data.List (sortOn)
 import Data.Map (elems, keys)
-import Data.Ord (comparing)
 import Hakyll
-import Hakyll.Core.Compiler
-import Hakyll.Core.Item
 import Hakyll.Web.NumberedPostList
-import Hakyll.Web.Paginate
-import Hakyll.Web.Tags
 import Type.Reflection (Typeable)
 
 --------------------------------------------------------------------------------
@@ -34,7 +27,7 @@ loadPaginate ::
   Paginate ->
   Compiler [Item a]
 loadPaginate pag =
-  forM (keys $ paginateMap pag) (load . (paginateMakeId pag))
+  forM (keys $ paginateMap pag) (load . paginateMakeId pag)
 
 -- | Given a PostData object (from BetterPages), return a list of Items
 loadPostData ::
@@ -51,7 +44,7 @@ loadTags ::
   Tags ->
   Compiler [Item a]
 loadTags tags =
-  forM (tagsMap tags) (\(tag, _) -> (load . (tagsMakeId tags)) tag)
+  forM (tagsMap tags) (\(tag, _) -> (load . tagsMakeId tags) tag)
 
 -- | Given a list of items, sort them in alphabetical order according to their
 --   identifier

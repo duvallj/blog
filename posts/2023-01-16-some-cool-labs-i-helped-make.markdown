@@ -1,12 +1,12 @@
 ---
 title: Some Cool Labs I Helped Make
-description: In the Fall 2022 semester at CMU, I (as a TA) helped design and run some programming labs for 15-316 Software Foundations of Security and Privacy. I'll go over why I think these labs are really cool without giving away any hints that aren't already in the lab writeups.
+description: In the Fall 2022 semester at CMU, I (as a TA) helped design and run some programming labs for 15-316 Software Foundations of Security and Privacy. I'll go over why I think these labs are really cool without giving away any hints that aren't already in the lab writeups. This post is about the first of the two labs.
 tags: projects, CMU
 ---
 
 As a full disclaimer, the vast majority of work for these labs was done by the
 professor for [15-316 Software Foundations of Security and
-Privacy](https://https://15316-cmu.github.io/), [Matt
+Privacy](https://15316-cmu.github.io/), [Matt
 Fredrikson](https://www.cs.cmu.edu/~mfredrik/). As a TA, I helped a little bit
 with coming up with the ideas for the labs and also a little with basic
 file/object structure and autograders.
@@ -110,8 +110,6 @@ analysis w/o implicit flows) are meant to be solved using this strategy. If you
 have some time and are curious about this, definitely check it out! [It's free
 online](https://github.com/15316-cmu/lab1-2022) and the writeup there is *much*
 better than what I could explain here.
-
-Blog post for Lab 2 coming soon...
 
 [^1]: Unless, of course, you've taken this course before
 [^2]: like a set, "but better"

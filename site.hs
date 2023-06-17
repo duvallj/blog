@@ -1,12 +1,13 @@
-{-# LANGUAGE LambdaCase #-}
 --------------------------------------------------------------------------------
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ImportQualifiedPost #-}
 
 import Data.List ()
-import qualified Data.Map as M
+import Data.Map qualified as M
 import Data.Maybe ()
 import Data.Monoid ()
-import qualified GHC.IO.Encoding as E
+import GHC.IO.Encoding qualified as E
 import Hakyll
 import Hakyll.Contrib.BetterArchive
 import Hakyll.Contrib.LaTeX
@@ -61,7 +62,7 @@ main = do
     postData <- buildNumberedPostListWith postsGlob sortChronological
 
     postListRules postData $ \index _ -> do
-      route $ pageIndexRoute index
+      route $ setExtension "html"
       compile $ do
         let fullPostCtx = numberedPostContext postData index <> postCtxWithTags
 
@@ -75,7 +76,7 @@ main = do
 
     tagsRules tags $ \tag ptrn -> do
       route $ tagRoute tag
-      let title = "tag \"" ++ tag ++ "\""
+      let title = "Posts tagged \"" ++ tag ++ "\""
       compile $ do
         posts <- recentFirst =<< loadAll ptrn
         mainTagsUrl <- urlFromIdentifier "tags.html"
@@ -84,6 +85,7 @@ main = do
         -- split this out into a separate template, but this works too >:)
         let tagCtx =
               defaultContext
+                <> constField "title" title
                 <> constField "previousPageTitle" "Tags"
                 <> constField "previousPageUrl" mainTagsUrl
                 <> constField "previousPageNum" "0"

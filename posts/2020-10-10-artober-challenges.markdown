@@ -16,7 +16,13 @@ Later, however, the guy behind the original challenge started using his copyrigh
 
 There are a multitude of Artober challenges, and the one I picked was titled "Cringetober." The prompts are all things that reference strange internet culture, and I liked it because a) I like strange things and b) the expectations to produce good art based off it is not very high.
 
-Combining this with my friends' suggestion of doing daily 1KBWC cards, I have produced quite the set of cursed images. (I think I last mentioned 1KBWC [here](35.html)? not sure though, I should do a full write-up if I haven't already). Again, I don't think they count as high-quality art, but I like them for what they are (very strange) and I like doing them. It's a nice break to just not care about responsibilities for a little bit and make in-jokes for my friends to enjoy.
+Combining this with my friends' suggestion of doing daily 1KBWC cards, I have 
+produced quite the set of cursed images. (I think I last mentioned 1KBWC 
+[here](./2019-06-18-scanning-cards.html)? not sure though, I should do a full 
+write-up if I haven't already). Again, I don't think they count as high-quality 
+art, but I like them for what they are (very strange) and I like doing them. 
+It's a nice break to just not care about responsibilities for a little bit and 
+make in-jokes for my friends to enjoy.
 
 # Geez dude you haven't posted for a while
 

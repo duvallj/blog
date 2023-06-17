@@ -4,9 +4,10 @@ title: Identity, Pt. 2
 tags: daily thoughts
 ---
 
-So maybe you've read my [other post about this from way back](87.html), or
-maybe not, and in either case I think it deserves an update. TL;DR I've used an
-alternate name online for so long that it feels like another persona.
+So maybe you've read my [other post about this from way
+back](./2020-11-20-online-identity.html), or maybe not, and in either case I
+think it deserves an update. TL;DR I've used an alternate name online for so
+long that it feels like another persona.
 
 ### This is still going on huh
 

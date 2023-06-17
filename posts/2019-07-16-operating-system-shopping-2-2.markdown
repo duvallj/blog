@@ -3,7 +3,9 @@ layout: post
 title: Operating System Shopping (2/2)
 tags: daily thoughts
 ---
-*Previous post: [Operating System Shopping (1/2)](/posts/51.html)*
+
+*Previously: [Operating System Shopping 
+(1/2)](./2019-07-15-operating-system-shopping-1-2.html)*
 
 So, where I left of was, there are a lot of **bad** things about all of today's popular operating system kernels. Let's just roll through the list:
 

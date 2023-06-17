@@ -1,7 +1,7 @@
 ---
 title: Wow, What A Year
 description: In which I recap some highlights from 2021 and overall enjoy winter break
-tags: daily thoughts
+tags: daily thoughts, CMU
 ---
 
 2021 was a year mainly full of one thing: COVID. From stunting last spring
@@ -10,10 +10,10 @@ summer and fall, and now variants coming back with a vengance, the overall pace
 of the year felt slowed down by the virus.
 
 It's hard to believe this is the same year I [learned OpenGL and C++ to make a
-simple demo](92.html), or [ran a 6-minute mile](100.html); those events feel
-like so long ago (yes they were but still). Other big events were [renting my
-first apartment](104.html), [interning at facebook](106.html), and [getting
-sick with Lyme's Disease](107.html).
+simple demo](./2021-01-23-facestuff-1.html), or [ran a 6-minute mile](./2021-04-05-mile-time.html); those events feel
+like so long ago (yes they were but still). Other big events were [renting my first apartment](./2021-05-19-housing-search-is-brutal-but-at-least-its-over.html),
+[interning at facebook](./2021-06-21-working-at-facebook.html), and [getting
+sick with Lyme's Disease](./2021-08-15-so-i-have-a-pacemaker-now.html).
 
 Besides all the COVID variants, there was another huge event in 2021 for the
 history books: the Jan 6 insurrection against Congress ratifying the

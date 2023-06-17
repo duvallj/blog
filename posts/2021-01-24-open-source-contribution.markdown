@@ -4,12 +4,13 @@ title: My First "Real" Open Source Contribution
 tags: AI, Computer Vision, projects
 ---
 
-Near [the beginning of winter break](/posts/89.html), I had an idea to
-contribute an implementation to ONNX, Microsoft's Open Source neural network
-accelerator. I had just been dropped from the Aerospace internship (due to
-accepting a position for Facebook's summer software engineering internship (more
-on that later I swear)), and AI ideas were still fresh in my mind, so it was a
-good opportunity to keep my programming skills sharp.
+Near [the beginning of winter break](./2020-12-21-finally-more-time.html), I
+had an idea to contribute an implementation to ONNX, Microsoft's Open Source
+neural network accelerator. I had just been dropped from the Aerospace
+internship (due to accepting a position for Facebook's summer software
+engineering internship (more on that later I swear)), and AI ideas were still
+fresh in my mind, so it was a good opportunity to keep my programming skills
+sharp.
 
 I'm proud to announce that I've done it! You can check out my work [here](https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/fcn/README.md).
 The full README.md is a bit too wordy to include (and honestly is redundant to
@@ -36,4 +37,4 @@ class subset.
 <hr/>
 
 Oh, also, something I should mention: today is a double post! Go check out
-[the previous post](/posts/92.html) for more code stuff I did recently.
+[the previous post](./2021-01-23-facestuff-1.html) for more code stuff I did recently.

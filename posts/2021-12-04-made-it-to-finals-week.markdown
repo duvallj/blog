@@ -29,5 +29,7 @@ and more stress is the exact opposite of what I need right now.
 <hr/>
 
 Despite all of this, I actually do have something I'd like to show! My
-[Deep Learning Research Project](/posts/112.html), which I've back-dated to the day it was
-due. There's more details in the post itself, go check it out!
+[Deep Learning Research
+Project](./2021-12-03-deep-learning-research-project.html), which I've
+back-dated to the day it was due. There's more details in the post itself, go
+check it out!

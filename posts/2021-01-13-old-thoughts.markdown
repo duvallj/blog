@@ -74,14 +74,16 @@ being human is all about.
 In the almost 2 years since I wrote this, I've kept the same perspective. And
 wouldn't you know it, *I've gotten a lot better at things*. My art is leagues
 above where is was before (and I still have leagues to go). I didn't practice
-Tetris or basketball, but I did practice some [fighting games](/posts/78.html),
+Tetris or basketball, but I did practice some [fighting 
+games](./2020-08-22-skullgirls.html),
 and now I can beat everyone I know (not always easily, and none specialize in
 fighting games either and I still get destroyed online). I've also been working
-out (weight training + some running) and have seen steady improvement there too.
+out (weight training + some running) and have seen steady improvement there 
+too.
 
 Having this mindset and being able to see the results has been very gratifying.
 It's such a privilege to know that yes, if I put in the work, I really can do
-anything. I'm also forutnate to be in an environment where it's even possible to
-put in so much work. Thanks to the support of my family and friends, I have
+anything. I'm also fortunate to be in an environment where it's even possible 
+to put in so much work. Thanks to the support of my family and friends, I have
 achieved all my goals in school and mini-goals in hobbies. I look forward to
 doing even more!

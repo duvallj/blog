@@ -3,7 +3,7 @@ cradle:
     - path: "site.hs"
       component: "blog:exe:site"
 
-    - path: "utils.hs"
+    - path: "Utils.hs"
       component: "blog:exe:site"
 
     - path: "extra/src"

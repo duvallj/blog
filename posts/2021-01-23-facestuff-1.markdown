@@ -4,9 +4,10 @@ title: Live2D Demo Application Expanded
 tags: Computer Vision, projects
 ---
 
-The slow burn project I mentioned [earlier](/posts/90.html) has concluded for
-now at least. Not for lack of progress, but actually because I completed a
-major milestone in actually getting it to work!
+The slow burn project I mentioned
+[earlier](./2021-01-08-live2d-license-close-reading.html) has concluded for now
+at least. Not for lack of progress, but actually because I completed a major
+milestone in actually getting it to work!
 
 ### What does it do?
 

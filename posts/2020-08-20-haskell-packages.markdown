@@ -4,8 +4,9 @@ title: Haskell Packages are Pretty Ok and Other Ramblings
 tags: daily thoughts, Hakyll
 ---
 
-After writing the code for [my previous blog post](/posts/75.html), today I
-put it into a separate Haskell package so my code doesn't smell too bad anymore.
+After writing the code for [my previous blog
+post](./2020-08-19-hacking-on-hakyll.html), today I put it into a separate
+Haskell package so my code doesn't smell too bad anymore.
 
 I also fixed a small CSS error that caused the font size on mobile to be waay
 too big. Forgot the `.` in `1.8rem` \*facepalm\*.

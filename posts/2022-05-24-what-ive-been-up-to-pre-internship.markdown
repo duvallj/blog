@@ -24,7 +24,8 @@ fixing that, it works!
 
 "But Jack," I hear you ask, "why did you want such an obscure tool in the first
 place? Playing around with firmware variables is scary!" Well, my dear reader,
-I wanted such a tool for my [Arch Linux dual-boot](/posts/51.html), because
+I wanted such a tool for my [Arch Linux
+dual-boot](./2019-07-15-operating-system-shopping-1-2.html), because
 booting from Windows into Arch required mashing a key on boot which I often
 forgot to do and then I would have to reboot all over again and it was slightly
 annoying so I did what any good programmer would do and wrote a tool to
@@ -43,11 +44,11 @@ format, from Windows, so I could easily do something like `windows-bootctl
 set-default arch.conf` and on the next reboot my computer would boot into Arch
 without me having to spam any keys!
 
-So about the code: i uh put it under my [other identity](/posts/87.html) which
-has also been very active on Twitter (and I posted lots of prototypes there
-so). If you're very curious, I've been informed it's not impossible (quite
-feasible even) to link the two with public online info, just please keep it a
-secret if u do find out.
+So about the code: i uh put it under my [other
+identity](./2020-11-20-online-identity.html) which has also been very active on
+Twitter (and I posted lots of prototypes there so). If you're very curious,
+I've been informed it's not impossible (quite feasible even) to link the two
+with public online info, just please keep it a secret if u do find out.
 
 ## OpenAFS For Windows
 
