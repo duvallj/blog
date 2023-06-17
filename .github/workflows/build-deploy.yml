@@ -3,38 +3,61 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Haskell and Stack
         uses: haskell/actions/setup@v2
+        id: setup
         with:
           ghc-version: '9.2.7'
           cabal-version: 'latest'
           enable-stack: true
           stack-version: 'latest'
 
+      - name: Set up TexLive
+        uses: teatimeguest/setup-texlive-action@v2
+        with:
+          packages: >-
+            scheme-basic
+
       - name: Check out the repository
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
-      - name: Cache/restore stack dependencies
-        uses: actions/cache@v3
+      - name: Restore stack dependencies
+        uses: actions/cache/restore@v3
+        id: stack-cache
         with:
           path: |
-            ~/.stack
+            ${{ steps.setup.outputs.stack-root }}
             .stack-work
           key: ${{ runner.os }}-stack-${{ hashfiles('stack.yaml.lock', 'blog.cabal') }}
+          restore-keys: |
+            ${{ runner.os }}-stack-
 
       - name: Build the dependencies
         run: stack build --only-dependencies
+
+      - name: Save stack dependencies
+        uses: actions/cache/save@v3
+        if: ${{ steps.stack-cache.outputs.cache-primary-key != steps.stack-cache.outputs.cache-matched.key }}
+        with:
+          path: |
+            ${{ steps.setup.outputs.stack-root }}
+            .stack-work
+          key: ${{ steps.stack-cache.outputs.cache-primary-key }}
+
       - name: Build the site executable
         run: stack build
 
       - name: Cache/restore the site build cache
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: |
             _cache
@@ -52,4 +75,4 @@ jobs:
           aws-region: us-east-1
 
       - name: Sync with S3
-        run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET }}/
+        run: aws s3 sync --delete ./_site/ s3://${{ secrets.AWS_S3_BUCKET }}/
