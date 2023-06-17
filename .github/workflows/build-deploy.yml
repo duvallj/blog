@@ -26,14 +26,21 @@ jobs:
           path: |
             ~/.stack
             .stack-work
-          key: ${{ runner.os }}-stack-${{ hashfiles('stack.yaml.lock', 'package.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-stack
+          key: ${{ runner.os }}-stack-${{ hashfiles('stack.yaml.lock', 'blog.cabal') }}
 
       - name: Build the dependencies
         run: stack build --only-dependencies
       - name: Build the site executable
         run: stack build
+
+      - name: Cache/restore the site build cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            _cache
+            _site
+          key: ${{ runner.os }}-site-${{ hashfiles('stack.yaml.lock', 'blog.cabal','**/*.hs') }}
+
       - name: Generate the site
         run: stack exec site build
 
