@@ -1,0 +1,48 @@
+name: Build and deploy Hakyll to S3 bucket
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Haskell and Stack
+        uses: haskell/actions/setup@v2
+        with:
+          ghc-version: '9.2.7'
+          cabal-version: 'latest'
+          enable-stack: true
+          stack-version: 'latest'
+
+      - name: Check out the repository
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Cache/restore stack dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.stack
+            .stack-work
+          key: ${{ runner.os }}-stack-${{ hashfiles('stack.yaml.lock', 'package.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-stack
+
+      - name: Build the dependencies
+        run: stack build --only-dependencies
+      - name: Build the site executable
+        run: stack build
+      - name: Generate the site
+        run: stack exec site build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Sync with S3
+        run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET }}/

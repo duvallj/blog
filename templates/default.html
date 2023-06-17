@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    $if(description)$<meta name="description" content="$description$" />$else$<meta name="description" content="$title$" />$endif$
+    <title>Jack Duvall's Blog - $title$</title>
+    <link rel="stylesheet" href="/css/wordpress.css" />
+    <link rel="stylesheet" href="/css/colorscheme.css" />
+    <link rel="stylesheet" href="/css/work-sans.css" />
+    <link rel="stylesheet" href="/css/inconsolata.css" />
+    <link rel="icon" type="image/png" href="/uploads/favicon-16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/uploads/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/uploads/favicon-200.png" />
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <header id="masthead" class="site-header" role="banner">
+        <div class="branding">
+          <a class="branding-logo-link" href="/">
+            <img class="branding-logo" src="/uploads/randomlogo.png" alt="DuvallJ's Blog" />
+          </a>
+          <h1 class="branding-title">
+            <a href="/" rel="home">Jack Duvall's Blog</a>
+          </h1>
+          <h4 class="branding-subtitle">"This is a website yes"</h4>
+        </div>
+        <nav>
+          <a href="/" rel="home">home</a>
+          <a href="/about.html" rel="about">about</a>
+          <a href="/contact.html" rel="contact">contact</a>
+          <a href="/archive.html" rel="archive">archive</a>
+          <a href="/tags.html" rel="tags">tags</a>
+        </nav>
+      </header>
+    </div>
+
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          $body$
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Github: <a href="https://github.com/duvallj/blog">duvallj</a>
+      Youtube: <a href="https://www.youtube.com/channel/UCDYZSCLUE5hnoKiWAegmc1g">Jack Duvall</a>
+    </footer>
+  </body>
+</html>

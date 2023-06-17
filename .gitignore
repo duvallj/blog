@@ -1,0 +1,14 @@
+# Ignore all of Stack's buildfiles
+.stack-work
+
+# Ignore Hakyll's cache directory
+_cache/
+
+# Ignore some random Haskell directory?
+*-newstyle/
+
+# Ignore the nix output director
+result
+
+# Ignore the build folder (thanks, CI!)
+_site/

@@ -1,0 +1,31 @@
+resolver: lts-20.19
+save-hackage-creds: false
+allow-newer: true
+
+flags:
+  hakyll:
+    previewServer: true
+    watchServer:   true
+    checkExternal: true
+    usePandoc:     true
+    buildWebsite:  true
+
+packages:
+  - '.'
+  - 'extra'
+  # Include Hakyll as subdirectory
+  - 'hakyll'
+
+nix:
+  packages:
+    - zlib
+
+build:
+  haddock: false
+  haddock-deps: false
+
+extra-deps:
+# Blog Dependencies
+  - 'latex-svg-hakyll-0.2'
+  - 'latex-svg-image-0.2'
+  - 'latex-svg-pandoc-0.2.1'

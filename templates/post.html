@@ -1,0 +1,52 @@
+<article class="post type-post hentry">
+    <section class="entry-header">
+      <h1 class="entry-title">$title$</h1>
+      <div class="entry-info">
+        Posted on $date$
+        $if(author)$
+            by $author$
+        $endif$
+      </div>
+      $if(tags)$
+      <div class="entry-info">
+        Tags: $tags$
+      </div>
+      $endif$
+    </section>
+    <section class="entry-content">
+        $body$
+    </section>
+</article>
+<nav class="navigation post-navigation">
+  <h2 class="screen-reader-text">Post navigation</h2>
+  <div class="nav-links">
+    <div class="nav-next">
+    $if(isLastPost)$
+      <a rel="next">
+      <span class="meta-nav" aria-hidden="true">Next</span>
+        <span class="post-title-end">No Next Post</span>
+      </a>
+    $else$
+      <a href="$nextPostUrl$" rel="next">
+        <span class="meta-nav" aria-hidden="true">Next - $nextPostNum$</span>
+        <span class="screen-reader-text">Next post:</span>
+        <span class="post-title">$nextPostTitle$</span>
+      </a>
+    $endif$
+    </div>
+    <div class="nav-previous">
+    $if(isFirstPost)$
+      <a rel="prev">
+        <span class="meta-nav" aria-hidden="true">Previous</span>
+        <span class="post-title-end">No Previous Post</span>
+      </a>
+    $else$
+      <a href="$previousPostUrl$" rel="prev">
+        <span class="meta-nav" aria-hidden="true">Previous - $previousPostNum$</span>
+        <span class="screen-reader-text">Previous post:</span>
+        <span class="post-title">$previousPostTitle$</span>
+      </a>
+    $endif$
+    </div>
+  </div>
+</nav>

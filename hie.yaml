@@ -1,0 +1,22 @@
+cradle:
+  stack:
+    - path: "site.hs"
+      component: "blog:exe:site"
+
+    - path: "utils.hs"
+      component: "blog:exe:site"
+
+    - path: "extra/src"
+      component: "hakyll-custom-goodies:lib"
+
+    - path: "hakyll/lib"
+      component: "hakyll:lib"
+
+    - path: "hakyll/tests"
+      component: "hakyll:test:hakyll-tests"
+
+    - path: "hakyll/src/Init.hs"
+      component: "hakyll:exe:hakyll-init"
+
+    - path: "hakyll/web/site.hs"
+      component: "hakyll:exe:hakyll-website"

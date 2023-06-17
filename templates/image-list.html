@@ -1,0 +1,7 @@
+$for(photos)$
+$body$
+<figure class="photography-figure" >
+  <img src="$imgurl$" $if(imgtitle)$title="$imgtitle$"$endif$$if(imgalt)$alt="$imgalt$"$endif$/>
+  <figcaption>$caption$</figcaption>
+</figure>
+$endfor$
