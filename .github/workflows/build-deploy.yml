@@ -26,7 +26,6 @@ jobs:
             scheme-basic
             amsmath
             amsfonts
-            amssymb
             fontenc
             lmodern
             preview
