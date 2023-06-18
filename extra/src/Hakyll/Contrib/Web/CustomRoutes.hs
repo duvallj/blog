@@ -16,21 +16,22 @@ import Hakyll.Contrib.Web.TextUtils (toSlug)
 import Hakyll.Core.Metadata
 import Hakyll.Core.Routes
 import Hakyll.Web.NumberedPostList (PostNumber)
+import System.FilePath ((</>))
 
 --------------------------------------------------------------------------------
 
 tagRoute :: String -> Routes
 tagRoute =
   constRoute
+    . ("tags" </>)
     . T.unpack
-    . T.append "tags/"
     . (`T.append` ".html")
     . toSlug
     . T.pack
 
 pageIndexRoute :: PostNumber -> Routes
 pageIndexRoute index =
-  (constRoute . concat) ["posts/", show index, ".html"]
+  constRoute $ "posts" </> show index ++ ".html"
 
 titleRoute :: Metadata -> Routes
 titleRoute = fieldRoute "untitled" "title"
@@ -45,7 +46,7 @@ fileNameFromMeta placeholder fieldName =
     . (`T.append` ".html")
     . toSlug
     . T.pack
-    . (getFieldFromMeta placeholder fieldName)
+    . getFieldFromMeta placeholder fieldName
 
 getFieldFromMeta :: String -> String -> Metadata -> String
 getFieldFromMeta placeholder fieldName =

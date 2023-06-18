@@ -44,7 +44,7 @@ loadTags ::
   Tags ->
   Compiler [Item a]
 loadTags tags =
-  forM (tagsMap tags) (\(tag, _) -> (load . tagsMakeId tags) tag)
+  forM (tagsMap tags) $ \(tag, _) -> (load . tagsMakeId tags) tag
 
 -- | Given a list of items, sort them in alphabetical order according to their
 --   identifier

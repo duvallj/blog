@@ -28,6 +28,7 @@ import Hakyll.Core.Metadata
 import Hakyll.Core.Rules
 import Hakyll.Web.Paginate
 import Hakyll.Web.Template.Context
+import System.FilePath ((</>))
 
 --------------------------------------------------------------------------------
 type ArchiveDate = UTCTime
@@ -71,7 +72,7 @@ archiveExtractYear = formatTime defaultTimeLocale "%Y"
 -- Given a year, return the URL to render the page at
 archivePageMaker :: ArchiveDate -> Identifier
 archivePageMaker date =
-  (fromFilePath . concat) ["archive/", archiveExtractYear date, ".html"]
+  fromFilePath $ "archive" </> archiveExtractYear date ++ ".html"
 
 -- Given a list of identifiers, create a map of pages to dates
 archivePagesGetDates ::

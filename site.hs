@@ -1,7 +1,7 @@
+{-# LANGUAGE ImportQualifiedPost #-}
 --------------------------------------------------------------------------------
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ImportQualifiedPost #-}
 
 import Data.List ()
 import Data.Map qualified as M
@@ -18,6 +18,7 @@ import Hakyll.Core.Identifier.Pattern ()
 import Hakyll.Web.NumberedPostList
 import Image.LaTeX.Render
 import Image.LaTeX.Render.Pandoc
+import System.FilePath (replaceExtension, takeBaseName, (</>))
 import Utils
 
 --------------------------------------------------------------------------------
@@ -84,13 +85,13 @@ main = do
         -- link from pages with actual preivous/next pages. I might want to
         -- split this out into a separate template, but this works too >:)
         let tagCtx =
-              defaultContext
-                <> constField "title" title
+              constField "title" title
                 <> constField "previousPageTitle" "Tags"
                 <> constField "previousPageUrl" mainTagsUrl
                 <> constField "previousPageNum" "0"
                 <> constField "currentPageNum" "1"
                 <> listField "posts" postCtxWithTags (return posts)
+                <> defaultContext
 
         makeItem ""
           >>= loadAndApplyTemplate "templates/tag.html" tagCtx
@@ -258,6 +259,23 @@ photoRules dir = do
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
+-- | Given an item with some metadata in one field, apply a transformation to
+-- create a new field
+transformField :: String -> String -> (Identifier -> String -> Compiler String) -> Context String
+transformField inField outField transform =
+  field outField $ \item -> do
+    let ident = itemIdentifier item
+    inData <- getMetadataField' ident inField
+    transform ident inData
+
 -- | Context for a given photo's metadata
 photoCtx :: Context String
-photoCtx = postCtx <> metadataField
+photoCtx =
+  transformField
+    "imgext"
+    "imgurl"
+    ( \ident ext -> do
+        return $ "/uploads" </> replaceExtension (toFilePath ident) ext
+    )
+    <> postCtx
+    <> metadataField

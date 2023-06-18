@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /*.html$
-Disallow: /uploads/*
-Disallow: *.css
+Disallow: /uploads/
+Disallow: /*.png$
+Disallow: /*.svg$
+Disallow: /*.css$
 Sitemap: https://blog.duvallj.pw/sitemap.xml

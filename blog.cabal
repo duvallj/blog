@@ -11,8 +11,9 @@ executable site
                   , latex-svg-hakyll == 0.2.*
                   , latex-svg-image == 0.2.*
                   , latex-svg-pandoc == 0.2.*
-                  , hakyll-custom-goodies == 0.*
                   , binary == 0.8.*
                   , containers == 0.6.*
+                  , filepath == 1.4.*
+                  , hakyll-custom-goodies == 0.*
   ghc-options:      -Wall -threaded
   default-language: Haskell2010
