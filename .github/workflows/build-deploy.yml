@@ -27,7 +27,6 @@ jobs:
             amsmath
             amsfonts
             fontenc
-            lmodern
             preview
 
       - name: Check out the repository
