@@ -32,5 +32,5 @@ library
                   , containers == 0.6.*
                   , text == 1.2.*
                   , filepath == 1.4.*
-                  , hakyll == 4.15.*
+                  , hakyll == 4.16.*
                   , time >= 1.9.3

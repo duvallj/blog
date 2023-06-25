@@ -3,28 +3,7 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: latex-svg-hakyll-0.2@sha256:855ca3eb72e1986ee5352bba7d7489c5ac1ec72bebd2703bffd305119fd981b6,1186
-    pantry-tree:
-      sha256: f801b4922b3149188f886d3b3e732f6139c5a87c928487212575e5a41c0ffb1a
-      size: 228
-  original:
-    hackage: latex-svg-hakyll-0.2
-- completed:
-    hackage: latex-svg-image-0.2@sha256:b282a74a96724037ec3d24b664118e51170c8152aff12f363ddb715a38ef053a,1830
-    pantry-tree:
-      sha256: 8d7831c7f6fe17eedcf2bfce2cb821585cb026aa4d0ba4e5fb878b9e5eee801d
-      size: 226
-  original:
-    hackage: latex-svg-image-0.2
-- completed:
-    hackage: latex-svg-pandoc-0.2.1@sha256:eeb74c4c2edba4f55016b7168017edb3fc6cc2e7f12ceae9aa3448f4788a3ed4,1834
-    pantry-tree:
-      sha256: 41498a5e9ebdec0747742e60a3c24d8eccffd2d2df9d9eb37a7eb2e02706c431
-      size: 339
-  original:
-    hackage: latex-svg-pandoc-0.2.1
+packages: []
 snapshots:
 - completed:
     sha256: 42f77c84b34f68c30c2cd0bf8c349f617a0f428264362426290847a6a2019b64

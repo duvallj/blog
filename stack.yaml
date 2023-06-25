@@ -1,6 +1,5 @@
 resolver: lts-20.19
 save-hackage-creds: false
-allow-newer: true
 
 flags:
   hakyll:
@@ -11,10 +10,13 @@ flags:
     buildWebsite:  true
 
 packages:
-  - '.'
-  - 'extra'
-  # Include Hakyll as subdirectory
-  - 'hakyll'
+  - .
+  - extra
+  # Include git modules as subdirectories
+  - hakyll
+  - latex-svg/latex-svg-hakyll
+  - latex-svg/latex-svg-image
+  - latex-svg/latex-svg-pandoc
 
 nix:
   packages:
@@ -24,9 +26,4 @@ build:
   haddock: false
   haddock-deps: false
 
-extra-deps:
-# Blog Dependencies
-  - 'latex-svg-hakyll-0.2'
-  - 'latex-svg-image-0.2'
-  - 'latex-svg-pandoc-0.2.1'
-    #  - 'filepath-1.4.2.2'
+extra-deps: []

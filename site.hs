@@ -18,7 +18,7 @@ import Hakyll.Core.Identifier.Pattern ()
 import Hakyll.Web.NumberedPostList
 import Image.LaTeX.Render
 import Image.LaTeX.Render.Pandoc
-import System.FilePath (replaceExtension, takeBaseName, (</>))
+import System.FilePath (replaceExtension, (</>))
 import Utils
 
 --------------------------------------------------------------------------------

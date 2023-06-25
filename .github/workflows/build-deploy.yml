@@ -67,7 +67,7 @@ jobs:
           path: |
             _cache
             _site
-          key: ${{ runner.os }}-site-${{ hashfiles('stack.yaml.lock', 'blog.cabal','**/*.hs') }}
+          key: ${{ runner.os }}-site-${{ hashfiles('stack.yaml.lock', 'blog.cabal', '**/*.hs') }}
 
       - name: Generate the site
         run: stack exec site build
