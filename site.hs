@@ -194,7 +194,7 @@ root = "https://blog.duvallj.pw"
 
 -- | Static pages
 staticPages :: [Identifier]
-staticPages = ["about.md", "contact.md", "privacy-policy.md", "photography.md"]
+staticPages = ["about.md", "contact.md", "privacy-policy.md", "photography.md", "friends.md"]
 
 -- | Glob to capture all posts
 postsGlob :: Pattern
