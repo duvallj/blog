@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Old Thoughts About Learning
-tags: daily thoughts, writing
+tags: daily thoughts, Writing
 ---
 
 Recently, I had the idea to look through some old AP Literature writing I did.

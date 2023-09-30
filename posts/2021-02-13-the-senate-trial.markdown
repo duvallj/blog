@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Senate Trial
-tags: daily thoughts, politics
+tags: daily thoughts, Politics
 ---
 
 So, [it happened](https://www.msn.com/en-us/news/other/trump-acquitted-in-impeachment-trial-7-gop-senators-vote-with-democrats-to-convict/ar-BB1dEO0c).

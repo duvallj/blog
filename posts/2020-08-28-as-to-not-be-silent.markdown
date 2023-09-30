@@ -1,7 +1,7 @@
 ---
 layout: post
 title: As to not be Silent on Current Events
-tags: daily thoughts, politics
+tags: daily thoughts, Politics
 ---
 
 Going to out and say it: I don't like the current state of America. Trump is not a good

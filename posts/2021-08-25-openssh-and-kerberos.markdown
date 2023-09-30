@@ -1,6 +1,6 @@
 ---
 title: OpenSSH and Kerberos
-tags: daily thoughts, hacking
+tags: daily thoughts, projects
 ---
 
 Recently, with the extra free time provided by being off the internship & not

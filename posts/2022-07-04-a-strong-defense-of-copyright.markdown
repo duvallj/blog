@@ -1,6 +1,6 @@
 ---
 title: A Strong Defense of Copyright
-tags: daily thoughts, writing
+tags: daily thoughts, Writing
 description: In which a friend and I have a discussion about how modern copyright has been affected by various forms of piracy and I become slowly convinced it may actually be bad
 ---
 
