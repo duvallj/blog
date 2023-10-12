@@ -10,7 +10,7 @@
 }:
 mkDerivation {
   pname = "hakyll";
-  version = "4.15.1.1";
+  version = "4.16.0.0";
   src = ./hakyll;
   isLibrary = true;
   isExecutable = true;
