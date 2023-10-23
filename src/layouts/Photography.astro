@@ -1,0 +1,20 @@
+---
+import type { DefaultProps } from "../models/Default";
+import Page from "./Page.astro";
+
+interface Props extends DefaultProps {}
+
+const { title, description } = Astro.props;
+---
+
+<Page
+  {title}
+  {description}
+  inList={true}
+  previous={{
+    url: "/photography.html",
+    title: "Main Photography Page",
+  }}
+>
+  <slot />
+</Page>

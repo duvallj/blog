@@ -1,0 +1,25 @@
+---
+import Page from "../layouts/Page.astro";
+import PostList from "../components/PostList.astro";
+import { getPosts } from "../data/posts";
+
+const title = "Home";
+const description =
+  "The Home Page of my hacked-together blog! It has good stuff on it sometimes!";
+
+const posts = await getPosts();
+const recentPosts = posts
+  .slice(posts.length - 10, posts.length)
+  .map((post) => {
+    return post.current;
+  })
+  .reverse();
+---
+
+<Page {title} {description}>
+  <p>Welcome to my blog! Here are some of my most recent posts:</p>
+
+  <PostList posts={recentPosts} />
+
+  <p>...or you can find more in the <a href="/archive.html">archives</a>.</p>
+</Page>

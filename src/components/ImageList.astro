@@ -1,0 +1,26 @@
+---
+import type { ImageListProps } from "../models/ImageList";
+
+interface Props extends ImageListProps {}
+
+const { imgroot, images } = Astro.props;
+---
+
+{
+  images.map((image) => (
+    <figure class="photography-figure">
+      <h3>
+        <Fragment set:html={image.title} />
+      </h3>
+      {/* TODO: use the <Image /> component to have images be better processed. Requires threading around imports tho. */}
+      <img
+        src={`${imgroot}/${image.imgfile}`}
+        title={image.imgtitle}
+        alt={image.imgalt ?? "A Photograph"}
+      />
+      <figcaption>
+        <Fragment set:html={image.caption} />
+      </figcaption>
+    </figure>
+  ))
+}

@@ -1,0 +1,26 @@
+---
+import Post from "../../layouts/Post.astro";
+import { getPosts, type PostPropsWithComponent } from "../../data/posts";
+import type { GetStaticPaths } from "astro";
+
+interface Props extends PostPropsWithComponent {}
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+
+  return posts.map((post) => {
+    return {
+      params: {
+        slug: post.current.slug,
+      },
+      props: { ...post },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { Content, ...props } = Astro.props;
+---
+
+<Post {...props}>
+  <Content />
+</Post>
