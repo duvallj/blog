@@ -1,0 +1,17 @@
+---
+import type { DefaultProps } from "../models/Default";
+import Page from "./Page.astro";
+
+type Props = DefaultProps;
+---
+
+<Page
+  {...Astro.props}
+  inList={true}
+  previous={{
+    url: "/photography.html",
+    title: "Main Photography Page",
+  }}
+>
+  <slot />
+</Page>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /*.html$
+Disallow: /*.png$
+Disallow: /*.svg$
+Disallow: /*.css$
+Sitemap: https://blog.duvallj.pw/sitemap-index.xml

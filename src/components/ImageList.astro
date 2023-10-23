@@ -1,0 +1,52 @@
+---
+import { Image, inferRemoteSize } from "astro:assets";
+import type { ImageListProps } from "../models/ImageList";
+
+type Props = ImageListProps;
+
+const { images, dir } = Astro.props;
+
+const MAX_WIDTH = 1024;
+const MAX_HEIGHT = 1024;
+
+const imagesWithDims = await Promise.all(
+  images.map(async (image) => {
+    const url = `https://static.duvallj.pw/photography/${dir}/${image.imgfile}`;
+    const { width: remoteWidth, height: remoteHeight } =
+      await inferRemoteSize(url);
+
+    const width = Math.min(
+      MAX_WIDTH,
+      (remoteWidth * MAX_HEIGHT) / remoteHeight,
+    );
+    const height = Math.min(
+      MAX_HEIGHT,
+      (remoteHeight * MAX_WIDTH) / remoteWidth,
+    );
+
+    return { ...image, width, height, url };
+  }),
+);
+---
+
+{
+  imagesWithDims.map(
+    ({ title, url, width, height, imgtitle, imgalt, eager, caption }) => (
+      <figure class="photography-figure">
+        <h3 set:html={title} />
+        <a href={url} target="_blank">
+          <Image
+            src={url}
+            width={width}
+            height={height}
+            title={imgtitle}
+            alt={imgalt ?? "A photograph"}
+            loading={eager ? "eager" : undefined}
+            quality="max"
+          />
+        </a>
+        <figcaption set:html={caption} />
+      </figure>
+    ),
+  )
+}

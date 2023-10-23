@@ -1,0 +1,190 @@
+/* Color Scheme */
+:root {
+  --color-white: rgb(255, 255, 255);
+  --color-white700: rgba(255, 255, 255, 0.7);
+  --color-white300: rgba(255, 255, 255, 0.3);
+  --color-white100: rgba(255, 255, 255, 0.1);
+  --color-grey: rgb(34, 49, 63);
+  --color-grey700: rgba(34, 49, 63, 0.7);
+  --color-grey300: rgba(34, 49, 63, 0.3);
+  --color-grey100: rgba(34, 49, 63, 0.1);
+  --color-off-white: rgb(233, 242, 249);
+  --color-light-grey: rgb(241, 241, 241);
+  --color-cyan: rgb(85, 195, 220);
+  --color-blue: rgb(3, 102, 214);
+  --color-orange: rgb(235, 133, 34);
+  --color-light-orange: rgb(255, 183, 113);
+  --color-green: rgb(103, 171, 107);
+}
+
+/* Background Color */
+body {
+  background-color: var(--color-off-white);
+}
+
+/* Sidebar Background Color */
+body:before,
+.site-header {
+  background-color: var(--color-cyan);
+}
+
+/* Box Background Color */
+.post-navigation,
+.site-footer,
+.hentry {
+  background-color: var(--color-white);
+}
+
+/* Box Background Color */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  color: var(--color-white);
+}
+
+/* Main Text Color */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background-color: var(--color-grey);
+}
+
+/* Main Text Color */
+body,
+blockquote cite,
+blockquote small {
+  color: var(--color-grey);
+}
+
+/* Link Color */
+a {
+  color: var(--color-blue);
+}
+
+nav a {
+  color: var(--color-white);
+}
+
+.post-navigation a .post-title {
+  color: var(--color-grey);
+}
+
+.post-navigation a:hover,
+.post-navigation a:focus {
+  text-decoration: none;
+}
+
+/* Link Underline Color */
+.entry-content a {
+  border-color: var(--color-blue);
+}
+
+/* Secondary Text Color */
+button:hover,
+button:focus,
+input[type="button"]:hover,
+input[type="button"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background-color: var(--color-grey700);
+}
+
+/* Secondary Text Color */
+blockquote,
+a:hover,
+a:focus,
+.post-navigation .meta-nav,
+.post-navigation a:hover .post-title,
+.post-navigation a:focus .post-title,
+.post-title-end {
+  color: var(--color-grey700);
+}
+
+blockquote {
+  border-color: var(--color-grey700);
+}
+
+hr {
+  background-color: var(--color-grey100);
+}
+
+pre,
+abbr[title],
+table,
+th,
+td,
+input,
+textarea,
+.post-navigation,
+.post-navigation div + div,
+.site-header,
+.site-footer {
+  border-color: var(--color-grey100);
+}
+
+/* Highlight color */
+mark,
+ins {
+  background-color: var(--color-cyan);
+}
+
+/* Border Focus Color */
+a:focus,
+button:focus,
+input:focus {
+  outline-color: var(--color-grey300);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color-grey300);
+}
+
+/* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder {
+  color: var(--color-grey700);
+}
+
+:-moz-placeholder {
+  color: var(--color-grey700);
+}
+
+::-moz-placeholder {
+  color: var(--color-grey700);
+}
+
+:-ms-input-placeholder {
+  color: var(--color-grey700);
+}
+
+/* Sidebar Link Color */
+.branding-title a,
+.branding-subtitle {
+  color: var(--color-white);
+}
+
+/* Sidebar Text Color */
+.branding-title a:hover,
+.branding-title a:focus {
+  color: var(--color-white700);
+}
+
+/* Sidebar Border Focus Color */
+.branding-title a {
+  outline-color: var(--color-white300);
+}
+
+@media screen and (min-width: 59.6875em) {
+  /* Make sure its transparent on desktop */
+  .site-header {
+    background-color: transparent;
+  }
+
+  .sidebar a:focus {
+    outline-color: var(--color-white100);
+  }
+}
