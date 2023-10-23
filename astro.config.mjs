@@ -11,4 +11,7 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
+  build: {
+    format: "file",
+  },
 });
