@@ -4,4 +4,4 @@ Disallow: /uploads/
 Disallow: /*.png$
 Disallow: /*.svg$
 Disallow: /*.css$
-Sitemap: https://blog.duvallj.pw/sitemap.xml
+Sitemap: https://blog.duvallj.pw/sitemap-index.xml
