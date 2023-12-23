@@ -27,6 +27,7 @@ Ordering w/i categories is by how cool I think their website is :3
   person
 - [Anish Singhani](https://github.com/asinghani) - another, cooler, ECE guy
 - [Zach Battleman](https://github.com/zaxioms) - kouhai :3
+- [James Gallicchio](https://www.linkedin.com/in/james-gallicchio-7769b3174) - Lean4 metaprogramming expert
 - [Michael Obroin](https://www.linkedin.com/in/michael-obroin/) - fastest man
   alive
 - [Cooper Pierce](https://www.linkedin.com/in/cooper-pierce) - he knows too
