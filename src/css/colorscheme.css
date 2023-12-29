@@ -1,14 +1,31 @@
 /* Color Scheme */
+:root {
+  --color-white: rgb(255, 255, 255);
+  --color-white700: rgba(255, 255, 255, 0.7);
+  --color-white300: rgba(255, 255, 255, 0.3);
+  --color-white100: rgba(255, 255, 255, 0.1);
+  --color-grey: rgb(34, 49, 63);
+  --color-grey700: rgba(34, 49, 63, 0.7);
+  --color-grey300: rgba(34, 49, 63, 0.3);
+  --color-grey100: rgba(34, 49, 63, 0.1);
+  --color-off-white: rgb(233, 242, 249);
+  --color-light-grey: rgb(241, 241, 241);
+  --color-cyan: rgb(85, 195, 220);
+  --color-blue: rgb(3, 102, 214);
+  --color-orange: rgb(235, 133, 34);
+  --color-light-orange: rgb(255, 183, 113);
+  --color-green: rgb(103, 171, 107);
+}
 
 /* Background Color */
 body {
-  background-color: #e9f2f9;
+  background-color: var(--color-off-white);
 }
 
 /* Sidebar Background Color */
 body:before,
 .site-header {
-  background-color: #55c3dc;
+  background-color: var(--color-cyan);
 }
 
 /* Box Background Color */
@@ -21,7 +38,7 @@ body:before,
 .page-content,
 .comments-area,
 .widecolumn {
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 /* Box Background Color */
@@ -38,7 +55,7 @@ input[type="submit"],
 .page-links a:hover,
 .page-links a:focus,
 .sticky-post {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 /* Main Text Color */
@@ -51,23 +68,23 @@ input[type="submit"],
 .widget_calendar tbody a,
 .page-links a,
 .sticky-post {
-  background-color: #22313f;
+  background-color: var(--color-grey);
 }
 
 /* Main Text Color */
 body,
 blockquote cite,
 blockquote small {
-  color: #22313f;
+  color: var(--color-grey);
 }
 
 /* Link Color */
 a {
-  color: rgb(3, 102, 214);
+  color: var(--color-blue);
 }
 
 .post-navigation a .post-title {
-  color: #22313f;
+  color: var(--color-grey);
 }
 
 .post-navigation a:hover,
@@ -89,7 +106,7 @@ a {
 .pingback .edit-link a:hover,
 .comment-list .reply a:hover,
 .site-info a:hover {
-  border-color: rgb(3, 102, 214);
+  border-color: var(--color-blue);
 }
 
 /* Secondary Text Color */
@@ -109,8 +126,7 @@ input[type="submit"]:focus,
 .widget_calendar tbody a:focus,
 .page-links a:hover,
 .page-links a:focus {
-  background-color: #22313f; /* Fallback for IE7 and IE8 */
-  background-color: rgba(34, 49, 63, 0.7);
+  background-color: var(--color-grey700);
 }
 
 /* Secondary Text Color */
@@ -152,24 +168,21 @@ a:focus,
 .comment-list .reply a,
 .widecolumn label,
 .widecolumn .mu_register label {
-  color: #22313f; /* Fallback for IE7 and IE8 */
-  color: rgba(34, 49, 63, 0.7);
+  color: var(--color-grey700);
 }
 
 /* Secondary Text Color */
 blockquote,
 .logged-in-as a:hover,
 .comment-author a:hover {
-  border-color: #22313f; /* Fallback for IE7 and IE8 */
-  border-color: rgba(34, 49, 63, 0.7);
+  border-color: var(--color-grey700);
 }
 
 /* Border Color */
 hr,
 .dropdown-toggle:hover,
 .dropdown-toggle:focus {
-  background-color: #22313f; /* Fallback for IE7 and IE8 */
-  background-color: rgba(34, 49, 63, 0.1);
+  background-color: var(--color-grey100);
 }
 
 /* Border Color */
@@ -204,67 +217,61 @@ textarea,
 .comment-list .trackback,
 .comment-list .reply a,
 .no-comments {
-  border-color: #22313f; /* Fallback for IE7 and IE8 */
-  border-color: rgba(34, 49, 63, 0.1);
+  border-color: var(--color-grey100);
 }
 
 /* Border Focus Color */
 a:focus,
 button:focus,
 input:focus {
-  outline-color: #22313f; /* Fallback for IE7 and IE8 */
-  outline-color: rgba(34, 49, 63, 0.3);
+  outline-color: var(--color-grey300);
 }
 
 input:focus,
 textarea:focus {
-  border-color: #22313f; /* Fallback for IE7 and IE8 */
-  border-color: rgba(34, 49, 63, 0.3);
+  border-color: var(--color-grey300);
 }
 
 /* Sidebar Link Color */
 .secondary-toggle:before {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .branding-title a,
 .branding-subtitle {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 /* Sidebar Text Color */
 .branding-title a:hover,
 .branding-title a:focus {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-white700);
 }
 
 /* Sidebar Border Color */
 .secondary-toggle {
-  border-color: #ffffff; /* Fallback for IE7 and IE8 */
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white100);
 }
 
 /* Sidebar Border Focus Color */
 .secondary-toggle:hover,
 .secondary-toggle:focus {
-  border-color: #ffffff; /* Fallback for IE7 and IE8 */
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--color-white300);
 }
 
 .branding-title a {
-  outline-color: #ffffff; /* Fallback for IE7 and IE8 */
-  outline-color: rgba(255, 255, 255, 0.3);
+  outline-color: var(--color-white300);
 }
 
 /* Meta Background Color */
 .entry-footer {
-  background-color: #f1f1f1;
+  background-color: var(--color-light-grey);
 }
 
 @media screen and (min-width: 38.75em) {
   /* Main Text Color */
   .page-header {
-    border-color: #22313f;
+    border-color: var(--color-grey);
   }
 }
 
@@ -283,7 +290,7 @@ textarea:focus {
   .widget_calendar tbody a,
   .widget_calendar tbody a:hover,
   .widget_calendar tbody a:focus {
-    color: #55c3dc;
+    color: var(--color-cyan);
   }
 
   /* Sidebar Link Color */
@@ -292,7 +299,7 @@ textarea:focus {
   .widget-title,
   .widget blockquote cite,
   .widget blockquote small {
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   .widget button,
@@ -300,11 +307,11 @@ textarea:focus {
   .widget input[type="reset"],
   .widget input[type="submit"],
   .widget_calendar tbody a {
-    background-color: #ffffff;
+    background-color: var(--color-white);
   }
 
   .textwidget a {
-    border-color: #ffffff;
+    border-color: var(--color-white);
   }
 
   /* Sidebar Text Color */
@@ -315,7 +322,7 @@ textarea:focus {
   .widget blockquote,
   .widget .wp-caption-text,
   .widget .gallery-caption {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white700);
   }
 
   .widget button:hover,
@@ -328,11 +335,11 @@ textarea:focus {
   .widget input[type="submit"]:focus,
   .widget_calendar tbody a:hover,
   .widget_calendar tbody a:focus {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: var(--color-white700);
   }
 
   .widget blockquote {
-    border-color: rgba(255, 255, 255, 0.7);
+    border-color: var(--color-white700);
   }
 
   /* Sidebar Border Color */
@@ -349,22 +356,22 @@ textarea:focus {
   .widget_nav_menu .sub-menu,
   .widget_pages .children,
   .widget abbr[title] {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-white100);
   }
 
   .dropdown-toggle:hover,
   .dropdown-toggle:focus,
   .widget hr {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-white100);
   }
 
   .widget input:focus,
   .widget textarea:focus {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: var(--color-white300);
   }
 
   .sidebar a:focus,
   .dropdown-toggle:focus {
-    outline-color: rgba(255, 255, 255, 0.3);
+    outline-color: var(--color-white100);
   }
 }

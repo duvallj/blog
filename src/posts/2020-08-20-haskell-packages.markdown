@@ -1,6 +1,6 @@
 ---
 title: Haskell Packages are Pretty Ok and Other Ramblings
-tags: daily thoughts, Hakyll
+tags: daily thoughts, Hakyll, Web
 ---
 
 After writing the code for [my previous blog

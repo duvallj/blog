@@ -1,6 +1,6 @@
 ---
 title: Blog Theme Upgrades!
-tags: daily thoughts, Hakyll
+tags: daily thoughts, Hakyll, Web
 ---
 
 Wow the blog sure looks snazzy now! I ripped the twenty-fifteen theme from
