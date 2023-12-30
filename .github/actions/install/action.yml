@@ -1,0 +1,13 @@
+name: Install Tools & Dependencies
+
+runs:
+  using: composite
+  steps:
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install node_modules
+      run: npm ci
+      shell: bash
