@@ -9,18 +9,14 @@ const { imgroot, images } = Astro.props;
 {
   images.map((image) => (
     <figure class="photography-figure">
-      <h3>
-        <Fragment set:html={image.title} />
-      </h3>
+      <h3 set:html={image.title} />
       {/* TODO: use the <Image /> component to have images be better processed. Requires threading around imports tho. */}
       <img
         src={`${imgroot}/${image.imgfile}`}
         title={image.imgtitle}
         alt={image.imgalt ?? "A Photograph"}
       />
-      <figcaption>
-        <Fragment set:html={image.caption} />
-      </figcaption>
+      <figcaption set:html={image.caption} />
     </figure>
   ))
 }

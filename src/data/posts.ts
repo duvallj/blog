@@ -27,9 +27,9 @@ export interface PostPropsWithComponent extends PostProps {
 }
 
 export const getPosts = async (): Promise<PostPropsWithComponent[]> => {
-  const rawPosts = import.meta.glob<boolean, string, MarkdownInstance<RawPost>>(
-    "../posts/*.markdown",
-  );
+  // Manually type-annotating since vite types refuses to play nice
+  const rawPosts: Record<string, () => Promise<MarkdownInstance<RawPost>>> =
+    import.meta.glob("../posts/*.markdown");
 
   const posts = await Promise.all(
     Object.values(rawPosts).map(async (producer) => {

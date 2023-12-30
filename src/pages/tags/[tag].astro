@@ -29,7 +29,7 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { tag, ...props } = Astro.props;
+const props = Astro.props;
 ---
 
 <Page {...props}>
