@@ -28,8 +28,10 @@ export interface PostPropsWithComponent extends PostProps {
 
 export const getPosts = async (): Promise<PostPropsWithComponent[]> => {
   // Manually type-annotating since vite types refuses to play nice
+  /* eslint-disable */
   const rawPosts: Record<string, () => Promise<MarkdownInstance<RawPost>>> =
     import.meta.glob("../posts/*.markdown");
+  /* eslint-enable */
 
   const posts = await Promise.all(
     Object.values(rawPosts).map(async (producer) => {

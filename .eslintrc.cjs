@@ -13,8 +13,8 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
-    tsConfigRootDir: __dirname,
+    project: "./tsconfig.json",
+    extraFileExtensions: [".astro"],
   },
   overrides: [
     {
