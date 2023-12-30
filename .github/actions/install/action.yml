@@ -10,3 +10,4 @@ runs:
 
     - name: Install node_modules
       run: npm ci
+      shell: bash
