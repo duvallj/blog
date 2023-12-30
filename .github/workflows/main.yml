@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install
+
       - name: Build Astro
         run: npm run build
 
