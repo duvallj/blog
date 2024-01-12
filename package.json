@@ -22,7 +22,7 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.3.0",
+    "@astrojs/check": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "eslint": "^8.56.0",
