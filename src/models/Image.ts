@@ -21,4 +21,8 @@ export type Image = {
    * Image title (above the image)
    */
   title: string;
+  /**
+   * Whether this above-the-fold image should be eagerly loaded
+   */
+  eager?: boolean;
 };

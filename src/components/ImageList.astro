@@ -15,6 +15,8 @@ const { images } = Astro.props;
         src={image.imgfile}
         title={image.imgtitle}
         alt={image.imgalt ?? "A photograph"}
+        loading={image.eager ? "eager" : undefined}
+        quality="max"
       />
       <figcaption set:html={image.caption} />
     </figure>
