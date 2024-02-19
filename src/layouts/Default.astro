@@ -4,9 +4,13 @@ import "../css/colorscheme.css";
 import "../css/work-sans.css";
 import "../css/inconsolata.css";
 import type { DefaultProps } from "../models/Default";
+import { Image } from "astro:assets";
+import randomlogo from "../assets/randomlogo.png";
 
-interface Props extends DefaultProps {}
-const { description, title } = Astro.props;
+type Props = DefaultProps;
+const {
+  frontmatter: { description, title },
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -43,9 +47,10 @@ const { description, title } = Astro.props;
       <header id="masthead" class="site-header" role="banner">
         <div class="branding">
           <a class="branding-logo-link" href="/">
-            <img
+            <Image
               class="branding-logo"
-              src="/uploads/randomlogo.png"
+              src={randomlogo}
+              loading="eager"
               alt="DuvallJ's Blog"
             />
           </a>
@@ -56,11 +61,12 @@ const { description, title } = Astro.props;
         </div>
         <nav>
           <a href="/" rel="home">home</a>
-          <a href="/about.html" rel="about">about</a>
-          <a href="/friends.html" rel="friends">friends</a>
-          <a href="/contact.html" rel="contact">contact</a>
-          <a href="/archive.html" rel="archive">archive</a>
-          <a href="/tags.html" rel="tags">tags</a>
+          <a href="/about.html" rel="author">about</a>
+          <a href="/contact.html">contact</a>
+          <a href="/archive.html">archive</a>
+          <a href="/tags.html">tags</a>
+          <a href="/friends.html">friends</a>
+          <a href="/photography.html">photography</a>
         </nav>
       </header>
     </div>

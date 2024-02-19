@@ -3,7 +3,7 @@ import Post from "../../layouts/Post.astro";
 import { getPosts, type PostPropsWithComponent } from "../../data/posts";
 import type { GetStaticPaths } from "astro";
 
-interface Props extends PostPropsWithComponent {}
+type Props = PostPropsWithComponent;
 
 export const getStaticPaths = (async () => {
   const posts = await getPosts();

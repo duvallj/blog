@@ -21,7 +21,7 @@ const pages = [...postsByYear.keys()]
   .reverse();
 ---
 
-<Page {title} {description}>
+<Page frontmatter={{ title, description }}>
   <p>Here are all the years I've blogged. Is this a lot? maybe.</p>
 
   <PageList {pages} />

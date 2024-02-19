@@ -5,7 +5,7 @@ import type { TagPageProps } from "../../models/TagPage";
 import Page from "../../layouts/Page.astro";
 import PostList from "../../components/PostList.astro";
 
-interface Props extends TagPageProps {}
+type Props = TagPageProps;
 
 export const getStaticPaths = (async () => {
   const postsByTag = await getPostsByTag();
@@ -13,8 +13,10 @@ export const getStaticPaths = (async () => {
   return [...postsByTag.entries()].map(([tag, posts]) => {
     const props: TagPageProps = {
       tag,
-      title: `Post tagged "${tag}"`,
-      description: `All the posts I've tagged "${tag}"`,
+      frontmatter: {
+        title: `Post tagged "${tag}"`,
+        description: `All the posts I've tagged "${tag}"`,
+      },
       posts: posts.map((post) => post.current).reverse(),
       inList: true,
       previous: {

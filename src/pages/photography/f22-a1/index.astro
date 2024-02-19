@@ -56,14 +56,14 @@ const images: Image[] = [
 ];
 ---
 
-<Photography {title} {description}>
+<Photography frontmatter={{ title, description }}>
   <p>
     My very first photography assignment! Sure, I had taken photos before, but
     not really with such purpose. This shoot had <em>by far</em> the most photos
     in it, but only a few I really liked.
   </p>
 
-  <ImageList imgroot="/uploads/photography/f22-a1" {images} />
+  <ImageList imgroot="f22-a1" {images} />
 
   <hr />
   <p>

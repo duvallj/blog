@@ -2,11 +2,11 @@ import type { MarkdownInstance } from "astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import type { PostProps, Post } from "../models/Post";
 
-interface RawPost {
+type RawPost = {
   title?: string;
   description?: string;
   tags?: string;
-}
+};
 
 /**
  * Gets the filename from a complete path
@@ -22,9 +22,9 @@ const stripExtension = (filename: string): string => {
   return filename.split(".").slice(0, -1).join(".");
 };
 
-export interface PostPropsWithComponent extends PostProps {
+export type PostPropsWithComponent = PostProps & {
   Content: AstroComponentFactory;
-}
+};
 
 export const getPosts = async (): Promise<PostPropsWithComponent[]> => {
   // Manually type-annotating since vite types refuses to play nice
@@ -48,8 +48,10 @@ export const getPosts = async (): Promise<PostPropsWithComponent[]> => {
 
       const props: PostPropsWithComponent = {
         current,
-        title,
-        description: post.frontmatter.description,
+        frontmatter: {
+          ...post.frontmatter,
+          title,
+        },
         Content: post.Content,
       };
 

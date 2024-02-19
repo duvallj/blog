@@ -2,7 +2,7 @@
 import { dateString } from "../date";
 import type { PostListProps } from "../models/PostList";
 
-interface Props extends PostListProps {}
+type Props = PostListProps;
 
 const { posts } = Astro.props;
 ---
