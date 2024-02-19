@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:astro/recommended",
+    "plugin:astro/jsx-a11y-recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:prettier/recommended",
   ],
