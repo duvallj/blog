@@ -3,7 +3,7 @@ import type { PostProps } from "../models/Post";
 import Default from "./Default.astro";
 import { dateString } from "../date";
 
-interface Props extends PostProps {}
+type Props = PostProps;
 
 const {
   current: { date, tags },
@@ -24,7 +24,7 @@ const {
   </slot>
   <article class="post type-post hentry">
     <section class="entry-header">
-      <h1 class="entry-title">{props.title}</h1>
+      <h1 class="entry-title">{props.frontmatter.title}</h1>
       <div class="entry-info">
         Posted on {dateString(date)}
       </div>
@@ -55,12 +55,12 @@ const {
               <span class="post-title">{next.title}</span>
             </a>
           ) : (
-            <a rel="next">
+            <span>
               <span class="meta-nav" aria-hidden="true">
                 Next
               </span>
               <span class="post-title-end">No Next Post</span>
-            </a>
+            </span>
           )
         }
       </div>
@@ -75,12 +75,12 @@ const {
               <span class="post-title">{previous.title}</span>
             </a>
           ) : (
-            <a rel="prev">
+            <span>
               <span class="meta-nav" aria-hidden="true">
                 Previous
               </span>
               <span class="post-title-end">No Previous Post</span>
-            </a>
+            </span>
           )
         }
       </div>

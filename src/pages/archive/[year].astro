@@ -5,7 +5,7 @@ import type { ArchivePageProps } from "../../models/ArchivePage";
 import PostList from "../../components/PostList.astro";
 import Page from "../../layouts/Page.astro";
 
-interface Props extends ArchivePageProps {}
+type Props = ArchivePageProps;
 
 export const getStaticPaths = (async () => {
   const postsByYear = await getPostsByYear();
@@ -13,8 +13,10 @@ export const getStaticPaths = (async () => {
   return [...postsByYear.entries()].map(([year, posts]) => {
     const props: ArchivePageProps = {
       year,
-      title: `${year}`,
-      description: `All the posts I've written in ${year}`,
+      frontmatter: {
+        title: `${year}`,
+        description: `All the posts I've written in ${year}`,
+      },
       posts: posts.map((post) => post.current).reverse(),
       inList: true,
       previous: {

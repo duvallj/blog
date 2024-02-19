@@ -3,7 +3,7 @@ import type { DefaultProps } from "./Default";
 /**
  * Metadata for an arbitrary Page
  */
-export interface Page {
+export type Page = {
   /**
    * URL of the page. Must start with a '/'.
    */
@@ -12,10 +12,10 @@ export interface Page {
    * Title of the page.
    */
   title: string;
-}
+};
 
-export interface PageProps extends DefaultProps {
+export type PageProps = DefaultProps & {
   inList?: boolean;
   previous?: Page;
   next?: Page;
-}
+};

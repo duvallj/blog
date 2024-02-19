@@ -2,15 +2,15 @@
 import Default from "./Default.astro";
 import type { PageProps } from "../models/Page.js";
 
-interface Props extends PageProps {}
+type Props = PageProps;
 
-const { inList, previous, next, ...props } = Astro.props;
+const { inList, previous, next, frontmatter } = Astro.props;
 ---
 
-<Default {...props}>
+<Default {...Astro.props}>
   <article class="page type-page hentry">
     <section class="entry-header">
-      <h1 class="entry-title">{props.title}</h1>
+      <h1 class="entry-title">{frontmatter.title}</h1>
     </section>
     <section class="entry-content"><slot /></section>
   </article>

@@ -1,7 +1,7 @@
 ---
 layout: "../layouts/Page.astro"
-title: Friends
-description: A short list of websites for people I know and trust
+title: "Friends"
+description: "A short list of websites for people I know and trust"
 ---
 
 These are all my friends! I'd highly recommend any of these people both as

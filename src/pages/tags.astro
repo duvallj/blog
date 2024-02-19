@@ -18,6 +18,6 @@ const pages = [...postsByTag.keys()].sort().map((tag) => {
 });
 ---
 
-<Page {title} {description}>
+<Page frontmatter={{ title, description }}>
   <PageList {pages} />
 </Page>

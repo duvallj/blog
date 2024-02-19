@@ -16,7 +16,7 @@ const recentPosts = posts
   .reverse();
 ---
 
-<Page {title} {description}>
+<Page frontmatter={{ title, description }}>
   <p>Welcome to my blog! Here are some of my most recent posts:</p>
 
   <PostList posts={recentPosts} />

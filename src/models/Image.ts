@@ -1,8 +1,10 @@
-export interface Image {
+import type { ImageMetadata } from "astro";
+
+export type Image = {
   /**
-   * Filename for the image. Styled like "01.png"
+   * Filename for the image. Use `await import` for this.
    */
-  imgfile: string;
+  imgfile: ImageMetadata;
   /**
    * title component for the image (text that shows up on hover)
    */
@@ -19,4 +21,8 @@ export interface Image {
    * Image title (above the image)
    */
   title: string;
-}
+  /**
+   * Whether this above-the-fold image should be eagerly loaded
+   */
+  eager?: boolean;
+};
