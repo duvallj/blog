@@ -1,10 +1,8 @@
-name: Deploy main-site to S3
-# Trigger this on every push to main that touches main-site
+name: Build Astro, deploy to S3
+# Trigger this on every push to main
 on:
   push:
     branches: [main]
-    paths:
-      - "main-site/**"
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -19,6 +17,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install
+
+      - name: Restore Astro Cache
+        uses: actions/cache@v4
+        with:
+          path: dist
+          key: blog-cache-astro
+
+      - name: Build Astro
+        run: npm run build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -26,6 +36,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Deploy to S3
-        run: aws s3 sync --delete ./main-site/ s3://${{ secrets.AWS_S3_BUCKET_MAIN }}
+        run: aws s3 sync --delete ./dist/ s3://${{ secrets.AWS_S3_BUCKET }}
       - name: Create CloudFront invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_MAIN }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION }} --paths "/*"
