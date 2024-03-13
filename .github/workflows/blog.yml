@@ -1,8 +1,19 @@
 name: Build Astro, deploy to S3
-# Trigger this on every push to main
+# Trigger this on every push to main that would change astro files
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/blog.yml"
+      - ".eslintignore"
+      - ".eslintrc.cjs"
+      - "astro.config.mjs"
+      - "package-lock.json"
+      - "package.json"
+      - "postcss.config.cjs"
+      - "tsconfig.json"
+      - "src/**"
+      - "public/**"
 
 concurrency:
   group: ci-${{ github.ref }}
