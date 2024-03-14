@@ -30,14 +30,8 @@ body:before,
 
 /* Box Background Color */
 .post-navigation,
-.pagination,
-.secondary,
 .site-footer,
-.hentry,
-.page-header,
-.page-content,
-.comments-area,
-.widecolumn {
+.hentry {
   background-color: var(--color-white);
 }
 
@@ -45,16 +39,7 @@ body:before,
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"],
-.pagination .prev,
-.pagination .next,
-.widget_calendar tbody a,
-.widget_calendar tbody a:hover,
-.widget_calendar tbody a:focus,
-.page-links a,
-.page-links a:hover,
-.page-links a:focus,
-.sticky-post {
+input[type="submit"] {
   color: var(--color-white);
 }
 
@@ -62,12 +47,7 @@ input[type="submit"],
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"],
-.pagination .prev,
-.pagination .next,
-.widget_calendar tbody a,
-.page-links a,
-.sticky-post {
+input[type="submit"] {
   background-color: var(--color-grey);
 }
 
@@ -83,6 +63,10 @@ a {
   color: var(--color-blue);
 }
 
+nav a {
+  color: var(--color-white);
+}
+
 .post-navigation a .post-title {
   color: var(--color-grey);
 }
@@ -93,19 +77,7 @@ a {
 }
 
 /* Link Underline Color */
-.entry-content a,
-.entry-summary a,
-.page-content a,
-.comment-content a,
-.pingback .comment-body > a,
-.author-description a,
-.taxonomy-description a,
-.textwidget a,
-.entry-footer a:hover,
-.comment-metadata a:hover,
-.pingback .edit-link a:hover,
-.comment-list .reply a:hover,
-.site-info a:hover {
+.entry-content a {
   border-color: var(--color-blue);
 }
 
@@ -117,15 +89,7 @@ input[type="button"]:focus,
 input[type="reset"]:hover,
 input[type="reset"]:focus,
 input[type="submit"]:hover,
-input[type="submit"]:focus,
-.pagination .prev:hover,
-.pagination .prev:focus,
-.pagination .next:hover,
-.pagination .next:focus,
-.widget_calendar tbody a:hover,
-.widget_calendar tbody a:focus,
-.page-links a:hover,
-.page-links a:focus {
+input[type="submit"]:focus {
   background-color: var(--color-grey700);
 }
 
@@ -133,59 +97,21 @@ input[type="submit"]:focus,
 blockquote,
 a:hover,
 a:focus,
-.main-navigation .menu-item-description,
 .post-navigation .meta-nav,
 .post-navigation a:hover .post-title,
 .post-navigation a:focus .post-title,
-.post-title-end,
-.image-navigation,
-.image-navigation a,
-.comment-navigation,
-.comment-navigation a,
-.widget,
-.author-heading,
-.entry-footer,
-.entry-footer a,
-.taxonomy-description,
-.page-links > .page-links-title,
-.entry-caption,
-.comment-author,
-.comment-metadata,
-.comment-metadata a,
-.pingback .edit-link,
-.pingback .edit-link a,
-.post-password-form label,
-.comment-form label,
-.comment-notes,
-.comment-awaiting-moderation,
-.logged-in-as,
-.form-allowed-tags,
-.no-comments,
-.site-info,
-.site-info a,
-.wp-caption-text,
-.gallery-caption,
-.comment-list .reply a,
-.widecolumn label,
-.widecolumn .mu_register label {
+.post-title-end {
   color: var(--color-grey700);
 }
 
-/* Secondary Text Color */
-blockquote,
-.logged-in-as a:hover,
-.comment-author a:hover {
+blockquote {
   border-color: var(--color-grey700);
 }
 
-/* Border Color */
-hr,
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
+hr {
   background-color: var(--color-grey100);
 }
 
-/* Border Color */
 pre,
 abbr[title],
 table,
@@ -193,31 +119,17 @@ th,
 td,
 input,
 textarea,
-.main-navigation ul,
-.main-navigation li,
 .post-navigation,
 .post-navigation div + div,
-.pagination,
-.comment-navigation,
-.widget li,
-.widget_categories .children,
-.widget_nav_menu .sub-menu,
-.widget_pages .children,
 .site-header,
-.site-footer,
-.hentry + .hentry,
-.author-info,
-.entry-content .page-links a,
-.page-links > span,
-.page-header,
-.comments-area,
-.comment-list + .comment-respond,
-.comment-list article,
-.comment-list .pingback,
-.comment-list .trackback,
-.comment-list .reply a,
-.no-comments {
+.site-footer {
   border-color: var(--color-grey100);
+}
+
+/* Highlight color */
+mark,
+ins {
+  background-color: var(--color-cyan);
 }
 
 /* Border Focus Color */
@@ -232,11 +144,24 @@ textarea:focus {
   border-color: var(--color-grey300);
 }
 
-/* Sidebar Link Color */
-.secondary-toggle:before {
-  color: var(--color-white);
+/* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder {
+  color: var(--color-grey700);
 }
 
+:-moz-placeholder {
+  color: var(--color-grey700);
+}
+
+::-moz-placeholder {
+  color: var(--color-grey700);
+}
+
+:-ms-input-placeholder {
+  color: var(--color-grey700);
+}
+
+/* Sidebar Link Color */
 .branding-title a,
 .branding-subtitle {
   color: var(--color-white);
@@ -248,130 +173,18 @@ textarea:focus {
   color: var(--color-white700);
 }
 
-/* Sidebar Border Color */
-.secondary-toggle {
-  border-color: var(--color-white100);
-}
-
 /* Sidebar Border Focus Color */
-.secondary-toggle:hover,
-.secondary-toggle:focus {
-  border-color: var(--color-white300);
-}
-
 .branding-title a {
   outline-color: var(--color-white300);
 }
 
-/* Meta Background Color */
-.entry-footer {
-  background-color: var(--color-light-grey);
-}
-
-@media screen and (min-width: 38.75em) {
-  /* Main Text Color */
-  .page-header {
-    border-color: var(--color-grey);
-  }
-}
-
 @media screen and (min-width: 59.6875em) {
   /* Make sure its transparent on desktop */
-  .site-header,
-  .secondary {
+  .site-header {
     background-color: transparent;
   }
 
-  /* Sidebar Background Color */
-  .widget button,
-  .widget input[type="button"],
-  .widget input[type="reset"],
-  .widget input[type="submit"],
-  .widget_calendar tbody a,
-  .widget_calendar tbody a:hover,
-  .widget_calendar tbody a:focus {
-    color: var(--color-cyan);
-  }
-
-  /* Sidebar Link Color */
-  .secondary a,
-  .dropdown-toggle:after,
-  .widget-title,
-  .widget blockquote cite,
-  .widget blockquote small {
-    color: var(--color-white);
-  }
-
-  .widget button,
-  .widget input[type="button"],
-  .widget input[type="reset"],
-  .widget input[type="submit"],
-  .widget_calendar tbody a {
-    background-color: var(--color-white);
-  }
-
-  .textwidget a {
-    border-color: var(--color-white);
-  }
-
-  /* Sidebar Text Color */
-  .secondary a:hover,
-  .secondary a:focus,
-  .main-navigation .menu-item-description,
-  .widget,
-  .widget blockquote,
-  .widget .wp-caption-text,
-  .widget .gallery-caption {
-    color: var(--color-white700);
-  }
-
-  .widget button:hover,
-  .widget button:focus,
-  .widget input[type="button"]:hover,
-  .widget input[type="button"]:focus,
-  .widget input[type="reset"]:hover,
-  .widget input[type="reset"]:focus,
-  .widget input[type="submit"]:hover,
-  .widget input[type="submit"]:focus,
-  .widget_calendar tbody a:hover,
-  .widget_calendar tbody a:focus {
-    background-color: var(--color-white700);
-  }
-
-  .widget blockquote {
-    border-color: var(--color-white700);
-  }
-
-  /* Sidebar Border Color */
-  .main-navigation ul,
-  .main-navigation li,
-  .widget input,
-  .widget textarea,
-  .widget table,
-  .widget th,
-  .widget td,
-  .widget pre,
-  .widget li,
-  .widget_categories .children,
-  .widget_nav_menu .sub-menu,
-  .widget_pages .children,
-  .widget abbr[title] {
-    border-color: var(--color-white100);
-  }
-
-  .dropdown-toggle:hover,
-  .dropdown-toggle:focus,
-  .widget hr {
-    background-color: var(--color-white100);
-  }
-
-  .widget input:focus,
-  .widget textarea:focus {
-    border-color: var(--color-white300);
-  }
-
-  .sidebar a:focus,
-  .dropdown-toggle:focus {
+  .sidebar a:focus {
     outline-color: var(--color-white100);
   }
 }
