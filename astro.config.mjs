@@ -14,4 +14,5 @@ export default defineConfig({
   build: {
     format: "file",
   },
+  cacheDir: "./.astro-cache",
 });
