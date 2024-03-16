@@ -1,63 +1,34 @@
-import type { MarkdownInstance } from "astro";
-import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import type { PostProps, Post } from "../models/Post";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
-type RawPost = {
-  title?: string;
-  description?: string;
-  tags?: string;
+export type PostPropsWithEntry = PostProps & {
+  entry: CollectionEntry<"posts">;
 };
 
-/**
- * Gets the filename from a complete path
- */
-const baseName = (path: string): string => {
-  return path.split("\\").pop()!.split("/").pop()!;
-};
+export const getPosts = async () => {
+  const rawPosts = await getCollection("posts");
+  const posts: PostPropsWithEntry[] = rawPosts.map((post) => {
+    const slug = post.slug;
+    const title = post.data.title ?? "untitled";
 
-/**
- * Strips the extension from a filename
- */
-const stripExtension = (filename: string): string => {
-  return filename.split(".").slice(0, -1).join(".");
-};
+    const current: Post = {
+      url: `/posts/${slug}.html`,
+      title,
+      slug,
+      date: new Date(slug.slice(0, 10) + "T12:00:00"),
+      tags: (post.data.tags ?? "").split(", "),
+    };
 
-export type PostPropsWithComponent = PostProps & {
-  Content: AstroComponentFactory;
-};
-
-export const getPosts = async (): Promise<PostPropsWithComponent[]> => {
-  // Manually type-annotating since vite types refuses to play nice
-  const rawPosts = import.meta.glob<false, string, MarkdownInstance<RawPost>>(
-    "../posts/*.markdown",
-  );
-
-  const posts = await Promise.all(
-    Object.values(rawPosts).map(async (producer) => {
-      const post = await producer();
-      const slug = stripExtension(baseName(post.file));
-      const title = post.frontmatter.title ?? "untitled";
-
-      const current: Post = {
-        slug,
-        url: `/posts/${slug}.html`,
-        date: new Date(slug.slice(0, 10) + "T12:00:00"),
+    return {
+      entry: post,
+      current,
+      frontmatter: {
         title,
-        tags: (post.frontmatter.tags ?? "").split(", "),
-      };
-
-      const props: PostPropsWithComponent = {
-        current,
-        frontmatter: {
-          ...post.frontmatter,
-          title,
-        },
-        Content: post.Content,
-      };
-
-      return props;
-    }),
-  );
+        description: post.data.description,
+      },
+    };
+  });
 
   // TODO: do I need to sort first? Seems like it's already sorted by filename which is sorted by date which is what I want roughly
 

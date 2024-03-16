@@ -6,8 +6,12 @@ runs:
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
 
     - name: Install node_modules
       run: npm ci
+      shell: bash
+
+    - name: Generate Astro Types
+      run: npx astro sync
       shell: bash

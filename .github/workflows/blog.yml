@@ -34,8 +34,8 @@ jobs:
       - name: Restore Astro Cache
         uses: actions/cache@v4
         with:
-          path: dist
-          key: blog-cache-astro
+          path: .astro-cache
+          key: blog-astro-cache
 
       - name: Build Astro
         run: npm run build

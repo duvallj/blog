@@ -1,5 +1,7 @@
 # build output
 dist/
+# build cache
+.astro-cache/
 # generated types
 .astro/
 
