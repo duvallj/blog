@@ -212,7 +212,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Work Sans", serif;
+  font-family: sans-serif;
   font-size: 15px;
   font-size: 1.5rem;
   line-height: 1.6;
@@ -266,7 +266,7 @@ blockquote cite,
 blockquote small {
   font-size: 15px;
   font-size: 1.5rem;
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
   line-height: 1.6;
 }
 
@@ -440,20 +440,20 @@ del {
 /* Placeholder text color -- selectors need to be separate to work. */
 
 ::-webkit-input-placeholder {
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
 }
 
 :-moz-placeholder {
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
 }
 
 ::-moz-placeholder {
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
   opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */
 }
 
 :-ms-input-placeholder {
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
 }
 
 /**
@@ -506,7 +506,7 @@ input[type="reset"],
 input[type="submit"] {
   border: 0;
   cursor: pointer;
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
   font-size: 12px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -667,7 +667,7 @@ nav a {
 }
 
 .branding-title {
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
   font-size: 22px;
   font-size: 2.2rem;
   font-weight: 500;
@@ -678,7 +678,7 @@ nav a {
 
 .branding-subtitle {
   display: none;
-  font-family: "Work Sans", sans-serif;
+  font-family: sans-serif;
   font-size: 12px;
   font-size: 1.2rem;
   font-weight: 400;
