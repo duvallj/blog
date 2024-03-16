@@ -19,11 +19,15 @@
     "astro": "^4.4.0",
     "autoprefixer": "^10.4.17",
     "cssnano": "^6.0.3",
+    "markdown-it": "^14.0.0",
     "rehype-katex": "^7.0.0",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "sanitize-html": "^2.12.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.5.4",
+    "@types/markdown-it": "^13.0.7",
+    "@types/sanitize-html": "^2.11.0",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",

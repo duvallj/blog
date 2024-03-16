@@ -8,6 +8,10 @@ const { inList, previous, next, frontmatter } = Astro.props;
 ---
 
 <Default {...Astro.props}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
   <article class="page type-page hentry">
     <section class="entry-header">
       <h1 class="entry-title">{frontmatter.title}</h1>

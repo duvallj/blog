@@ -1,13 +1,13 @@
-import { getPosts, type PostPropsWithComponent } from "./posts";
+import { getPosts, type PostPropsWithEntry } from "./posts";
 
 /**
  * Sorts all posts into buckets based on tag, preserving order within each bucket
  */
 export const getPostsByTag = async (): Promise<
-  Map<string, PostPropsWithComponent[]>
+  Map<string, PostPropsWithEntry[]>
 > => {
   const posts = await getPosts();
-  const output = new Map<string, PostPropsWithComponent[]>();
+  const output = new Map<string, PostPropsWithEntry[]>();
   posts.forEach((post) => {
     post.current.tags.forEach((tag) => {
       if (!tag) {
