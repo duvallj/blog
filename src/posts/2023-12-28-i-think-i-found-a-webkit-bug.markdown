@@ -1,12 +1,12 @@
 ---
-title: I Think I Found A WebKit Bug
+title: I Think I Found A Chrome Bug
 description: "In which I go over how different values of `mask` can behave differently, despite intending for them to do the same thing. Shows off some of what I've learned in my job doing web development"
-tags: daily thoughts, WebKit, Web
+tags: daily thoughts, Chrome, Web
 ---
 
 At work, I'm in between a few big projects, spending my time polishing the UI
 so it shines. One of those polish items has been to revamp how we do
-notification badges, and through that, I think I discovered a WebKit bug.
+notification badges, and through that, I think I discovered a ~~WebKit bug~~ EDIT: Chrome bug. Upon further testing, this bug does not appear to be in Safari.
 
 ---
 
@@ -65,11 +65,11 @@ div.pfp {
 
 Nice 'n easy! Just slap a `position: absolute` inside a `position: relative`
 and everything's pretty much good-to-go. The only downside to this is that is
-doesn't *quite* look professional enough. A neat little detail to have is a
+doesn't _quite_ look professional enough. A neat little detail to have is a
 little transparent space between the profile picture and the thing going on top
 of it, like in Discord.
 
-Now, you *can* just fake this effect by slapping on a `border: 5px solid
+Now, you _can_ just fake this effect by slapping on a `border: 5px solid
 var(--background-color)` onto the the thing, but if the background color ever
 changes you have to animate this `border` property with the same curves, so for
 separation of concerns it's just easier[^1] to have the image be truly
@@ -84,11 +84,15 @@ as the mask source. Let's see how this looks, first without the indicator:
 
 ```html
 <style>
-/* irrelevant properties omitted for brevity */
-.take1 .pfp {
-  border-radius: 50%;
-  mask-image: radial-gradient(ellipse 20% 20% at 85% 85%, transparent 99%, white 100%);
-}
+  /* irrelevant properties omitted for brevity */
+  .take1 .pfp {
+    border-radius: 50%;
+    mask-image: radial-gradient(
+      ellipse 20% 20% at 85% 85%,
+      transparent 99%,
+      white 100%
+    );
+  }
 </style>
 
 <div class="avatar take1">
@@ -121,19 +125,20 @@ Unfortunately, this approach is not without problems.
 ## Problem 1: It Looks Chunky
 
 This becomes more apparent when we try to add the dot:
+
 ```html
 <style>
-.indicator {
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
+  .indicator {
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
 
-.take1 .indicator {
-  width: 30px;
-  position: absolute;
-  bottom: -3.5px;
-  right: -3.5px;
-}
+  .take1 .indicator {
+    width: 30px;
+    position: absolute;
+    bottom: -3.5px;
+    right: -3.5px;
+  }
 </style>
 <div class="avatar take1">
   <img class="pfp" src="/uploads/randomlogo.png" />
@@ -169,36 +174,41 @@ This becomes more apparent when we try to add the dot:
   </div>
 </div>
 
-Now, we can more clearly see that the masked-out part is ***not anti-aliased***, unlike the circular borders of the profile picture and indicator. This is part of the bug I'm referring to in the post title.
+Now, we can more clearly see that the masked-out part is **_not anti-aliased_**, unlike the circular borders of the profile picture and indicator. This is part of the bug I'm referring to in the post title.
 
 ## Problem 2: It Clips
+
 Things get worse if we try to add a second indicator (and not just from a
 design perspective, lol).
+
 ```html
 <style>
-.take2 .pfp {
-  mask-image: radial-gradient(ellipse 20% 20% at 85% 85%, transparent 99%, white 100%);
-}
+  .take2 .pfp {
+    mask-image: radial-gradient(
+      ellipse 20% 20% at 85% 85%,
+      transparent 99%,
+      white 100%
+    );
+  }
 
-.take2 img {
-  border-radius: 50%;
-}
+  .take2 img {
+    border-radius: 50%;
+  }
 
-.take2 .indicator {
-  width: 30px;
-  position: absolute;
-}
+  .take2 .indicator {
+    width: 30px;
+    position: absolute;
+  }
 
-.take2 .indicator1 {
-  bottom: -3.5px;
-  right: -3.5px;
-}
+  .take2 .indicator1 {
+    bottom: -3.5px;
+    right: -3.5px;
+  }
 
-.take2 .indicator2 {
-  top: -3.5px;
-  left: -3.5px;
-}
-
+  .take2 .indicator2 {
+    top: -3.5px;
+    left: -3.5px;
+  }
 </style>
 
 <div class="avatar take2">
@@ -278,7 +288,7 @@ It may have been wiser to bite the bullet and figure out how to reorganize the
 component hierarchy, but now I was curious to get to the bottom of this and
 figure out if I could do something about the first problem at the same time.
 
-Poking around in developer tools, we can confirm that it's *just* the `mask`
+Poking around in developer tools, we can confirm that it's _just_ the `mask`
 property causing this clipping. With the mask on, affecting the bottom right
 corner, we suddenly get clipping in the top left. A panicked search for "mask
 clips things that it shouldn't" brings us to the
@@ -312,10 +322,10 @@ mask, of course. Well, if we happen to move `.indicator2` to the right side, the
 
 ```html
 <style>
-.take2 .indicator3 {
-  top: -3.5px;
-  right: -3.5px;
-}
+  .take2 .indicator3 {
+    top: -3.5px;
+    right: -3.5px;
+  }
 </style>
 
 <div class="avatar take2">
@@ -350,7 +360,6 @@ mask, of course. Well, if we happen to move `.indicator2` to the right side, the
   </div>
 </div>
 
-
 HUH. WHAT. That's strange, to say the least. All we did was change `left:
 -3.5px` to `right: -3.5px` and suddenly the top is shorn off?? Playing around a
 bit more and setting `right: 10px`, we see a clue:
@@ -381,6 +390,7 @@ bit more and setting `right: 10px`, we see a clue:
 That indentation in where it gets cut off is suspicious.. it's almost like...
 
 ### The Mask Is Repeating
+
 That is, when the content goes outside the bounding box, a duplicate copy of
 the mask is placed there. Skimming the sidebar of the MDN tab where we found
 mask-clip, we do indeed see there is a
@@ -389,6 +399,7 @@ property, whose default value implies this exact behavior. Attempting to set
 `no-repeat` on the mask, however, just results in it clipping again.
 
 ## Problem 3: It's Problem 1 Again, But Different
+
 The designer comes back and says "that indicator in the top right is actually
 meant to be an unread message count, and should have a pill-shaped mask." OK,
 no problem, some reading of MDN has us come across the
@@ -407,6 +418,7 @@ property, and a bit of fooling around with it later we have a prototype:
   <img class="pfp" src="/uploads/randomlogo.png"></div>
 </div>
 ```
+
 <style>
 .take3 .pfp {
   border-radius: 50%;
@@ -425,12 +437,13 @@ property, and a bit of fooling around with it later we have a prototype:
 
 I could not honestly tell you how this works, only that it does. But as you can
 see from this image (and maybe even on your browser!), there's a huge problem:
-not only is the circular part of the mask not anti-aliased, but ***it's not
-even masking the anti-aliased pixels from the `border-radius`***. This is the
+not only is the circular part of the mask not anti-aliased, but **_it's not
+even masking the anti-aliased pixels from the `border-radius`_**. This is the
 clearest demonstration of the WebKit bug I was promising to expose in this
 post, so here you go :)
 
 ## A Better(?) Approach
+
 Fortunately, that same day I found this bug I also came up with an approach
 that solves all of these problems, at a small cost to generated code size. But
 this post is long enough as it is already, and you're probably fatigued reading
@@ -440,6 +453,8 @@ As an aside, Markdown is really nice for things like this. I can just include
 HTML right in with the rest of the formatted text and it just works?? Magical.
 
 [^1]: You've read the rest of the post. You know this isn't actually easy.
-[^2]: Yes, we ship a React.js Electron app. Yes, the performance is much of a
+[^2]:
+    Yes, we ship a React.js Electron app. Yes, the performance is much of a
     problem as you think it is. I will not be taking any questions about this.
+
 [^3]: As if I didn't end up writing something like that anyways, lol
