@@ -11,3 +11,7 @@ runs:
     - name: Install node_modules
       run: npm ci
       shell: bash
+
+    - name: Generate Astro Types
+      run: npx astro sync
+      shell: bash
