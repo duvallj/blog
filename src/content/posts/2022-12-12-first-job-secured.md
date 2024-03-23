@@ -1,6 +1,6 @@
 ---
 title: First Job Secured!
-tags: daily thoughts
+tags: daily thoughts, Roam
 ---
 
 I have some big news: just signed my first job offer!!!!!!!!!!
