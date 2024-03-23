@@ -30,47 +30,40 @@ To the best of my ability, here is a recreation of the bug I found:
 
 <style>
   .outer.container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    position: relative;
     border: 1px solid black;
-    opacity: 1;
+    padding: 1rem;
   }
   .inner.container {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    padding: 1rem;
+    position: relative;
     border: 1px solid blue;
-    opacity: 1;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
   }
   .inner.container:hover {
     border-color: red;
     backdrop-filter: blur(24px);
   }
   .background {
-    grid-area: 1 / 1 / 2 / 3;
+    position: absolute;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
   }
   img.round {
-    grid-area: 1 / 1 / 2 / 2;
+    position: relative;
     width: 80px;
     aspect-ratio: 1 / 1;
+    object-fit: contain;
     border-radius: 50%;
-  }
-  img.hidden {
-    grid-area: 1 / 2 / 2 / 3;
-    opacity: 0;
   }
 </style>
 <p>
 <div class="outer container">
-<div class="inner container">
-<div class="background"></div>
-<img class="round" src="/uploads/2024-03-20/dog.jpg">
-<img class="round hidden" src="/uploads/2024-03-20/dog.jpg">
-</div>
+  <div class="inner container">
+    <div class="background"></div>
+    <img class="round" src="/uploads/2024-03-20/dog.jpg">
+  </div>
 </div>
 </p>
 
@@ -88,9 +81,9 @@ interesting things:
 
 - All the `:hover` selector is doing is `border-color: red; backdrop-filter:
 blur(24px);`.
-- There is an image with `opacity: 0` just hanging around.
-- TODO: other important stuff? I haven't gotten it yet with the above setup,
-  needs more work...
+- There's some weird 3D thingy at the bottom??
+- Removing pretty much _any_ of the `position` attributes makes things go back
+  to normal.
 
 ## Narrowing Down A Culprit
 
