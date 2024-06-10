@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024-05: Chicago](/photography/2024-05-chicago.html)
+
+This marked somewhat of a return to photography for me. We'll see how long it lasts.
+
 ## Fall 2022: Digital Photography I
 
 These are assignments I did for 62-142 at CMU my senior year, taught by [Dylan Vitone](https://www.dylanvitone.com/). Really fun class, my peers had _even better_ photos which was really cool to see.
