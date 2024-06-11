@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024-06: London](/photography/2024-06-london.html)
+
+A continuation of my amateur iPhone photography, in quite an exotic city.
+
 ## [2024-05: Chicago](/photography/2024-05-chicago.html)
 
 This marked somewhat of a return to photography for me. We'll see how long it lasts.
