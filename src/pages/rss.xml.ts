@@ -22,6 +22,5 @@ export async function GET(context: APIContext) {
       }))
       .reverse(),
     customData: `<language>en-us</language>`,
-    stylesheet: "/pretty-feed-v3.xsl",
   });
 }
