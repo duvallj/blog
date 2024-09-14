@@ -11,7 +11,7 @@ const prettyHtml = String(
     .use(rehyperParse, { fragment: true })
     .use(rehypeFormat)
     .use(rehypeStringify)
-    .process(html)
+    .process(html),
 ).trim();
 ---
 
