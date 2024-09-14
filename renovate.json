@@ -1,10 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "group:all"
-  ],
-  "ignoreDeps": [
-    "eslint"
-  ]
+  "extends": ["config:recommended", "group:all"],
+  "bumpVersion": "patch",
+  "ignoreDeps": ["eslint"]
 }
