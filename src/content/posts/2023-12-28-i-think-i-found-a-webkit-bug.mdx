@@ -4,15 +4,16 @@ description: "In which I go over how different values of `mask` can behave diffe
 tags: daily thoughts, Chrome, Web
 ---
 
-At work, I'm in between a few big projects, spending my time polishing the UI
-so it shines. One of those polish items has been to revamp how we do
-notification badges, and through that, I think I discovered a ~~WebKit bug~~ EDIT: Chrome bug. Upon further testing, this bug does not appear to be in Safari.
+import RawSnippet from "../../components/RawSnippet.astro";
+
+At work, I’m in between a few big projects, spending my time polishing the UI so it shines. One of those polish items has been to revamp how we do notification badges, and through that, I think I discovered a ~~WebKit bug~~ EDIT: Chrome bug. Upon further testing, this bug does not appear to be in Safari, despite also appearing in Firefox? idk man it's just weird
 
 ---
 
 The simplest way to do a notification badge is like this:
 
 <style>
+  {`
 .horiz {
   display: flex;
   gap: 2rem;
@@ -51,16 +52,25 @@ div.pfp {
   padding: 0.25rem 0.5rem;
 }
 
+.green {
+  background-color: var(--color-green);
+}
+
+.orange {
+  background-color: var(--color-orange);
+}
+`}
 </style>
+
 <div class="horiz">
-<div class="avatar take0">
-  <img class="pfp" src="/uploads/randomlogo.png" />
-  <div class="badge">1</div>
-</div>
-<div class="avatar take0">
-  <div class="pfp"></div>
-  <div class="badge">2</div>
-</div>
+  <div class="avatar take0">
+    <img class="pfp" src="/uploads/randomlogo.png" />
+    <div class="badge">1</div>
+  </div>
+  <div class="avatar take0">
+    <div class="pfp"></div>
+    <div class="badge">2</div>
+  </div>
 </div>
 
 Nice 'n easy! Just slap a `position: absolute` inside a `position: relative`
@@ -82,30 +92,21 @@ specially crafted
 [radial-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient)
 as the mask source. Let's see how this looks, first without the indicator:
 
-```html
+<RawSnippet>
 <style>
-  /* irrelevant properties omitted for brevity */
+{`
+/* irrelevant properties omitted for brevity */
   .take1 .pfp {
     border-radius: 50%;
     mask-image: radial-gradient(
       ellipse 20% 20% at 85% 85%,
-      transparent 99%,
+      transparent 100%,
       white 100%
     );
   }
+`}
 </style>
 
-<div class="avatar take1">
-  <img class="pfp" src="/uploads/randomlogo.png" />
-</div>
-```
-
-<style>
-.take1 .pfp {
-  border-radius: 40px;
-  mask-image: radial-gradient(ellipse 20% 20% at 85% 85%, transparent 99%, white 100%);
-}
-</style>
 <div class="horiz">
   <div class="avatar take1">
     <img class="pfp" src="/uploads/randomlogo.png" />
@@ -114,6 +115,7 @@ as the mask source. Let's see how this looks, first without the indicator:
     <div class="pfp"></div>
   </div>
 </div>
+</RawSnippet>
 
 Interesting!! What this is doing, effectively, is drawing a completely
 transparent circle at a specified location within the bounding box, using a
@@ -126,43 +128,23 @@ Unfortunately, this approach is not without problems.
 
 This becomes more apparent when we try to add the dot:
 
-```html
+<RawSnippet>
 <style>
+{`
   .indicator {
     aspect-ratio: 1;
     border-radius: 50%;
   }
-
   .take1 .indicator {
     width: 30px;
     position: absolute;
     bottom: -3.5px;
     right: -3.5px;
   }
+`}
+
 </style>
-<div class="avatar take1">
-  <img class="pfp" src="/uploads/randomlogo.png" />
-  <div class="indicator green"></div>
-</div>
-```
 
-<style>
-.indicator {
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-
-.take1 .indicator {
-  width: 30px;
-  position: absolute;
-  bottom: -3.5px;
-  right: -3.5px;
-}
-
-.green {
-  background-color: var(--color-green);
-}
-</style>
 <div class="horiz">
   <div class="avatar take1">
     <img class="pfp" src="/uploads/randomlogo.png" />
@@ -173,6 +155,7 @@ This becomes more apparent when we try to add the dot:
     <div class="indicator green"></div>
   </div>
 </div>
+</RawSnippet>
 
 Now, we can more clearly see that the masked-out part is **_not anti-aliased_**, unlike the circular borders of the profile picture and indicator. This is part of the bug I'm referring to in the post title.
 
@@ -181,81 +164,41 @@ Now, we can more clearly see that the masked-out part is **_not anti-aliased_**,
 Things get worse if we try to add a second indicator (and not just from a
 design perspective, lol).
 
-```html
+<RawSnippet>
 <style>
+{`
   .take2 .pfp {
     mask-image: radial-gradient(
       ellipse 20% 20% at 85% 85%,
-      transparent 99%,
+      transparent 100%,
       white 100%
     );
+    background-color: initial;
   }
-
   .take2 img {
     border-radius: 50%;
   }
-
+  .take2 .img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: black;
+  }
   .take2 .indicator {
     width: 30px;
     position: absolute;
   }
-
   .take2 .indicator1 {
     bottom: -3.5px;
     right: -3.5px;
   }
-
   .take2 .indicator2 {
     top: -3.5px;
     left: -3.5px;
   }
+`}
 </style>
 
-<div class="avatar take2">
-  <div class="pfp">
-    <img src="/uploads/randomlogo.png" />
-    <div class="indicator indicator2 orange"></div>
-  </div>
-  <div class="indicator indicator1 green"></div>
-</div>
-```
-
-<style>
-.orange {
-  background-color: var(--color-orange);
-}
-
-.take2 .pfp {
-  mask-image: radial-gradient(ellipse 20% 20% at 85% 85%, transparent 99%, white 100%);
-  background-color: transparent;
-}
-
-.take2 img {
-  border-radius: 50%;
-}
-
-.take2 .img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: black;
-}
-
-.take2 .indicator {
-  width: 30px;
-  position: absolute;
-}
-
-.take2 .indicator1 {
-  bottom: -3.5px;
-  right: -3.5px;
-}
-
-.take2 .indicator2 {
-  top: -3.5px;
-  left: -3.5px;
-}
-</style>
 <div class="horiz">
   <div class="avatar take2">
     <div class="pfp">
@@ -272,6 +215,7 @@ design perspective, lol).
     <div class="indicator indicator1 green"></div>
   </div>
 </div>
+</RawSnippet>
 
 Huh?? You may have many questions, such as "why not just put
 `class="indicator2"` outside the part that clips?" and "wait hold on why is is
@@ -296,10 +240,13 @@ clips things that it shouldn't" brings us to the
 property. Swell! Let's just specify `no-clip` then, and:
 
 <style>
-.noclip {
-  mask-clip: no-clip;
-}
+  {`
+  .noclip {
+    mask-clip: no-clip;
+  }
+`}
 </style>
+
 <div class="horiz">
   <div class="avatar take2">
     <div class="pfp noclip">
@@ -320,29 +267,16 @@ property. Swell! Let's just specify `no-clip` then, and:
 Great!! Seems we're done then, no? Ignoring the slight imperfection in the
 mask, of course. Well, if we happen to move `.indicator2` to the right side, then...
 
-```html
+<RawSnippet>
 <style>
+{`
   .take2 .indicator3 {
     top: -3.5px;
     right: -3.5px;
   }
+`}
 </style>
 
-<div class="avatar take2">
-  <div class="pfp noclip">
-    <img src="/uploads/randomlogo.png" />
-    <div class="indicator indicator3 orange"></div>
-  </div>
-  <div class="indicator indicator1 green"></div>
-</div>
-```
-
-<style>
-.take2 .indicator3 {
-  top: -3.5px;
-  right: -3.5px;
-}
-</style>
 <div class="horiz">
   <div class="avatar take2">
     <div class="pfp noclip">
@@ -359,17 +293,21 @@ mask, of course. Well, if we happen to move `.indicator2` to the right side, the
     <div class="indicator indicator1 green"></div>
   </div>
 </div>
+</RawSnippet>
 
 HUH. WHAT. That's strange, to say the least. All we did was change `left:
 -3.5px` to `right: -3.5px` and suddenly the top is shorn off?? Playing around a
 bit more and setting `right: 10px`, we see a clue:
 
 <style>
-.take2 .indicator4 {
-  top: -3.5px;
-  right: 10px;
-}
+  {`
+  .take2 .indicator4 {
+    top: -3.5px;
+    right: 10px;
+  }
+`}
 </style>
+
 <div class="horiz">
   <div class="avatar take2">
     <div class="pfp noclip">
@@ -406,34 +344,40 @@ no problem, some reading of MDN has us come across the
 [mask-composite](https://developer.mozilla.org/en-US/docs/Web/CSS/mask-composite)
 property, and a bit of fooling around with it later we have a prototype:
 
-```html
-<style>
-.take3 .pfp {
-  border-radius: 50%;
-  mask-image: radial-gradient(ellipse 20% 20% at 80% 20%, transparent 99%, white 100%), linear-gradient(to bottom, white 40%, transparent 41%), linear-gradient(to left, transparent 19%, white 20%);
-  mask-composite: subtract;
-}
+<RawSnippet>
+<style>{`
+  .take3 .pfp {
+    border-radius: 50%;
+    mask-image:
+      radial-gradient(
+        ellipse 20% 20% at 80% 20%,
+        transparent 100%,
+        white 100%
+      ),
+      linear-gradient(
+        to bottom,
+        white 40%,
+        transparent 40%
+      ),
+      linear-gradient(
+        to left,
+        transparent 20%,
+        white 20%
+      );
+    mask-composite: subtract;
+  }
+`}
 </style>
-<div class="avatar take3">
-  <img class="pfp" src="/uploads/randomlogo.png"></div>
-</div>
-```
 
-<style>
-.take3 .pfp {
-  border-radius: 50%;
-  mask-image: radial-gradient(ellipse 20% 20% at 80% 20%, transparent 99%, white 100%), linear-gradient(to bottom, white 40%, transparent 41%), linear-gradient(to left, transparent 19%, white 20%);
-  mask-composite: subtract;
-}
-</style>
 <div class="horiz">
   <div class="avatar take3">
-    <img class="pfp" src="/uploads/randomlogo.png">
+    <img class="pfp" src="/uploads/randomlogo.png" />
   </div>
   <div class="avatar take3">
     <div class="pfp"></div>
   </div>
 </div>
+</RawSnippet>
 
 I could not honestly tell you how this works, only that it does. But as you can
 see from this image (and maybe even on your browser!), there's a huge problem:
@@ -453,6 +397,7 @@ As an aside, Markdown is really nice for things like this. I can just include
 HTML right in with the rest of the formatted text and it just works?? Magical.
 
 [^1]: You've read the rest of the post. You know this isn't actually easy.
+
 [^2]:
     Yes, we ship a React.js Electron app. Yes, the performance is much of a
     problem as you think it is. I will not be taking any questions about this.
