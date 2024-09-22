@@ -18,16 +18,16 @@ Ordering w/i categories is by how cool I think their website is :3
 
 ## CMU
 
-- [Abigale Kim](https://abigalekim.github.io/) - senpai :3 does databases
+- [James Gallicchio](https://gallicch.io) - Lean4 metaprogramming expert
 - [Eric Zheng](https://www.ericzheng.org/) - love his blog
 - [Miles Conn](https://milesconn.io/) - chaotic energy
-- [Ford Seidel](http://cmucc.org/~fseidel/) - ECE senpai x3
+- [Abigale Kim](https://abigalekim.github.io/) - senpai :3 does databases
 - [Mason Xiao](https://masonx.ca/) - cool ECE guy
+- [Ford Seidel](http://cmucc.org/~fseidel/) - ECE senpai x3
 - [Joel Manning](https://bokken12.github.io/) - the best TA, all-round amazing
   person
 - [Anish Singhani](https://github.com/asinghani) - another, cooler, ECE guy
-- [Zach Battleman](https://github.com/zaxioms) - kouhai :3
-- [James Gallicchio](https://www.linkedin.com/in/james-gallicchio-7769b3174) - Lean4 metaprogramming expert
+- [Zach Battleman](https://github.com/aricursion) - kouhai :3
 - [Michael Obroin](https://www.linkedin.com/in/michael-obroin/) - fastest man
   alive
 - [Cooper Pierce](https://www.linkedin.com/in/cooper-pierce) - he knows too
