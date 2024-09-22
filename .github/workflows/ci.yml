@@ -22,6 +22,10 @@ jobs:
       - name: Install Tools & Dependencies
         uses: ./.github/actions/install
 
+      - name: generate astro types
+        run: npx astro sync
+        shell: bash
+
       - name: Run Check
         run: npm run check
   eslint:
@@ -33,6 +37,10 @@ jobs:
 
       - name: Install Tools & Dependencies
         uses: ./.github/actions/install
+
+      - name: Generate Astro Types
+        run: npx astro sync
+        shell: bash
 
       - name: Run Check
         run: npm run lint:eslint

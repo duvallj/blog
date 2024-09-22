@@ -21,7 +21,3 @@ runs:
       run: npm ci
       if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
-
-    - name: Generate Astro Types
-      run: npx astro sync
-      shell: bash
