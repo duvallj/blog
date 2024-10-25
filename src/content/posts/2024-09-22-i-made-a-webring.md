@@ -1,7 +1,6 @@
 ---
 title: I Made A Webring
-description: In which I show off a webring that I brainstormed w/ some college
-friends & wrote in under 3 hours
+description: "In which I show off a webring that I brainstormed w/ some college friends & wrote in under 3 hours"
 tags: daily thoughts, Web, CMU
 ---
 
