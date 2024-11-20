@@ -4,6 +4,10 @@ description: "Another foray into debugging a Chrome rendering bug, this time wit
 tags: daily thoughts, Chrome, Web
 ---
 
+EDIT: As of 2024-10-15, when Chrome 130 was released, this bug is now [fixed](https://issuetracker.google.com/issues/325133349)! Yahoo!!
+
+<hr>
+
 So in one of my [previous
 posts](/posts/2023-12-28-i-think-i-found-a-webkit-bug.html), I outlined how
 Chrome had a rendering bug where it did not properly mask anti-aliasing pixels
