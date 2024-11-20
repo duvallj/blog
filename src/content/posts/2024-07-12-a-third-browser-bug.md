@@ -4,6 +4,10 @@ description: "I found yet another weird edgecase in some JavaScript + CSS APIs w
 tags: daily thoughts, Web
 ---
 
+EDIT: As of 2024-10-15, when Chrome 130 was released, this bug is now [fixed](https://issuetracker.google.com/issues/325133349)! Yahoo!!
+
+<hr>
+
 TL;DR: [hey check out this weird CodePen I made](https://codepen.io/jack_at_roam/pen/eYwNEEJ)
 
 <hr>
