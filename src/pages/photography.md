@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024-09: Montreal](/photography/2024-09-montreal.html)
+
+More overseas iPhone snapshots! This time with extra "artistry".
+
 ## [2024-06: London](/photography/2024-06-london.html)
 
 A continuation of my amateur iPhone photography, in quite an exotic city.

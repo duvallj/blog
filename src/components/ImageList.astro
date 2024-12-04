@@ -6,8 +6,8 @@ type Props = ImageListProps;
 
 const { images, dir } = Astro.props;
 
-const MAX_WIDTH = 1024;
-const MAX_HEIGHT = 1024;
+const DEFAULT_MAX_WIDTH = 1024;
+const DEFAULT_MAX_HEIGHT = 1024;
 
 const imagesWithDims = await Promise.all(
   images.map(async (image) => {
@@ -15,26 +15,41 @@ const imagesWithDims = await Promise.all(
     const { width: remoteWidth, height: remoteHeight } =
       await inferRemoteSize(url);
 
-    const width = Math.min(
-      MAX_WIDTH,
-      (remoteWidth * MAX_HEIGHT) / remoteHeight,
-    );
-    const height = Math.min(
-      MAX_HEIGHT,
-      (remoteHeight * MAX_WIDTH) / remoteWidth,
-    );
+    const maxWidth = image.maxWidth ?? DEFAULT_MAX_WIDTH;
+    const maxHeight = image.maxHeight ?? DEFAULT_MAX_HEIGHT;
+
+    const width = Math.min(maxWidth, (remoteWidth * maxHeight) / remoteHeight);
+    const height = Math.min(maxHeight, (remoteHeight * maxWidth) / remoteWidth);
 
     return { ...image, width, height, url };
-  }),
+  })
 );
 ---
 
 {
   imagesWithDims.map(
-    ({ title, url, width, height, imgtitle, imgalt, eager, caption }) => (
-      <figure class="photography-figure">
+    ({
+      title,
+      url,
+      width,
+      height,
+      imgtitle,
+      imgalt,
+      eager,
+      caption,
+      scrollX,
+      marginY,
+    }) => (
+      <figure>
         <h3 set:html={title} />
-        <a href={url} target="_blank">
+        <a
+          href={url}
+          target="_blank"
+          style={{
+            ...(marginY ? { margin: `0 ${marginY}` } : undefined),
+          }}
+          class={scrollX ? "scrollX" : undefined}
+        >
           <Image
             src={url}
             width={width}
@@ -47,6 +62,28 @@ const imagesWithDims = await Promise.all(
         </a>
         <figcaption set:html={caption} />
       </figure>
-    ),
+    )
   )
 }
+
+<style>
+  figure {
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    align-self: center;
+  }
+
+  .scrollX {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .scrollX img {
+    max-width: none;
+  }
+</style>
