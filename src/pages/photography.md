@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024-10: Rochester](/photography/2024-10-rochester.html)
+
+I visited a friend in a college town & took some photos.
+
 ## [2024-09: Montreal](/photography/2024-09-montreal.html)
 
 More overseas iPhone snapshots! This time with extra "artistry".
