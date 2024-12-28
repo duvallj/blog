@@ -9,7 +9,7 @@ export type PostPropsWithEntry = PostProps & {
 export const getPosts = async () => {
   const rawPosts = await getCollection("posts");
   const posts: PostPropsWithEntry[] = rawPosts.map((post) => {
-    const slug = post.slug;
+    const slug = post.id;
     const title = post.data.title ?? "untitled";
 
     const current: Post = {
@@ -30,7 +30,10 @@ export const getPosts = async () => {
     };
   });
 
-  // TODO: do I need to sort first? Seems like it's already sorted by filename which is sorted by date which is what I want roughly
+  posts.sort(
+    (postA, postB) =>
+      postA.current.date.valueOf() - postB.current.date.valueOf(),
+  );
 
   posts.forEach((post, i) => {
     if (i > 0) {

@@ -1,5 +1,6 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
+import { render } from "astro:content";
 import { getPosts } from "../data/posts";
 import sanitizeHtml from "sanitize-html";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
@@ -14,7 +15,7 @@ export async function GET(context: APIContext) {
   const posts = await getPosts();
   const items = await Promise.all(
     posts.map(async (post) => {
-      const { Content } = await post.entry.render();
+      const { Content } = await render(post.entry);
       const content = await container.renderToString(Content);
       const link = new URL(post.current.url, context.url.origin).toString();
       return {

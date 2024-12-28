@@ -22,7 +22,7 @@ const imagesWithDims = await Promise.all(
     const height = Math.min(maxHeight, (remoteHeight * maxWidth) / remoteWidth);
 
     return { ...image, width, height, url };
-  })
+  }),
 );
 ---
 
@@ -62,7 +62,7 @@ const imagesWithDims = await Promise.all(
         </a>
         <figcaption set:html={caption} />
       </figure>
-    )
+    ),
   )
 }
 
