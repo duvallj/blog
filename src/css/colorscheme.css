@@ -114,9 +114,6 @@ hr {
 
 pre,
 abbr[title],
-table,
-th,
-td,
 input,
 textarea,
 .post-navigation,
@@ -124,6 +121,16 @@ textarea,
 .site-header,
 .site-footer {
   border-color: var(--color-grey100);
+}
+
+table,
+th,
+td {
+  border-color: var(--color-grey100);
+}
+
+th, tr:nth-child(even) {
+  background-color: var(--color-light-grey);
 }
 
 /* Highlight color */

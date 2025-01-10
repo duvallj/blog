@@ -400,6 +400,17 @@ table {
   width: 100%;
 }
 
+/* Translate some deprecated attributes */
+th[align="center"],
+td[align="center"] {
+  text-align: center;
+}
+
+th[align="right"],
+td[align="right"] {
+  text-align: right;
+}
+
 caption,
 th,
 td {
