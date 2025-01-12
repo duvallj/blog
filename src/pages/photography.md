@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024: NYC](/photography/2024-nyc.html)
+
+A collection of some of the best photos I took in NYC this year.
+
 ## [2024-10: Rochester](/photography/2024-10-rochester.html)
 
 I visited a friend in a college town & took some photos.
