@@ -2,13 +2,13 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import type { Post, PostProps } from "../models/Post";
 
-export type PostPropsWithEntry = PostProps & {
+export interface PostPropsWithEntry extends PostProps {
   entry: CollectionEntry<"posts">;
-};
+}
 
 export const getPosts = async () => {
   const rawPosts = await getCollection("posts");
-  const posts: PostPropsWithEntry[] = rawPosts.map((post) => {
+  const posts = rawPosts.map((post) => {
     const slug = post.id;
     const title = post.data.title ?? "untitled";
 
@@ -23,6 +23,8 @@ export const getPosts = async () => {
     return {
       entry: post,
       current,
+      previous: undefined as Post | undefined,
+      next: undefined as Post | undefined,
       frontmatter: {
         title,
         description: post.data.description,
