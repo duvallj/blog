@@ -129,7 +129,8 @@ td {
   border-color: var(--color-grey100);
 }
 
-th, tr:nth-child(even) {
+th,
+tr:nth-child(even) {
   background-color: var(--color-light-grey);
 }
 

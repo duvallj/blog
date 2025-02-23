@@ -6,6 +6,10 @@ description: Photos I've taken over the years! Hopefully you have as much fun lo
 
 Welcome to my photography page!
 
+## [2024: Empire State Building](/photography/2024-empire-state.html)
+
+A small collection based on Joel Meyerowitz's _Empire State_ that I happened to find at a museum.
+
 ## [2024: NYC](/photography/2024-nyc.html)
 
 A collection of some of the best photos I took in NYC this year.

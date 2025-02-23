@@ -1,7 +1,7 @@
-import type { Page } from "./Page";
 import type { DefaultProps } from "./Default";
+import type { Page } from "./Page";
 
-export type Post = Page & {
+export interface Post extends Page {
   /**
    * The URL-friendly name for the post. Usually formatted like "YYYY-MM-DD-some-title"
    */
@@ -14,10 +14,10 @@ export type Post = Page & {
    * The tags associated with the post
    */
   tags: string[];
-};
+}
 
-export type PostProps = DefaultProps & {
+export interface PostProps extends DefaultProps {
   previous?: Post;
   current: Post;
   next?: Post;
-};
+}

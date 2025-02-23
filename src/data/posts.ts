@@ -1,6 +1,6 @@
-import type { PostProps, Post } from "../models/Post";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import type { Post, PostProps } from "../models/Post";
 
 export type PostPropsWithEntry = PostProps & {
   entry: CollectionEntry<"posts">;

@@ -1,5 +1,5 @@
 import type { Page } from "./Page";
 
-export type PageListProps = {
+export interface PageListProps {
   pages: Page[];
-};
+}

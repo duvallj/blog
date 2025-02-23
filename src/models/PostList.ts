@@ -1,5 +1,5 @@
 import type { Post } from "./Post";
 
-export type PostListProps = {
+export interface PostListProps {
   posts: Post[];
-};
+}

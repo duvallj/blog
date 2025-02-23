@@ -1,11 +1,11 @@
+import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx";
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { render } from "astro:content";
-import { getPosts } from "../data/posts";
-import sanitizeHtml from "sanitize-html";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { loadRenderers } from "astro:container";
-import { getContainerRenderer as getMDXRenderer } from "@astrojs/mdx";
+import { render } from "astro:content";
+import sanitizeHtml from "sanitize-html";
+import { getPosts } from "../data/posts";
 
 export async function GET(context: APIContext) {
   // From https://blog.damato.design/posts/astro-rss-mdx/

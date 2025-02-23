@@ -1,0 +1,41 @@
+---
+import type { Photograph } from "./processPhotographyImage";
+import { Image } from "astro:assets";
+
+type Props = Photograph;
+
+const { url, scrollX, marginY, width, height, imgtitle, imgalt, eager } = Astro.props;
+---
+
+<a
+  href={url}
+  style={{
+    ...(marginY ? { margin: `0 ${marginY}` } : undefined),
+  }}
+  class={scrollX ? "scrollX" : undefined}
+>
+  <Image
+    src={url}
+    width={width}
+    height={height}
+    title={imgtitle}
+    alt={imgalt ?? "A photograph"}
+    loading={eager ? "eager" : undefined}
+    quality="max"
+  />
+</a>
+
+<style>
+  a {
+    align-self: center;
+  }
+
+  .scrollX {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .scrollX img {
+    max-width: none;
+  }
+</style>

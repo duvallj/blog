@@ -3,7 +3,7 @@
  *
  * Compatible with `MarkdownLayoutProps`, but doesn't actually use all the extra information it provides.
  */
-export type DefaultProps = {
+export interface DefaultProps {
   frontmatter: {
     /**
      * Title of the page
@@ -14,4 +14,4 @@ export type DefaultProps = {
      */
     description?: string;
   };
-};
+}

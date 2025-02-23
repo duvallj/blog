@@ -1,4 +1,4 @@
-export type Image = {
+export interface ImageWithoutDetails {
   /**
    * Filename for the image. MUST be relative to https://static.duvallj.pw/photography/<dir>/
    */
@@ -11,14 +11,6 @@ export type Image = {
    * alt component for the image (text for screenreaders)
    */
   imgalt?: string;
-  /**
-   * Image caption (below the image)
-   */
-  caption: string;
-  /**
-   * Image title (above the image)
-   */
-  title: string;
   /**
    * Whether this above-the-fold image should be eagerly loaded
    */
@@ -39,4 +31,17 @@ export type Image = {
    * If provided, scales the image down in the Y direction by forcing it to have more margin, so that it doesn't appear so tall
    */
   marginY?: string;
-};
+}
+
+export interface ImageDetails {
+  /**
+   * Image caption (below the image)
+   */
+  caption: string;
+  /**
+   * Image title (above the image)
+   */
+  title: string;
+}
+
+export interface Image extends ImageWithoutDetails, ImageDetails {}
