@@ -1,7 +1,7 @@
 ---
 title: More Photography Updates (and RSS)
 description: I describe some updates I've made to the site, and release 2 more photo collections
-tags: daily thoughts, Photography
+tags: Photography, RSS
 ---
 
 Hello again! I promise this will be the last time I announce a photography collection here: [2024: Empire State Building](/photography/2024-empire-state.html) and [2024: Up & To The Right](/photography/2024-u2tr.html) are my latest sets as mentioned in my [previous post](/posts/2025-01-11-nyc-photography.html). I'm particularly proud of the latter, please check it out if you have time!
