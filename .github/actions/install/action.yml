@@ -6,10 +6,10 @@ runs:
     - uses: pnpm/action-setup@v4
       name: Install pnpm
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       name: Install Node.js
       with:
-        node-version: 20
+        node-version: 22
         cache: "pnpm"
 
     - run: pnpm install
