@@ -13,6 +13,7 @@
   --color-cyan: rgb(85, 195, 220);
   --color-blue: rgb(3, 102, 214);
   --color-orange: rgb(235, 133, 34);
+  --color-dark-orange: rgb(158, 79, 0);
   --color-light-orange: rgb(255, 183, 113);
   --color-green: rgb(103, 171, 107);
 }
@@ -125,6 +126,19 @@ tr:nth-child(even) {
 mark,
 ins {
   background-color: var(--color-cyan);
+}
+
+/* inline code color */
+code {
+  color: var(--color-dark-orange);
+  background-color: var(--color-grey100);
+  padding: 0 0.1em;
+}
+
+pre code {
+  color: inherit;
+  background-color: inherit;
+  padding: initial;
 }
 
 /* Sidebar Link Color */
