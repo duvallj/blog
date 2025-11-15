@@ -663,19 +663,9 @@ p > video {
  */
 
 @media screen and (min-width: 46.25em) {
-  body,
-  button,
-  input,
-  select,
-  textarea {
-    font-size: 17px;
-    font-size: 1.7rem;
+  body {
+    font-size: 1.125rem;
     line-height: 1.6471;
-  }
-
-  button,
-  input {
-    line-height: normal;
   }
 
   p,
@@ -690,18 +680,12 @@ p > video {
     margin-bottom: 0.82355em;
   }
 
-  .post-navigation .meta-nav {
-    font-size: 14px;
-    font-size: 1.4rem;
-  }
-
   .branding {
-    min-height: 1.85295em;
+    min-height: 1.75em;
   }
 
   .branding-title {
-    font-size: 29px;
-    font-size: 2.9rem;
+    font-size: 1.875rem;
     line-height: 1.2069;
   }
 
@@ -710,62 +694,58 @@ p > video {
   }
 
   .branding-subtitle {
-    font-size: 14px;
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
 
   .entry-title {
-    font-size: 35px;
-    font-size: 3.5rem;
+    font-size: 2.25rem;
     line-height: 1.2;
     margin-bottom: 0.6em;
   }
 
   .entry-content h1 {
-    font-size: 35px;
-    font-size: 3.5rem;
+    font-size: 2.25rem;
     line-height: 1.2;
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
   }
 
   .entry-content h2 {
-    font-size: 29px;
-    font-size: 2.9rem;
+    font-size: 1.75rem;
     line-height: 1.2069;
-    margin-top: 1.931em;
-    margin-bottom: 0.9655em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
   }
 
   .entry-content h3 {
-    font-size: 24px;
-    font-size: 2.4rem;
+    font-size: 1.5rem;
     line-height: 1.1667;
-    margin-top: 2.3333em;
-    margin-bottom: 1.1667em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
   }
 
   .entry-content h4 {
-    font-size: 20px;
-    font-size: 2rem;
+    font-size: 1.25rem;
     line-height: 1.4;
-    margin-top: 2.8em;
-    margin-bottom: 1.4em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
   }
 
   .entry-content h5,
   .entry-content h6 {
-    font-size: 17px;
-    font-size: 1.7rem;
+    font-size: 1rem;
     line-height: 1.2353;
-    margin-top: 3.2941em;
-    margin-bottom: 0.82355em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+  }
+
+  .post-navigation .meta-nav {
+    font-size: 1.5rem;
   }
 
   .post-navigation .post-title,
   .post-navigation .post-title-end {
-    font-size: 24px;
-    font-size: 2.4rem;
+    font-size: 1.5rem;
     line-height: 1.1667;
   }
 
