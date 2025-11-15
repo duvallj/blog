@@ -24,18 +24,16 @@ others.
  * 4.0 - Elements
  * 6.1 - Links
  * 7.0 - Accessibility
- * 9.0 - Clearings
  * 10.0 - Header
  * 12.0 - Content
  *    12.1 - Posts and pages
  * 14.0 - Media
- * 16.0 - Media Queries
- *    16.1 - Mobile Large
- *    16.2 - Tablet Small
- *    16.3 - Tablet Large
- *    16.4 - Desktop Small
- *    16.5 - Desktop Medium
- *    16.6 - Desktop Large
+ * 16.1 - Mobile Large
+ * 16.2 - Tablet Small
+ * 16.3 - Tablet Large
+ * 16.4 - Desktop Small
+ * 16.5 - Desktop Medium
+ * 16.6 - Desktop Large
 * 17.0 - Print
 */
 
@@ -443,23 +441,6 @@ nav a {
 }
 
 /**
- * 9.0 Clearings
- */
-
-.entry-content:before,
-.entry-content:after,
-.site-content:before,
-.site-content:after {
-  content: "";
-  display: table;
-}
-
-.entry-content:after,
-.site-content:after {
-  clear: both;
-}
-
-/**
  * 10.0 Header
  */
 
@@ -636,24 +617,6 @@ p > video {
 }
 
 /**
- * 16.0 Media Queries
- */
-
-/*
- * Does the same thing as <meta name="viewport" content="width=device-width">,
- * but in the future W3C standard way. -ms- prefix is required for IE10+ to
- * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
- * the meta tag. See https://core.trac.wordpress.org/ticket/25888.
- */
-@-ms-viewport {
-  width: device-width;
-}
-
-@viewport {
-  width: device-width;
-}
-
-/**
  * 16.1 Mobile Large 620px
  */
 
@@ -662,49 +625,36 @@ p > video {
     min-height: 1.6em;
   }
 
-  .branding-title {
-    font-size: 22px;
-    font-size: 2.2rem;
-    line-height: 1.0909;
-  }
-
   .branding-subtitle {
     display: block;
   }
 
   .site-main {
-    padding: 4.5% 0;
+    padding: 32px 0;
   }
 
   .hentry {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-    margin: 0 4.5%;
-  }
-
-  .entry-header {
-    padding: 0 9.0909%;
-  }
-
-  .entry-content {
-    padding: 0 9.0909% 9.0909%;
+    margin: 0 32px;
+    padding: 16px 32px;
   }
 
   .site-footer {
     border-top: 0;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-    margin: 0 4.5%;
-    padding: 2.75% 4.5%;
+    margin: 0 32px 32px;
+    padding: 16px 32px;
   }
 
   .post-navigation {
     border-top: 0;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-    margin: 4.5% 4.5% 0;
+    margin: 32px 32px 0;
   }
 
   .post-navigation a,
   .post-navigation .post-end {
-    padding: 4.5454% 9.0909%;
+    padding: 16px;
   }
 }
 
