@@ -106,7 +106,6 @@ input,
 textarea,
 .post-navigation,
 .post-navigation div + div,
-.site-header,
 .site-footer {
   border-color: var(--color-grey100);
 }
