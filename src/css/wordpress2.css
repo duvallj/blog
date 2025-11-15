@@ -740,7 +740,7 @@ p > video {
   }
 
   .post-navigation .meta-nav {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .post-navigation .post-title,
@@ -762,105 +762,58 @@ p > video {
  */
 
 @media screen and (min-width: 55em) {
-  body,
-  button,
-  input,
-  select,
-  textarea {
-    font-size: 19px;
-    font-size: 1.9rem;
-    line-height: 1.6842;
-  }
-
-  button,
-  input {
-    line-height: normal;
-  }
-
-  p,
-  address,
-  pre,
-  hr,
-  ul,
-  ol,
-  dl,
-  dd,
-  table {
-    margin-bottom: 0.8421em;
-  }
-
-  .post-navigation .meta-nav {
-    font-size: 16px;
-    font-size: 1.6rem;
-  }
-
   .branding {
     min-height: 1.89475em;
   }
 
   .branding-title {
-    font-size: 32px;
-    font-size: 3.2rem;
+    font-size: 2rem;
     line-height: 1.25;
   }
 
   .branding-subtitle {
-    font-size: 16px;
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 
   .entry-title {
-    font-size: 39px;
-    font-size: 3.9rem;
+    font-size: 2.375rem;
     line-height: 1.2308;
-    margin-bottom: 0.6154em;
+    margin-bottom: 0.5em;
   }
 
   .entry-content h1 {
-    font-size: 39px;
-    font-size: 3.9rem;
+    font-size: 2.375rem;
     line-height: 1.2308;
-    margin-top: 1.641em;
-    margin-bottom: 0.8205em;
   }
 
   .entry-content h2 {
-    font-size: 32px;
-    font-size: 3.2rem;
+    font-size: 2rem;
     line-height: 1.25;
-    margin-top: 2em;
-    margin-bottom: 1em;
   }
 
   .entry-content h3 {
-    font-size: 27px;
-    font-size: 2.7rem;
+    font-size: 1.75rem;
     line-height: 1.1852;
-    margin-top: 2.3704em;
-    margin-bottom: 1.1852em;
   }
 
   .entry-content h4 {
-    font-size: 22px;
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     line-height: 1.4545;
-    margin-top: 2.9091em;
-    margin-bottom: 1.4545em;
   }
 
   .entry-content h5,
   .entry-content h6 {
-    font-size: 19px;
-    font-size: 1.9rem;
+    font-size: 1.125rem;
     line-height: 1.2632;
-    margin-top: 3.3684em;
-    margin-bottom: 0.8421em;
+  }
+
+  .post-navigation .meta-nav {
+    font-size: 1.125rem;
   }
 
   .post-navigation .post-title,
   .post-navigation .post-title-end {
-    font-size: 27px;
-    font-size: 2.7rem;
+    font-size: 1.75rem;
     line-height: 1.1852;
   }
 
