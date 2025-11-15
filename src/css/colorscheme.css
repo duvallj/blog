@@ -23,7 +23,7 @@ body {
 }
 
 /* Sidebar Background Color */
-body:before,
+.sidebar,
 .site-header {
   background-color: var(--color-cyan);
 }
@@ -82,18 +82,6 @@ nav a {
 }
 
 /* Secondary Text Color */
-button:hover,
-button:focus,
-input[type="button"]:hover,
-input[type="button"]:focus,
-input[type="reset"]:hover,
-input[type="reset"]:focus,
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  background-color: var(--color-grey700);
-}
-
-/* Secondary Text Color */
 blockquote,
 a:hover,
 a:focus,
@@ -140,35 +128,6 @@ ins {
   background-color: var(--color-cyan);
 }
 
-/* Border Focus Color */
-a:focus,
-button:focus,
-input:focus {
-  outline-color: var(--color-grey300);
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--color-grey300);
-}
-
-/* Placeholder text color -- selectors need to be separate to work. */
-::-webkit-input-placeholder {
-  color: var(--color-grey700);
-}
-
-:-moz-placeholder {
-  color: var(--color-grey700);
-}
-
-::-moz-placeholder {
-  color: var(--color-grey700);
-}
-
-:-ms-input-placeholder {
-  color: var(--color-grey700);
-}
-
 /* Sidebar Link Color */
 .branding-title a,
 .branding-subtitle {
@@ -183,7 +142,7 @@ textarea:focus {
 
 /* Sidebar Border Focus Color */
 .branding-title a {
-  outline-color: var(--color-white300);
+  outline-color: var(--color-white);
 }
 
 @media screen and (min-width: 59.6875em) {
@@ -193,6 +152,6 @@ textarea:focus {
   }
 
   .sidebar a:focus {
-    outline-color: var(--color-white100);
+    outline-color: var(--color-white);
   }
 }
