@@ -32,7 +32,6 @@ others.
  * 16.2 - Tablet Small
  * 16.3 - Tablet Large
  * 16.4 - Desktop Small
- * 16.5 - Desktop Medium
  * 16.6 - Desktop Large
 * 17.0 - Print
 */
@@ -874,14 +873,14 @@ p > video {
     margin-bottom: 0.4em;
   }
 
+  .branding-logo {
+    max-height: 150px;
+  }
+
   .branding-title {
     font-size: 1.5rem;
     line-height: 1.3636;
     margin-top: 0.5em;
-  }
-
-  .branding-logo {
-    max-height: none;
   }
 
   .branding-subtitle {
@@ -967,224 +966,73 @@ p > video {
 }
 
 /**
- * 16.5 Desktop Medium 1100px
- */
-
-@media screen and (min-width: 68.75em) {
-  body,
-  button,
-  input,
-  select,
-  textarea {
-    font-size: 17px;
-    font-size: 1.7rem;
-    line-height: 1.6471;
-  }
-
-  button,
-  input {
-    line-height: normal;
-  }
-
-  p,
-  address,
-  pre,
-  hr,
-  ul,
-  ol,
-  dl,
-  dd,
-  table {
-    margin-bottom: 0.82355em;
-  }
-
-  .post-navigation .meta-nav {
-    font-size: 14px;
-    font-size: 1.4rem;
-  }
-
-  .branding-title {
-    font-size: 24px;
-    font-size: 2.4rem;
-    line-height: 1.1667;
-  }
-
-  .branding-subtitle {
-    font-size: 14px;
-    font-size: 1.4rem;
-  }
-
-  .entry-title {
-    font-size: 35px;
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 0.6em;
-  }
-
-  .entry-content h1 {
-    font-size: 35px;
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
-  }
-
-  .entry-content h2 {
-    font-size: 29px;
-    font-size: 2.9rem;
-    line-height: 1.2069;
-    margin-top: 1.931em;
-    margin-bottom: 0.9655em;
-  }
-
-  .entry-content h3 {
-    font-size: 24px;
-    font-size: 2.4rem;
-    line-height: 1.1667;
-    margin-top: 2.3333em;
-    margin-bottom: 1.1667em;
-  }
-
-  .entry-content h4 {
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 1.4;
-    margin-top: 2.8em;
-    margin-bottom: 1.4em;
-  }
-
-  .entry-content h5,
-  .entry-content h6 {
-    font-size: 17px;
-    font-size: 1.7rem;
-    line-height: 1.2353;
-    margin-top: 3.2941em;
-    margin-bottom: 0.82355em;
-  }
-
-  .post-navigation .post-title,
-  .post-navigation .post-title-end {
-    font-size: 24px;
-    font-size: 2.4rem;
-    line-height: 1.1667;
-  }
-
-  embed,
-  iframe,
-  object,
-  video {
-    margin-bottom: 0.82355em;
-  }
-}
-
-/**
  * 16.6 Desktop Large 1240px
  */
 
 @media screen and (min-width: 77.5em) {
-  body,
-  button,
-  input,
-  select,
-  textarea {
-    font-size: 19px;
-    font-size: 1.9rem;
+  body {
+    font-size: 1.125rem;
     line-height: 1.6842;
   }
 
-  button,
-  input {
-    line-height: normal;
-  }
-
-  p,
-  address,
-  pre,
-  hr,
-  ul,
-  ol,
-  dl,
-  dd,
-  table {
-    margin-bottom: 0.8421em;
-  }
-
-  .post-navigation .meta-nav {
-    font-size: 16px;
-    font-size: 1.6rem;
+  .branding-logo {
+    max-height: 200px;
   }
 
   .branding-title {
-    font-size: 27px;
-    font-size: 2.7rem;
+    font-size: 1.75rem;
     line-height: 1.1852;
   }
 
   .branding-subtitle {
-    font-size: 16px;
-    font-size: 1.6rem;
+    font-size: 1rem;
+  }
+
+  .hentry,
+  .post-navigation,
+  .site-footer {
+    max-width: 900px;
   }
 
   .entry-title {
-    font-size: 39px;
-    font-size: 3.9rem;
+    font-size: 2.5rem;
     line-height: 1.2308;
-    margin-bottom: 0.6154em;
   }
 
   .entry-content h1 {
-    font-size: 39px;
-    font-size: 3.9rem;
+    font-size: 2.5rem;
     line-height: 1.2308;
-    margin-top: 1.641em;
-    margin-bottom: 0.8205em;
   }
 
   .entry-content h2 {
-    font-size: 32px;
-    font-size: 3.2rem;
+    font-size: 2rem;
     line-height: 1.25;
-    margin-top: 2em;
-    margin-bottom: 1em;
   }
 
   .entry-content h3 {
-    font-size: 27px;
-    font-size: 2.7rem;
+    font-size: 1.75rem;
     line-height: 1.1852;
-    margin-top: 2.3704em;
-    margin-bottom: 1.1852em;
   }
 
   .entry-content h4 {
-    font-size: 22px;
-    font-size: 2.2rem;
+    font-size: 1.375rem;
     line-height: 1.4545;
-    margin-top: 2.9091em;
-    margin-bottom: 1.4545em;
   }
 
   .entry-content h5,
   .entry-content h6 {
-    font-size: 19px;
-    font-size: 1.9rem;
+    font-size: 1.25rem;
     line-height: 1.2632;
-    margin-top: 3.3684em;
-    margin-bottom: 0.8421em;
+  }
+
+  .post-navigation .meta-nav {
+    font-size: 1rem;
   }
 
   .post-navigation .post-title,
   .post-navigation .post-title-end {
-    font-size: 27px;
-    font-size: 2.7rem;
+    font-size: 1.75rem;
     line-height: 1.2;
-  }
-
-  embed,
-  iframe,
-  object,
-  video {
-    margin-bottom: 0.8em;
   }
 }
 
